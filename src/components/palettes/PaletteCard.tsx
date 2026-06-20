@@ -1,10 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Package, TrendingUp, Star, Eye, ShoppingCart, ArrowRight } from 'lucide-react';
 import type { Palette } from '@/types/palette';
 import { addPaletteToCart } from '@/lib/cart';
+import QuickViewModal from './QuickViewModal';
 import s from './PaletteCard.module.css';
 
 const usd = (value: number) => `$${value.toLocaleString('en-US')}`;
@@ -28,6 +30,7 @@ export default function PaletteCard({
   priority = false,
 }: PaletteCardProps) {
   const discount = Math.round((1 - palette.price / palette.original_price) * 100);
+  const [quickOpen, setQuickOpen] = useState(false);
 
   return (
     <article
@@ -48,9 +51,12 @@ export default function PaletteCard({
           {palette.limitedTime && <span className={`${s.badge} ${s.limited}`}>⏱ Limited</span>}
         </div>
         <div className={s['palette-overlay']}>
-          <Link href={`/pallet/${palette.id}`} className={s['btn-overlay']}>
+          <button type="button" className={s['btn-overlay']} onClick={() => setQuickOpen(true)}>
             <Eye size={17} aria-hidden="true" />
-            View Details
+            Quick View
+          </button>
+          <Link href={`/pallet/${palette.id}`} className={s['btn-overlay-ghost']}>
+            Full details
           </Link>
         </div>
       </div>
@@ -96,6 +102,7 @@ export default function PaletteCard({
           </Link>
         </div>
       </div>
+      <QuickViewModal palette={palette} open={quickOpen} onClose={() => setQuickOpen(false)} />
     </article>
   );
 }

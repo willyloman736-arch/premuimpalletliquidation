@@ -228,6 +228,23 @@ export default function CartView() {
                 )}
               </div>
 
+              {shipping > 0 ? (
+                <div className={s['ship-progress']}>
+                  <p>
+                    You&apos;re <strong>{money(1000 - subtotal)}</strong> away from{' '}
+                    <strong>free shipping</strong>
+                  </p>
+                  <div className={s['ship-bar']}>
+                    <span style={{ width: `${Math.min(100, (subtotal / 1000) * 100)}%` }} />
+                  </div>
+                </div>
+              ) : (
+                <div className={`${s['ship-progress']} ${s['ship-done']}`}>
+                  <Truck size={16} aria-hidden="true" />
+                  <p>You&apos;ve unlocked free shipping!</p>
+                </div>
+              )}
+
               <div className={s['price-breakdown']}>
                 <div className={s['price-row']}>
                   <span>Subtotal</span>

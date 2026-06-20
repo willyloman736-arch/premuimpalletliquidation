@@ -1,0 +1,243 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(2, 12, 11, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: qv-fade 0.25s ease;
+}
+
+.dialog {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 760px;
+  max-height: 90vh;
+  overflow: hidden;
+  background: var(--glass-dark);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  animation: qv-rise 0.25s ease;
+}
+
+.close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--glass-2);
+  border: 1px solid var(--glass-border);
+  color: var(--fg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close:hover {
+  background: var(--amber);
+  color: var(--ink);
+  border-color: var(--amber);
+}
+
+.media {
+  position: relative;
+  min-height: 340px;
+  background: #000;
+  border-right: 1px solid var(--glass-border);
+}
+
+.media :global(img) {
+  object-fit: cover;
+}
+
+.body {
+  padding: 2rem 1.75rem;
+  overflow-y: auto;
+}
+
+.grade {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--amber);
+  border: 1px solid var(--amber-deep);
+  background: var(--amber-soft);
+  padding: 3px 9px;
+  border-radius: 5px;
+  margin-bottom: 0.85rem;
+}
+
+.body h3 {
+  color: var(--fg);
+  font-size: 1.3rem;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--amber);
+  margin-bottom: 0.85rem;
+}
+
+.rating span {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--fg-muted);
+  margin-left: 0.25rem;
+}
+
+.desc {
+  color: var(--fg-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.meta {
+  display: flex;
+  gap: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--fg-muted);
+  margin-bottom: 1.1rem;
+}
+
+.meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.meta svg {
+  color: var(--amber);
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.cur {
+  font-family: var(--font-mono);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.orig {
+  font-family: var(--font-mono);
+  color: var(--fg-soft);
+  text-decoration: line-through;
+}
+
+.disc {
+  font-family: var(--font-mono);
+  background: var(--amber);
+  color: var(--ink);
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.add {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--amber);
+  color: var(--ink);
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add:hover {
+  background: var(--amber-bright);
+  box-shadow: 0 8px 24px rgba(45, 212, 191, 0.4);
+}
+
+.details {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--fg);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.details:hover {
+  color: var(--amber);
+}
+
+@keyframes qv-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes qv-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 640px) {
+  .dialog {
+    grid-template-columns: 1fr;
+    max-height: 92vh;
+    overflow-y: auto;
+  }
+  .media {
+    min-height: 220px;
+    border-right: none;
+    border-bottom: 1px solid var(--glass-border);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .dialog {
+    animation: none;
+  }
+}

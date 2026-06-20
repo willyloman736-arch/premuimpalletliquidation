@@ -582,3 +582,59 @@
     transform: none;
   }
 }
+
+/* --- Free-shipping progress --- */
+.ship-progress {
+  margin-bottom: 1.25rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  background: var(--glass);
+}
+
+.ship-progress p {
+  margin: 0 0 0.55rem;
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+}
+
+.ship-progress strong {
+  color: var(--amber);
+}
+
+.ship-bar {
+  height: 7px;
+  border-radius: 4px;
+  background: var(--ink-700);
+  overflow: hidden;
+}
+
+.ship-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--amber-deep), var(--amber), var(--cyan));
+  transition: width 0.4s ease;
+}
+
+.ship-done {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-color: var(--amber-deep);
+  background: var(--amber-soft);
+}
+
+.ship-done svg {
+  color: var(--amber);
+  flex-shrink: 0;
+}
+
+.ship-done p {
+  margin: 0;
+  color: var(--amber);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}

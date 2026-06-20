@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Package, Grid, List, ChevronLeft, ChevronRight, Search } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
+import { Package, Grid, List, ChevronLeft, ChevronRight, Search, X } from 'lucide-react';
 import type { Palette } from '@/types/palette';
-import { categories } from '@/data/palettes';
+import { categories, conditions } from '@/data/palettes';
 import PaletteCard from '@/components/palettes/PaletteCard';
 import s from './CatalogView.module.css';
 
@@ -18,18 +18,37 @@ const sortOptions = [
 ] as const;
 
 export default function CatalogView({ palettes }: { palettes: Palette[] }) {
+  const priceCeiling = useMemo(
+    () => Math.ceil(Math.max(...palettes.map((p) => p.price), 100) / 100) * 100,
+    [palettes],
+  );
+
   const [currentPage, setCurrentPage] = useState(1);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState<string>('featured');
   const [filterBy, setFilterBy] = useState<string>('All');
+  const [gradeBy, setGradeBy] = useState<string>('All');
+  const [maxPrice, setMaxPrice] = useState<number>(priceCeiling);
+
+  const hasActiveFilters =
+    searchTerm !== '' || filterBy !== 'All' || gradeBy !== 'All' || maxPrice < priceCeiling;
+
+  const clearFilters = () => {
+    setSearchTerm('');
+    setFilterBy('All');
+    setGradeBy('All');
+    setMaxPrice(priceCeiling);
+  };
 
   const filteredPalettes = palettes.filter((palette) => {
     const matchesSearch =
       palette.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       palette.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesFilter = filterBy === 'All' || palette.category === filterBy;
-    return matchesSearch && matchesFilter;
+    const matchesCategory = filterBy === 'All' || palette.category === filterBy;
+    const matchesGrade = gradeBy === 'All' || palette.condition === gradeBy;
+    const matchesPrice = palette.price <= maxPrice;
+    return matchesSearch && matchesCategory && matchesGrade && matchesPrice;
   });
 
   const sortedPalettes = [...filteredPalettes].sort((a, b) => {
@@ -59,7 +78,7 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm, sortBy, filterBy]);
+  }, [searchTerm, sortBy, filterBy, gradeBy, maxPrice]);
 
   return (
     <div className={s['palettes-page']}>
@@ -124,6 +143,38 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
                 ))}
               </select>
 
+              <label htmlFor="catalog-grade" className="sr-only">
+                Filter by grade
+              </label>
+              <select
+                id="catalog-grade"
+                value={gradeBy}
+                onChange={(e) => setGradeBy(e.target.value)}
+                className={s['filter-select']}
+              >
+                <option value="All">All grades</option>
+                {conditions.map((g) => (
+                  <option key={g} value={g}>
+                    {g}
+                  </option>
+                ))}
+              </select>
+
+              <div className={s['price-filter']}>
+                <label htmlFor="catalog-price">
+                  Max price <strong>${maxPrice.toLocaleString('en-US')}</strong>
+                </label>
+                <input
+                  id="catalog-price"
+                  type="range"
+                  min={0}
+                  max={priceCeiling}
+                  step={50}
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(Number(e.target.value))}
+                />
+              </div>
+
               <label htmlFor="catalog-sort" className="sr-only">
                 Sort pallets
               </label>
@@ -167,6 +218,11 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
             <p>
               {filteredPalettes.length} pallet{filteredPalettes.length === 1 ? '' : 's'} found
             </p>
+            {hasActiveFilters && (
+              <button type="button" className={s['clear-filters']} onClick={clearFilters}>
+                <X size={14} aria-hidden="true" /> Clear filters
+              </button>
+            )}
           </div>
         </div>
       </section>
@@ -177,7 +233,12 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
             <div className={s['no-results']}>
               <Package size={64} aria-hidden="true" />
               <h3>No pallets found</h3>
-              <p>Try adjusting your search.</p>
+              <p>Try adjusting your search or filters.</p>
+              {hasActiveFilters && (
+                <button type="button" className={s['clear-filters']} onClick={clearFilters}>
+                  <X size={14} aria-hidden="true" /> Clear filters
+                </button>
+              )}
             </div>
           ) : (
             <div className={`${s['palettes-grid']} ${s[viewMode]}`}>

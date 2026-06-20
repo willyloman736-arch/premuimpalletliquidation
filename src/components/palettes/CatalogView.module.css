@@ -360,3 +360,67 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* --- Faceted filter additions --- */
+.price-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 160px;
+}
+
+.price-filter label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.price-filter label strong {
+  color: var(--amber);
+}
+
+.price-filter input[type='range'] {
+  width: 100%;
+  accent-color: var(--amber);
+  cursor: pointer;
+}
+
+.results-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.clear-filters {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clear-filters:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+@media (max-width: 1024px) {
+  .price-filter {
+    min-width: 0;
+    width: 100%;
+  }
+}

@@ -295,3 +295,35 @@
     animation: none;
   }
 }
+
+/* --- Quick-view overlay (two actions) --- */
+.palette-overlay {
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.btn-overlay {
+  border: none;
+  cursor: pointer;
+}
+
+.btn-overlay-ghost {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 0.55rem 1.3rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.btn-overlay-ghost:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
