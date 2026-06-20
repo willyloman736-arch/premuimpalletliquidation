@@ -30,6 +30,13 @@ export default function Header() {
 
   return (
     <header className={`${s.header} ${isScrolled ? s['header-scrolled'] : ''}`}>
+      <div className={s.announce}>
+        <span>Free shipping over $1,000</span>
+        <span className={s['announce-dot']} aria-hidden="true">•</span>
+        <span>Ships in 48h nationwide</span>
+        <span className={`${s['announce-dot']} ${s['announce-extra']}`} aria-hidden="true">•</span>
+        <span className={s['announce-extra']}>Verified manifests on every pallet</span>
+      </div>
       <div className="container">
         <div className={s['header-content']}>
           <Link href="/" className={s.logo} aria-label="Premium Pallet Liquidations — home">

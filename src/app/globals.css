@@ -155,7 +155,7 @@ video {
 
 .main-content {
   flex: 1;
-  margin-top: 76px;
+  margin-top: 110px; /* announcement bar (34) + header (76) */
   position: relative;
   animation: shell-fade-in 0.5s ease-out;
 }
@@ -166,7 +166,7 @@ video {
 }
 
 @media (max-width: 768px) {
-  .main-content { margin-top: 68px; }
+  .main-content { margin-top: 102px; }
 }
 
 /* --- Signature elements --------------------------------------------------- */

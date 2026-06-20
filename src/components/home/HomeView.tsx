@@ -14,13 +14,48 @@ import {
   Award,
   ChevronDown,
   Zap,
+  ShieldCheck,
+  Truck,
+  ClipboardCheck,
+  RotateCcw,
+  Search,
+  CreditCard,
+  BadgeCheck,
 } from 'lucide-react';
 import type { Palette } from '@/types/palette';
 import { categories } from '@/data/palettes';
 import { useInView } from '@/lib/useInView';
 import PaletteCard from '@/components/palettes/PaletteCard';
 import Carousel from '@/components/ui/Carousel';
+import CountUp from '@/components/ui/CountUp';
 import s from './Home.module.css';
+
+const trustItems = [
+  { icon: ShieldCheck, title: 'Secure checkout', sub: 'SSL-encrypted payments' },
+  { icon: Truck, title: 'Ships in 48h', sub: 'Nationwide, tracked' },
+  { icon: ClipboardCheck, title: 'Verified manifests', sub: 'Know what you buy' },
+  { icon: RotateCcw, title: 'Buyer protection', sub: '7-day resolution window' },
+];
+
+const paymentBadges = ['Visa', 'Mastercard', 'Amex', 'Apple Pay', 'ACH'];
+
+const howItWorks = [
+  {
+    icon: Search,
+    title: 'Browse manifests',
+    sub: 'Filter by category, brand and grade. Every pallet lists what is inside before you buy.',
+  },
+  {
+    icon: CreditCard,
+    title: 'Buy securely',
+    sub: 'Checkout with card, ACH or Apple Pay. SSL-encrypted, buyer-protected, no surprises.',
+  },
+  {
+    icon: Truck,
+    title: 'Ships in 48h',
+    sub: 'We pack and dispatch within 48 hours, delivered nationwide with tracking.',
+  },
+];
 
 const backgroundImages = [
   '/images/backgrounds/fond.jpg',
@@ -100,6 +135,7 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
   const [statsRef, statsIn] = useInView<HTMLElement>();
   const [featuredRef, featuredIn] = useInView<HTMLElement>();
   const [testimonialsRef, testimonialsIn] = useInView<HTMLElement>();
+  const [howRef, howIn] = useInView<HTMLElement>();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -173,6 +209,62 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
           <ChevronDown size={24} aria-hidden="true" />
         </button>
         <div className={s['hero-hazard']} aria-hidden="true" />
+      </section>
+
+      {/* Trust strip ---------------------------------------------------- */}
+      <section className={s['trust-strip']} aria-label="Why buy from us">
+        <div className="container">
+          <div className={s['trust-grid']}>
+            {trustItems.map((t) => {
+              const Icon = t.icon;
+              return (
+                <div key={t.title} className={s['trust-item']}>
+                  <Icon size={22} aria-hidden="true" />
+                  <div>
+                    <strong>{t.title}</strong>
+                    <span>{t.sub}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className={s['payment-row']}>
+            <span className={s['payment-label']}>
+              <CreditCard size={15} aria-hidden="true" /> We accept
+            </span>
+            {paymentBadges.map((p) => (
+              <span key={p} className={s['payment-badge']}>
+                {p}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How it works --------------------------------------------------- */}
+      <section ref={howRef} className={`${s['how-section']} ${s.reveal} ${howIn ? s.visible : ''}`}>
+        <div className="container">
+          <div className={s['section-header']}>
+            <span className={`eyebrow ${s['section-eyebrow']}`}>Simple &amp; transparent</span>
+            <h2>How It Works</h2>
+            <p>From browsing manifests to delivery — three steps, no guesswork.</p>
+          </div>
+          <div className={s['how-grid']}>
+            {howItWorks.map((step, i) => {
+              const Icon = step.icon;
+              return (
+                <div key={step.title} className={s['how-card']}>
+                  <span className={s['how-num']}>{String(i + 1).padStart(2, '0')}</span>
+                  <div className={s['how-icon']}>
+                    <Icon size={26} aria-hidden="true" />
+                  </div>
+                  <h3>{step.title}</h3>
+                  <p>{step.sub}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </section>
 
       {/* Videos --------------------------------------------------------- */}
@@ -249,7 +341,9 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
                     <div className={s['stat-icon']}>
                       <Icon size={26} aria-hidden="true" />
                     </div>
-                    <span className={s['stat-num']}>{stat.number}</span>
+                    <span className={s['stat-num']}>
+                      <CountUp value={stat.number} />
+                    </span>
                     <span className={s['stat-label']}>{stat.label}</span>
                   </div>
                 );
@@ -304,6 +398,23 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
             <p>Real US resellers scaling their business with our pallets.</p>
           </div>
 
+          <div className={s['rating-summary']}>
+            <span className={s['rating-score']}>4.8</span>
+            <div className={s['rating-meta']}>
+              <div className={s['rating-stars']} aria-hidden="true">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={18} fill="currentColor" />
+                ))}
+              </div>
+              <p>
+                Rated <strong>4.8 / 5</strong> by <strong>500+</strong> verified resellers
+              </p>
+            </div>
+            <span className={s['rating-badge']}>
+              <BadgeCheck size={16} aria-hidden="true" /> Verified reviews
+            </span>
+          </div>
+
           <div className={s['testimonials-grid']}>
             {testimonials.map((testimonial) => (
               <figure key={testimonial.name} className={s['testimonial-card']}>
@@ -324,6 +435,9 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
                   </div>
                 </div>
                 <blockquote className={s['testimonial-text']}>&ldquo;{testimonial.text}&rdquo;</blockquote>
+                <div className={s['testimonial-verified']}>
+                  <BadgeCheck size={13} aria-hidden="true" /> Verified buyer
+                </div>
               </figure>
             ))}
           </div>
