@@ -327,3 +327,15 @@
 .btn-overlay-ghost:hover {
   background: rgba(255, 255, 255, 0.22);
 }
+
+/* --- Category tag (above title) --- */
+.palette-category {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--amber-deep);
+  margin-bottom: 0.35rem;
+}

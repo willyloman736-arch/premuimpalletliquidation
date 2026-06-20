@@ -973,3 +973,212 @@
   .rating-meta { text-align: center; }
   .rating-stars { justify-content: center; }
 }
+
+/* ============================================================ WN-style ===
+   Shop-by-category grid, per-category product rows, newsletter band
+   ======================================================================= */
+.category-section {
+  padding: 5rem 0 4rem;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.category-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.6rem;
+  padding: 1.85rem 1rem;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-tile:hover {
+  transform: translateY(-4px);
+  border-color: var(--amber);
+  box-shadow: var(--shadow-lg);
+}
+
+.category-tile-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--amber-soft);
+  color: var(--amber-deep);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.category-tile:hover .category-tile-icon {
+  background: var(--amber);
+  color: #fff;
+}
+
+.category-tile-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 1rem;
+  color: var(--fg);
+}
+
+.category-tile-count {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--fg-muted);
+}
+
+.cat-row-section {
+  padding: 2.75rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.cat-row-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cat-row-head h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.cat-row-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--amber-deep);
+  text-decoration: none;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.cat-row-link:hover {
+  gap: 0.7rem;
+  color: var(--amber);
+}
+
+.newsletter-band {
+  padding: 4.5rem 0;
+  background: var(--glass-dark);
+}
+
+.newsletter-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.newsletter-copy {
+  max-width: 30rem;
+}
+
+.newsletter-copy h2 {
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.newsletter-copy p {
+  color: var(--fg-invert-muted);
+  margin: 0;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0.6rem;
+  flex: 1;
+  min-width: 280px;
+  max-width: 32rem;
+}
+
+.newsletter-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  padding: 0 0.9rem;
+  color: var(--fg-invert-muted);
+}
+
+.newsletter-field input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 0.95rem;
+  padding: 0.85rem 0;
+}
+
+.newsletter-field input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.newsletter-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--amber);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0 1.4rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.newsletter-submit:hover {
+  background: var(--amber-bright);
+}
+
+.newsletter-thanks {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--amber-bright);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .category-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .newsletter-form { flex-direction: column; }
+  .newsletter-submit { justify-content: center; padding: 0.85rem 1.4rem; }
+  .cat-row-head h2 { font-size: 1.35rem; }
+}

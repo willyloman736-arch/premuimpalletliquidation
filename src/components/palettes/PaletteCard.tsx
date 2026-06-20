@@ -62,6 +62,7 @@ export default function PaletteCard({
       </div>
 
       <div className={s['palette-content']}>
+        <span className={s['palette-category']}>{palette.category}</span>
         <h3>{palette.title}</h3>
         <p>{palette.description}</p>
 

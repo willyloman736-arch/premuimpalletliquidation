@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   Play,
-  TrendingUp,
   Star,
   ArrowRight,
   Package,
@@ -21,9 +20,17 @@ import {
   Search,
   CreditCard,
   BadgeCheck,
+  Footprints,
+  Shirt,
+  Smartphone,
+  Wrench,
+  WashingMachine,
+  Sparkles,
+  ShoppingBag,
+  ToyBrick,
+  Mail,
 } from 'lucide-react';
 import type { Palette } from '@/types/palette';
-import { categories } from '@/data/palettes';
 import { useInView } from '@/lib/useInView';
 import PaletteCard from '@/components/palettes/PaletteCard';
 import Carousel from '@/components/ui/Carousel';
@@ -56,6 +63,17 @@ const howItWorks = [
     sub: 'We pack and dispatch within 48 hours, delivered nationwide with tracking.',
   },
 ];
+
+const categoryMeta = [
+  { name: 'Footwear', icon: Footprints },
+  { name: 'Clothing', icon: Shirt },
+  { name: 'Electronics', icon: Smartphone },
+  { name: 'Tools', icon: Wrench },
+  { name: 'Appliances', icon: WashingMachine },
+  { name: 'Cosmetics', icon: Sparkles },
+  { name: 'Accessories', icon: ShoppingBag },
+  { name: 'Toys', icon: ToyBrick },
+] as const;
 
 const backgroundImages = [
   '/images/backgrounds/fond.jpg',
@@ -126,16 +144,32 @@ const testimonials = [
   },
 ];
 
-export default function HomeView({ featured }: { featured: Palette[] }) {
+export default function HomeView({
+  featured,
+  palettes,
+}: {
+  featured: Palette[];
+  palettes: Palette[];
+}) {
   const [currentBgImage, setCurrentBgImage] = useState(0);
   const [playingVideo, setPlayingVideo] = useState<number | null>(null);
   const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterDone, setNewsletterDone] = useState(false);
 
   const [videosRef, videosIn] = useInView<HTMLElement>();
   const [statsRef, statsIn] = useInView<HTMLElement>();
   const [featuredRef, featuredIn] = useInView<HTMLElement>();
   const [testimonialsRef, testimonialsIn] = useInView<HTMLElement>();
   const [howRef, howIn] = useInView<HTMLElement>();
+  const [catRef, catIn] = useInView<HTMLElement>();
+
+  // Categories that have enough stock to fill a row (mirrors the reference's
+  // per-category modules). Capped to keep the page focused.
+  const categoryGroups = categoryMeta
+    .map((c) => ({ name: c.name, items: palettes.filter((p) => p.category === c.name) }))
+    .filter((g) => g.items.length >= 3)
+    .slice(0, 4);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -145,6 +179,12 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
   }, []);
 
   const scrollToVideos = () => videosRef.current?.scrollIntoView({ behavior: 'smooth' });
+
+  const handleNewsletter = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setNewsletterDone(true);
+    setNewsletterEmail('');
+  };
 
   return (
     <div className={s.home}>
@@ -240,6 +280,85 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
           </div>
         </div>
       </section>
+
+      {/* Featured ------------------------------------------------------- */}
+      <section ref={featuredRef} className={`${s['featured-section']} ${s.reveal} ${featuredIn ? s.visible : ''}`}>
+        <div className="container">
+          <div className={s['section-header']}>
+            <span className={`eyebrow ${s['section-eyebrow']}`}>This Week&apos;s Best Margins</span>
+            <h2>Featured Pallets</h2>
+            <p>Swipe through hand-picked truckloads with the strongest resale potential right now.</p>
+          </div>
+
+          <Carousel ariaLabel="Featured pallets">
+            {featured.map((palette, index) => (
+              <PaletteCard key={palette.id} palette={palette} index={index} priority={index < 2} />
+            ))}
+          </Carousel>
+
+          <div className={s['section-footer']}>
+            <Link href="/pallets" className={s['btn-view-all']}>
+              Shop All Pallets
+              <ArrowRight size={20} aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Shop by category ---------------------------------------------- */}
+      <section ref={catRef} className={`${s['category-section']} ${s.reveal} ${catIn ? s.visible : ''}`}>
+        <div className="container">
+          <div className={s['section-header']}>
+            <span className={`eyebrow ${s['section-eyebrow']}`}>Browse the warehouse</span>
+            <h2>Shop By Category</h2>
+            <p>Jump straight to the product type you resell.</p>
+          </div>
+          <div className={s['category-grid']}>
+            {categoryMeta.map((c) => {
+              const Icon = c.icon;
+              const count = palettes.filter((p) => p.category === c.name).length;
+              return (
+                <Link
+                  key={c.name}
+                  href={`/pallets?category=${encodeURIComponent(c.name)}`}
+                  className={s['category-tile']}
+                >
+                  <span className={s['category-tile-icon']}>
+                    <Icon size={26} aria-hidden="true" />
+                  </span>
+                  <span className={s['category-tile-name']}>{c.name}</span>
+                  <span className={s['category-tile-count']}>
+                    {count} pallet{count === 1 ? '' : 's'}
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Per-category product rows -------------------------------------- */}
+      {categoryGroups.map((g) => (
+        <section key={g.name} className={s['cat-row-section']}>
+          <div className="container">
+            <div className={s['cat-row-head']}>
+              <h2>{g.name}</h2>
+              <Link
+                href={`/pallets?category=${encodeURIComponent(g.name)}`}
+                className={s['cat-row-link']}
+              >
+                View all {g.name}
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            </div>
+            <Carousel ariaLabel={`${g.name} pallets`}>
+              {g.items.map((p, i) => (
+                <PaletteCard key={p.id} palette={p} index={i} />
+              ))}
+            </Carousel>
+          </div>
+        </section>
+      ))}
 
       {/* How it works --------------------------------------------------- */}
       <section ref={howRef} className={`${s['how-section']} ${s.reveal} ${howIn ? s.visible : ''}`}>
@@ -353,39 +472,6 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
         </div>
       </section>
 
-      {/* Featured ------------------------------------------------------- */}
-      <section ref={featuredRef} className={`${s['featured-section']} ${s.reveal} ${featuredIn ? s.visible : ''}`}>
-        <div className="container">
-          <div className={s['section-header']}>
-            <span className={`eyebrow ${s['section-eyebrow']}`}>This Week&apos;s Best Margins</span>
-            <h2>Featured Pallets</h2>
-            <p>Swipe through hand-picked truckloads with the strongest resale potential right now.</p>
-            <nav className={s['category-nav']} aria-label="Shop by category">
-              {categories
-                .filter((c) => c !== 'All')
-                .map((c) => (
-                  <Link key={c} href="/pallets" className={s['category-chip']}>
-                    {c}
-                  </Link>
-                ))}
-            </nav>
-          </div>
-
-          <Carousel ariaLabel="Featured pallets">
-            {featured.map((palette, index) => (
-              <PaletteCard key={palette.id} palette={palette} index={index} priority={index < 2} />
-            ))}
-          </Carousel>
-
-          <div className={s['section-footer']}>
-            <Link href="/pallets" className={s['btn-view-all']}>
-              Shop All Pallets
-              <ArrowRight size={20} aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials --------------------------------------------------- */}
       <section
         ref={testimonialsRef}
@@ -461,6 +547,42 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
                 Talk To Us
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter ----------------------------------------------------- */}
+      <section className={s['newsletter-band']} aria-label="Newsletter">
+        <div className="container">
+          <div className={s['newsletter-inner']}>
+            <div className={s['newsletter-copy']}>
+              <span className={`eyebrow eyebrow-invert ${s['section-eyebrow']}`}>Stay in the loop</span>
+              <h2>New Pallets, First Dibs</h2>
+              <p>Join our list for fresh manifests, restock alerts and reseller-only deals.</p>
+            </div>
+            {newsletterDone ? (
+              <p className={s['newsletter-thanks']}>
+                <BadgeCheck size={18} aria-hidden="true" /> You&apos;re on the list — talk soon.
+              </p>
+            ) : (
+              <form className={s['newsletter-form']} onSubmit={handleNewsletter}>
+                <div className={s['newsletter-field']}>
+                  <Mail size={18} aria-hidden="true" />
+                  <input
+                    type="email"
+                    required
+                    placeholder="you@email.com"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    aria-label="Email address"
+                  />
+                </div>
+                <button type="submit" className={s['newsletter-submit']}>
+                  Subscribe
+                  <ArrowRight size={18} aria-hidden="true" />
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </section>

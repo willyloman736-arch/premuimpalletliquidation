@@ -76,6 +76,14 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
     window.scrollTo({ top: 400, behavior: 'smooth' });
   };
 
+  // Pre-select a category when arriving from a "Shop by category" link (/pallets?category=…).
+  useEffect(() => {
+    const cat = new URLSearchParams(window.location.search).get('category');
+    if (cat && (categories as readonly string[]).includes(cat)) {
+      setFilterBy(cat);
+    }
+  }, []);
+
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm, sortBy, filterBy, gradeBy, maxPrice]);
