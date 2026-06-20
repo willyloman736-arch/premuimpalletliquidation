@@ -20,8 +20,8 @@ export const site = {
   whatsapp: '+1 (775) 445-9668',
   whatsappNumber: '17754459668',
   whatsappHref: 'https://wa.me/17754459668',
-  address: '4820 Logistics Parkway, Suite 200, Atlanta, GA 30336',
-  addressLines: ['4820 Logistics Parkway, Suite 200', 'Atlanta, GA 30336', 'United States'],
+  address: '1847 East Long Street, Carson City, NV 89706',
+  addressLines: ['1847 East Long Street', 'Carson City, NV 89706', 'United States'],
   hours: 'Mon–Fri, 9am–6pm ET',
   social: {
     facebook: 'https://www.facebook.com/',

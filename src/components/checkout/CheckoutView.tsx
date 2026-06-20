@@ -620,7 +620,7 @@ export default function CheckoutView() {
                       value={customerInfo.city}
                       onChange={handleInputChange}
                       required
-                      placeholder="Atlanta"
+                      placeholder="Carson City"
                     />
                   </div>
                   <div className={s['form-group']}>
@@ -632,7 +632,7 @@ export default function CheckoutView() {
                       value={customerInfo.zipCode}
                       onChange={handleInputChange}
                       required
-                      placeholder="30301"
+                      placeholder="89706"
                     />
                   </div>
                   <div className={`${s['form-group']} ${s['full-width']}`}>
