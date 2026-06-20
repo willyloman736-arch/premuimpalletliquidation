@@ -27,78 +27,74 @@ const contactInfo = [
     title: 'Email',
     value: site.email,
     href: `mailto:${site.email}`,
-    subtitle: 'Réponse sous 24h',
-    color: '#dc2626',
+    subtitle: 'Reply within 24h',
   },
   {
     icon: Phone,
-    title: 'Téléphone',
+    title: 'Phone',
     value: site.phone,
     href: site.phoneHref,
-    subtitle: 'Lun-Ven 9h-18h',
-    color: '#059669',
+    subtitle: site.hours,
   },
   {
     icon: MapPin,
-    title: 'Adresse',
+    title: 'Address',
     value: site.address,
-    subtitle: 'Sur rendez-vous',
-    color: '#7c3aed',
+    subtitle: 'By appointment',
   },
   {
     icon: Clock,
-    title: 'Horaires',
-    value: '9h - 18h',
-    subtitle: 'Du lundi au vendredi',
-    color: '#ea580c',
+    title: 'Hours',
+    value: '9am – 6pm ET',
+    subtitle: 'Monday to Friday',
   },
 ];
 
 const faqItems = [
   {
-    question: 'Comment puis-je passer une commande ?',
+    question: 'How do I place an order?',
     answer:
-      'Parcourez nos palettes disponibles, sélectionnez celle qui vous intéresse et suivez le processus de commande. Nous vous accompagnons à chaque étape.',
+      'Browse our available pallets, pick the one you want, and follow the checkout process. We support you at every step.',
   },
   {
-    question: 'Quels sont les délais de livraison ?',
+    question: 'What are the shipping times?',
     answer:
-      'Nous expédions sous 48h après confirmation de votre commande. La livraison prend généralement 2-5 jours ouvrés selon votre localisation.',
+      'We ship within 48 hours of confirming your order. Delivery typically takes 2–5 business days depending on your location.',
   },
   {
-    question: 'Puis-je visiter vos entrepôts ?',
+    question: 'Can I visit your warehouse?',
     answer:
-      'Oui, les visites sont possibles sur rendez-vous. Contactez-nous pour planifier votre visite et voir nos palettes en personne.',
+      'Yes — visits are available by appointment. Contact us to schedule a time and see our pallets in person.',
   },
   {
-    question: 'Quelle est votre politique de retour ?',
+    question: 'What is your return policy?',
     answer:
-      'Nous garantissons la qualité de nos palettes. En cas de problème, contactez-nous dans les 7 jours suivant la réception pour une solution rapide.',
+      'We stand behind the quality of our pallets. If there is an issue, contact us within 7 days of delivery and we will make it right.',
   },
 ];
 
 const reasons = [
   {
     icon: MessageCircle,
-    title: 'Questions sur nos palettes',
-    description: "Besoin d'informations sur nos produits ou notre processus de sélection ?",
+    title: 'Questions about our pallets',
+    description: 'Need details on our products or our grading process?',
   },
   {
     icon: Building,
-    title: 'Partenariats B2B',
-    description: 'Intéressé par un partenariat ou des achats en volume ?',
+    title: 'B2B partnerships',
+    description: 'Interested in a partnership or volume purchasing?',
   },
   {
     icon: HelpCircle,
-    title: 'Support technique',
-    description: "Problème avec votre commande ou besoin d'assistance ?",
+    title: 'Technical support',
+    description: 'A problem with your order or need a hand?',
   },
 ];
 
 const socialLinks = [
   { icon: Facebook, label: 'Facebook', className: 'facebook', href: site.social.facebook },
   { icon: Instagram, label: 'Instagram', className: 'instagram', href: site.social.instagram },
-  { icon: Twitter, label: 'Twitter', className: 'twitter', href: site.social.twitter },
+  { icon: Twitter, label: 'X (Twitter)', className: 'twitter', href: site.social.twitter },
 ];
 
 export default function ContactView() {
@@ -115,25 +111,15 @@ export default function ContactView() {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Simulation de l'envoi
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        subject: 'general',
-        message: '',
-      });
+      setFormData({ name: '', email: '', company: '', subject: 'general', message: '' });
     }, 3000);
   };
 
@@ -143,23 +129,24 @@ export default function ContactView() {
       <section className={s['hero-section']}>
         <div className="container">
           <div className={s['hero-content']}>
-            <h1>Contactez-nous</h1>
+            <span className="eyebrow eyebrow-invert">Get in touch</span>
+            <h1>Contact Us</h1>
             <p>
-              Notre équipe est là pour répondre à toutes vos questions et vous accompagner
-              dans votre projet d&apos;achat de palettes de liquidation.
+              Our team is here to answer your questions and help you source the right liquidation
+              pallets for your business.
             </p>
             <div className={s['hero-stats']}>
               <div className={s.stat}>
                 <span className={s['stat-number']}>24h</span>
-                <span className={s['stat-label']}>Temps de réponse</span>
+                <span className={s['stat-label']}>Response time</span>
               </div>
               <div className={s.stat}>
                 <span className={s['stat-number']}>99%</span>
-                <span className={s['stat-label']}>Satisfaction client</span>
+                <span className={s['stat-label']}>Customer satisfaction</span>
               </div>
               <div className={s.stat}>
-                <span className={s['stat-number']}>7j/7</span>
-                <span className={s['stat-label']}>Support disponible</span>
+                <span className={s['stat-number']}>7-Day</span>
+                <span className={s['stat-label']}>Support window</span>
               </div>
             </div>
           </div>
@@ -173,12 +160,8 @@ export default function ContactView() {
             {contactInfo.map((info, index) => {
               const Icon = info.icon;
               return (
-                <div
-                  key={index}
-                  className={s['contact-card']}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className={s['contact-icon']} style={{ backgroundColor: info.color }}>
+                <div key={index} className={s['contact-card']}>
+                  <div className={s['contact-icon']}>
                     <Icon size={24} aria-hidden="true" />
                   </div>
                   <div className={s['contact-details']}>
@@ -206,8 +189,8 @@ export default function ContactView() {
             {/* Contact Form */}
             <div className={s['form-section']}>
               <div className={s['form-header']}>
-                <h2>Envoyez-nous un message</h2>
-                <p>Remplissez ce formulaire et nous vous répondrons dans les plus brefs délais.</p>
+                <h2>Send Us A Message</h2>
+                <p>Fill out the form and we&apos;ll get back to you as soon as possible.</p>
               </div>
 
               {!isSubmitted ? (
@@ -216,7 +199,7 @@ export default function ContactView() {
                     <div className={s['form-group']}>
                       <label htmlFor="name">
                         <User size={18} aria-hidden="true" />
-                        Nom complet *
+                        Full name *
                       </label>
                       <input
                         type="text"
@@ -225,7 +208,7 @@ export default function ContactView() {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        placeholder="Votre nom complet"
+                        placeholder="Your full name"
                       />
                     </div>
                     <div className={s['form-group']}>
@@ -240,7 +223,7 @@ export default function ContactView() {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        placeholder="votre@email.com"
+                        placeholder="you@email.com"
                       />
                     </div>
                   </div>
@@ -248,7 +231,7 @@ export default function ContactView() {
                   <div className={s['form-group']}>
                     <label htmlFor="company">
                       <Building size={18} aria-hidden="true" />
-                      Entreprise
+                      Company
                     </label>
                     <input
                       type="text"
@@ -256,14 +239,14 @@ export default function ContactView() {
                       name="company"
                       value={formData.company}
                       onChange={handleInputChange}
-                      placeholder="Nom de votre entreprise (optionnel)"
+                      placeholder="Your company name (optional)"
                     />
                   </div>
 
                   <div className={s['form-group']}>
                     <label htmlFor="subject">
                       <MessageCircle size={18} aria-hidden="true" />
-                      Sujet *
+                      Subject *
                     </label>
                     <select
                       id="subject"
@@ -272,11 +255,11 @@ export default function ContactView() {
                       onChange={handleInputChange}
                       required
                     >
-                      <option value="general">Question générale</option>
-                      <option value="order">Commande/Livraison</option>
-                      <option value="partnership">Partenariat</option>
-                      <option value="technical">Support technique</option>
-                      <option value="other">Autre</option>
+                      <option value="general">General question</option>
+                      <option value="order">Order &amp; shipping</option>
+                      <option value="partnership">Partnership</option>
+                      <option value="technical">Technical support</option>
+                      <option value="other">Other</option>
                     </select>
                   </div>
 
@@ -291,37 +274,33 @@ export default function ContactView() {
                       value={formData.message}
                       onChange={handleInputChange}
                       required
-                      placeholder="Décrivez votre demande en détail..."
+                      placeholder="Tell us about your needs..."
                       rows={6}
                     ></textarea>
                   </div>
 
                   <button type="submit" className={s['submit-btn']}>
                     <Send size={20} aria-hidden="true" />
-                    Envoyer le message
+                    Send Message
                   </button>
                 </form>
               ) : (
                 <div className={s['success-message']}>
                   <CheckCircle size={60} aria-hidden="true" />
-                  <h3>Message envoyé !</h3>
-                  <p>Merci pour votre message. Nous vous répondrons dans les 24 heures.</p>
+                  <h3>Message Sent!</h3>
+                  <p>Thanks for reaching out. We&apos;ll reply within 24 hours.</p>
                 </div>
               )}
             </div>
 
             {/* Why Contact Us */}
             <div className={s['reasons-section']}>
-              <h3>Pourquoi nous contacter ?</h3>
+              <h3>Why Contact Us?</h3>
               <div className={s['reasons-list']}>
                 {reasons.map((reason, index) => {
                   const Icon = reason.icon;
                   return (
-                    <div
-                      key={index}
-                      className={s['reason-item']}
-                      style={{ animationDelay: `${index * 0.15}s` }}
-                    >
+                    <div key={index} className={s['reason-item']}>
                       <div className={s['reason-icon']}>
                         <Icon size={24} aria-hidden="true" />
                       </div>
@@ -336,7 +315,7 @@ export default function ContactView() {
 
               {/* Social Links */}
               <div className={s['social-section']}>
-                <h4>Suivez-nous</h4>
+                <h4>Follow Us</h4>
                 <div className={s['social-links']}>
                   {socialLinks.map((social) => {
                     const Icon = social.icon;
@@ -362,16 +341,13 @@ export default function ContactView() {
       <section className={s['faq-section']}>
         <div className="container">
           <div className={s['section-header']}>
-            <h2>Questions Fréquentes</h2>
-            <p>Trouvez rapidement les réponses à vos questions les plus courantes</p>
+            <span className="eyebrow">Good to know</span>
+            <h2>Frequently Asked Questions</h2>
+            <p>Quick answers to the questions we hear most.</p>
           </div>
           <div className={s['faq-grid']}>
             {faqItems.map((item, index) => (
-              <div
-                key={index}
-                className={s['faq-card']}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
+              <div key={index} className={s['faq-card']}>
                 <div className={s['faq-question']}>
                   <HelpCircle size={20} aria-hidden="true" />
                   <h4>{item.question}</h4>
@@ -381,23 +357,24 @@ export default function ContactView() {
             ))}
           </div>
           <div className={s['faq-cta']}>
-            <p>Vous ne trouvez pas la réponse à votre question ?</p>
-            <Link href="/contact" className={s['btn-secondary']}>
-              Contactez-nous directement
+            <p>Can&apos;t find the answer you&apos;re looking for?</p>
+            <a href={`mailto:${site.email}`} className={s['btn-secondary']}>
+              Email us directly
               <ArrowRight size={18} aria-hidden="true" />
-            </Link>
+            </a>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className={s['cta-section']}>
+        <div className={s['cta-hazard']} aria-hidden="true" />
         <div className="container">
           <div className={s['cta-content']}>
-            <h2>Prêt à découvrir nos palettes ?</h2>
-            <p>Parcourez notre sélection de palettes de liquidation et trouvez les opportunités qui vous correspondent.</p>
-            <Link href="/palettes" className={s['btn-primary']}>
-              Voir les palettes
+            <h2>Ready To Browse Our Pallets?</h2>
+            <p>Explore our liquidation pallets and find the opportunities that fit your business.</p>
+            <Link href="/pallets" className={s['btn-primary']}>
+              Shop Pallets
               <ArrowRight size={20} aria-hidden="true" />
             </Link>
           </div>

@@ -1,14 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import {
-  Package,
-  Grid,
-  List,
-  ChevronLeft,
-  ChevronRight,
-  Search,
-} from 'lucide-react';
+import { Package, Grid, List, ChevronLeft, ChevronRight, Search } from 'lucide-react';
 import type { Palette } from '@/types/palette';
 import { categories } from '@/data/palettes';
 import PaletteCard from '@/components/palettes/PaletteCard';
@@ -17,11 +10,11 @@ import s from './CatalogView.module.css';
 const PALETTES_PER_PAGE = 6;
 
 const sortOptions = [
-  { value: 'featured', label: 'Mis en avant' },
-  { value: 'price-low', label: 'Prix croissant' },
-  { value: 'price-high', label: 'Prix décroissant' },
-  { value: 'profit', label: 'Profit estimé' },
-  { value: 'quantity', label: 'Quantité' },
+  { value: 'featured', label: 'Featured' },
+  { value: 'price-low', label: 'Price: Low to High' },
+  { value: 'price-high', label: 'Price: High to Low' },
+  { value: 'profit', label: 'Estimated profit' },
+  { value: 'quantity', label: 'Quantity' },
 ] as const;
 
 export default function CatalogView({ palettes }: { palettes: Palette[] }) {
@@ -29,14 +22,13 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState<string>('featured');
-  const [filterBy, setFilterBy] = useState<string>('Tous');
+  const [filterBy, setFilterBy] = useState<string>('All');
 
-  // Filtrage et tri des palettes
   const filteredPalettes = palettes.filter((palette) => {
     const matchesSearch =
       palette.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       palette.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesFilter = filterBy === 'Tous' || palette.category === filterBy;
+    const matchesFilter = filterBy === 'All' || palette.category === filterBy;
     return matchesSearch && matchesFilter;
   });
 
@@ -55,7 +47,6 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
     }
   });
 
-  // Pagination
   const indexOfLastPalette = currentPage * PALETTES_PER_PAGE;
   const indexOfFirstPalette = indexOfLastPalette - PALETTES_PER_PAGE;
   const currentPalettes = sortedPalettes.slice(indexOfFirstPalette, indexOfLastPalette);
@@ -66,54 +57,50 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
     window.scrollTo({ top: 400, behavior: 'smooth' });
   };
 
-  // Reset pagination when filters change
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm, sortBy, filterBy]);
 
   return (
     <div className={s['palettes-page']}>
-      {/* Header Section */}
       <section className={s['page-header']}>
-        <div aria-hidden="true">
-          <div />
-        </div>
         <div className="container">
           <div className={s['header-content']}>
-            <h1>Nos Palettes</h1>
-            <p>Découvrez notre collection complète de palettes de liquidation premium</p>
+            <span className="eyebrow eyebrow-invert">Browse the lineup</span>
+            <h1>Our Pallets</h1>
+            <p>Browse our full lineup of premium liquidation pallets.</p>
             <div className={s['header-stats']}>
               <div className={s['header-stat']}>
                 <span className={s['stat-number']}>{palettes.length}</span>
-                <span className={s['stat-label']}>Palettes disponibles</span>
+                <span className={s['stat-label']}>Pallets available</span>
               </div>
               <div className={s['header-stat']}>
-                <span className={s['stat-number']}>48h</span>
-                <span className={s['stat-label']}>Livraison rapide</span>
+                <span className={s['stat-number']}>48H</span>
+                <span className={s['stat-label']}>Fast shipping</span>
               </div>
               <div className={s['header-stat']}>
                 <span className={s['stat-number']}>300%</span>
-                <span className={s['stat-label']}>Profit moyen</span>
+                <span className={s['stat-label']}>Avg. profit</span>
               </div>
             </div>
           </div>
         </div>
+        <div className={s['header-hazard']} aria-hidden="true" />
       </section>
 
-      {/* Filters and Search Section */}
-      <section className={`${s['filters-section']} ${s.visible}`}>
+      <section className={s['filters-section']}>
         <div className="container">
           <div className={s['filters-container']}>
             <div className={s['search-container']}>
               <div className={s['search-box']}>
                 <Search size={20} aria-hidden="true" />
                 <label htmlFor="catalog-search" className="sr-only">
-                  Rechercher une palette
+                  Search pallets
                 </label>
                 <input
                   id="catalog-search"
                   type="text"
-                  placeholder="Rechercher une palette..."
+                  placeholder="Search pallets..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -122,7 +109,7 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
 
             <div className={s['filters-controls']}>
               <label htmlFor="catalog-category" className="sr-only">
-                Filtrer par catégorie
+                Filter by category
               </label>
               <select
                 id="catalog-category"
@@ -132,13 +119,13 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
               >
                 {categories.map((category) => (
                   <option key={category} value={category}>
-                    {category === 'Tous' ? 'Toutes les catégories' : category}
+                    {category === 'All' ? 'All categories' : category}
                   </option>
                 ))}
               </select>
 
               <label htmlFor="catalog-sort" className="sr-only">
-                Trier les palettes
+                Sort pallets
               </label>
               <select
                 id="catalog-sort"
@@ -158,7 +145,7 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
                   type="button"
                   className={`${s['view-btn']} ${viewMode === 'grid' ? s.active : ''}`}
                   onClick={() => setViewMode('grid')}
-                  aria-label="Affichage en grille"
+                  aria-label="Grid view"
                   aria-pressed={viewMode === 'grid'}
                 >
                   <Grid size={18} aria-hidden="true" />
@@ -167,7 +154,7 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
                   type="button"
                   className={`${s['view-btn']} ${viewMode === 'list' ? s.active : ''}`}
                   onClick={() => setViewMode('list')}
-                  aria-label="Affichage en liste"
+                  aria-label="List view"
                   aria-pressed={viewMode === 'list'}
                 >
                   <List size={18} aria-hidden="true" />
@@ -178,21 +165,19 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
 
           <div className={s['results-info']}>
             <p>
-              {filteredPalettes.length} palette{filteredPalettes.length > 1 ? 's' : ''} trouvée
-              {filteredPalettes.length > 1 ? 's' : ''}
+              {filteredPalettes.length} pallet{filteredPalettes.length === 1 ? '' : 's'} found
             </p>
           </div>
         </div>
       </section>
 
-      {/* Palettes Section */}
-      <section className={`${s['palettes-section']} ${s.visible}`}>
+      <section className={s['palettes-section']}>
         <div className="container">
           {currentPalettes.length === 0 ? (
             <div className={s['no-results']}>
               <Package size={64} aria-hidden="true" />
-              <h3>Aucune palette trouvée</h3>
-              <p>Essayez de modifier vos critères de recherche</p>
+              <h3>No pallets found</h3>
+              <p>Try adjusting your search.</p>
             </div>
           ) : (
             <div className={`${s['palettes-grid']} ${s[viewMode]}`}>
@@ -204,11 +189,10 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
         </div>
       </section>
 
-      {/* Pagination Section */}
       {totalPages > 1 && (
         <section className={s['pagination-section']}>
           <div className="container">
-            <nav className={s.pagination} aria-label="Pagination des palettes">
+            <nav className={s.pagination} aria-label="Pallet pagination">
               <button
                 type="button"
                 className={`${s['pagination-btn']} ${currentPage === 1 ? s.disabled : ''}`}
@@ -216,7 +200,7 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
                 disabled={currentPage === 1}
               >
                 <ChevronLeft size={18} aria-hidden="true" />
-                Précédent
+                Previous
               </button>
 
               <div className={s['pagination-numbers']}>
@@ -256,14 +240,14 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
                 onClick={() => paginate(currentPage + 1)}
                 disabled={currentPage === totalPages}
               >
-                Suivant
+                Next
                 <ChevronRight size={18} aria-hidden="true" />
               </button>
             </nav>
 
             <div className={s['pagination-info']}>
               <p>
-                Page {currentPage} sur {totalPages}
+                Page {currentPage} of {totalPages}
               </p>
             </div>
           </div>

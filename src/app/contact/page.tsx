@@ -4,7 +4,7 @@ import ContactView from '@/components/contact/ContactView';
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    "Contactez l'équipe PLF - Palette Liquidation France pour toutes vos questions sur nos palettes de liquidation, partenariats B2B et support. Réponse sous 24h.",
+    'Contact the Premium Pallet Liquidations team with questions about our liquidation pallets, B2B partnerships and support. We reply within 24 hours.',
 };
 
 export default function ContactPage() {

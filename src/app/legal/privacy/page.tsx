@@ -1,234 +1,167 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { site } from '@/lib/site';
 import s from '../legal.module.css';
 
 export const metadata: Metadata = {
-  title: 'Politique de Confidentialité',
+  title: 'Privacy Policy',
   description:
-    'Politique de Confidentialité et protection des données personnelles de PLF - Palette Liquidation France.',
+    'How Premium Pallet Liquidations collects, uses and protects your personal information, including your rights under the CCPA.',
 };
 
 export default function PrivacyPage() {
   return (
     <div className={s['legal-page']}>
       <div className="container">
-        <h1>Politique de Confidentialité</h1>
-        <p>
-          <strong>Dernière mise à jour :</strong> Août 2025
-        </p>
+        <h1>Privacy Policy</h1>
+        <p className={s.updated}>Last updated: 2026</p>
 
-        <h2>1. Responsable du traitement</h2>
+        <h2>1. Who We Are</h2>
         <p>
-          <strong>PLF - Palette Liquidation France</strong>
+          <strong>Premium Pallet Liquidations</strong> is responsible for the personal information
+          described in this policy.
         </p>
-        <p>281 Rue Blanche SELVA, 66000 Perpignan, France</p>
-        <p>Email : liquidation.palette@gmail.com</p>
-        <p>Téléphone : +33 7 56 86 75 16</p>
+        <p>{site.address}</p>
+        <p>Email: {site.legalEmail}</p>
+        <p>Phone: {site.phone}</p>
 
-        <h2>2. Données collectées</h2>
-        <h3>2.1 Données de commande</h3>
-        <p>Lors d&apos;une commande, nous collectons :</p>
+        <h2>2. Information We Collect</h2>
+        <h3>2.1 Order Information</h3>
         <ul>
           <li>
-            <strong>Informations personnelles :</strong> Nom, prénom, email, téléphone
+            <strong>Contact details:</strong> name, email, phone number
           </li>
           <li>
-            <strong>Adresse de livraison :</strong> Adresse complète, code postal, ville
+            <strong>Shipping address:</strong> street, city, state, ZIP code
           </li>
           <li>
-            <strong>Informations de commande :</strong> Produits commandés, montant, date
+            <strong>Order details:</strong> products ordered, amount, date
           </li>
           <li>
-            <strong>Méthode de paiement choisie :</strong> Carte bancaire (Stripe), virement bancaire ou Apple Pay
+            <strong>Payment method selected:</strong> bank transfer (ACH), Apple Pay or credit card
           </li>
         </ul>
-
-        <h3>2.2 Données de navigation</h3>
+        <h3>2.2 Browsing Data</h3>
         <ul>
-          <li>Adresse IP</li>
-          <li>Type de navigateur</li>
-          <li>Pages visitées</li>
-          <li>Durée de visite</li>
-          <li>Données du panier (stockage local)</li>
+          <li>IP address and device/browser type</li>
+          <li>Pages visited and time on site</li>
+          <li>Cart contents (stored locally in your browser)</li>
         </ul>
-
         <h3>2.3 Cookies</h3>
         <p>
-          Nous utilisons des cookies pour améliorer votre expérience.
-          Consultez notre <Link href="/legal/cookies">Politique des Cookies</Link> pour plus d&apos;informations.
+          We use cookies to improve your experience. See our{' '}
+          <Link href="/legal/cookies">Cookie Policy</Link> for details.
         </p>
 
-        <h2>3. Finalités du traitement</h2>
-        <p>Vos données sont utilisées pour :</p>
+        <h2>3. How We Use Your Information</h2>
         <ul>
           <li>
-            <strong>Traitement des commandes :</strong> Validation, préparation, expédition
+            <strong>Processing orders:</strong> validation, preparation, shipping
           </li>
           <li>
-            <strong>Communication :</strong> Confirmation de commande, suivi de livraison
+            <strong>Communication:</strong> order confirmation and delivery updates
           </li>
           <li>
-            <strong>Service client :</strong> Réponse à vos questions, réclamations
+            <strong>Customer service:</strong> answering questions and resolving issues
           </li>
           <li>
-            <strong>Gestion commerciale :</strong> Facturation, comptabilité
+            <strong>Business operations:</strong> billing and accounting
           </li>
           <li>
-            <strong>Amélioration du service :</strong> Analyse des ventes, optimisation du site
+            <strong>Improving our service:</strong> analytics and site optimization
           </li>
           <li>
-            <strong>Newsletter :</strong> Envoi d&apos;offres (avec votre consentement)
+            <strong>Marketing:</strong> sending offers with your consent
           </li>
         </ul>
 
-        <h2>4. Base légale du traitement</h2>
+        <h2>4. How We Share Your Information</h2>
+        <p>Your information may be shared with:</p>
         <ul>
           <li>
-            <strong>Exécution du contrat :</strong> Traitement des commandes et livraisons
+            <strong>Payment processors</strong> (e.g., Stripe) to process transactions
           </li>
           <li>
-            <strong>Intérêt légitime :</strong> Amélioration du service, sécurité
+            <strong>Email providers</strong> (e.g., EmailJS) to send confirmations
           </li>
           <li>
-            <strong>Consentement :</strong> Newsletter, cookies non essentiels
+            <strong>Carriers</strong> to deliver your order (name, address, phone)
           </li>
           <li>
-            <strong>Obligation légale :</strong> Conservation des factures, comptabilité
-          </li>
-        </ul>
-
-        <h2>5. Partage des données</h2>
-        <p>Vos données peuvent être partagées avec :</p>
-        <ul>
-          <li>
-            <strong>Prestataires de paiement :</strong> Pour le traitement des transactions
-          </li>
-          <li>
-            <strong>Transporteurs :</strong> Pour la livraison (nom, adresse, téléphone)
-          </li>
-          <li>
-            <strong>Service d&apos;emailing :</strong> EmailJS pour l&apos;envoi des confirmations
-          </li>
-          <li>
-            <strong>Sous-traitants :</strong> Hébergeur, maintenance informatique
+            <strong>Service providers</strong> for hosting and IT maintenance
           </li>
         </ul>
         <p>
-          <strong>Aucune vente</strong> de vos données à des tiers à des fins commerciales.
+          <strong>We do not sell</strong> your personal information to third parties.
         </p>
 
-        <h2>6. Transferts internationaux</h2>
-        <p>
-          Certains de nos prestataires peuvent être situés hors UE (EmailJS).
-          Nous nous assurons qu&apos;ils offrent un niveau de protection adéquat.
-        </p>
-
-        <h2>7. Durée de conservation</h2>
+        <h2>5. Data Retention</h2>
         <ul>
           <li>
-            <strong>Données de commande :</strong> 5 ans après la dernière commande
+            <strong>Order data:</strong> up to 5 years after your last order
           </li>
           <li>
-            <strong>Données comptables :</strong> 10 ans (obligation légale)
+            <strong>Accounting records:</strong> as required by law
           </li>
           <li>
-            <strong>Newsletter :</strong> Jusqu&apos;à désinscription
+            <strong>Marketing:</strong> until you unsubscribe
           </li>
           <li>
-            <strong>Cookies :</strong> Maximum 13 mois
-          </li>
-          <li>
-            <strong>Logs de connexion :</strong> 12 mois
+            <strong>Connection logs:</strong> up to 12 months
           </li>
         </ul>
 
-        <h2>8. Sécurité des données</h2>
-        <p>Nous mettons en place des mesures de sécurité :</p>
+        <h2>6. Security</h2>
+        <p>We use reasonable safeguards to protect your information, including:</p>
         <ul>
-          <li>Chiffrement SSL pour les transmissions</li>
-          <li>Accès restreint aux données personnelles</li>
-          <li>Mots de passe sécurisés</li>
-          <li>Sauvegardes régulières</li>
-          <li>Mise à jour des systèmes de sécurité</li>
+          <li>SSL encryption for data in transit</li>
+          <li>Restricted access to personal data</li>
+          <li>Secure passwords and regular backups</li>
         </ul>
 
-        <h2>9. Vos droits (RGPD)</h2>
-        <p>Vous disposez des droits suivants :</p>
-        <ul>
-          <li>
-            <strong>Droit d&apos;accès :</strong> Connaître les données que nous détenons
-          </li>
-          <li>
-            <strong>Droit de rectification :</strong> Corriger vos données inexactes
-          </li>
-          <li>
-            <strong>Droit d&apos;effacement :</strong> Demander la suppression de vos données
-          </li>
-          <li>
-            <strong>Droit à la limitation :</strong> Limiter le traitement de vos données
-          </li>
-          <li>
-            <strong>Droit à la portabilité :</strong> Récupérer vos données dans un format standard
-          </li>
-          <li>
-            <strong>Droit d&apos;opposition :</strong> Vous opposer au traitement pour motif légitime
-          </li>
-          <li>
-            <strong>Droit de retrait du consentement :</strong> Pour la newsletter et cookies
-          </li>
-        </ul>
-
-        <h2>10. Exercer vos droits</h2>
+        <h2>7. Your Rights — California Residents (CCPA)</h2>
         <p>
-          Pour exercer vos droits ou pour toute question sur cette politique,
-          contactez-nous :
+          If you are a California resident, you have the right to:
         </p>
         <ul>
           <li>
-            <strong>Email :</strong> liquidation.palette@gmail.com
+            <strong>Know / Access:</strong> request the categories and specific pieces of personal
+            information we hold about you
           </li>
           <li>
-            <strong>Téléphone :</strong> +33 7 56 86 75 16
+            <strong>Delete:</strong> request deletion of your personal information
           </li>
           <li>
-            <strong>Courrier :</strong> PLF - Service Protection des Données<br />
-            281 Rue Blanche SELVA, 66000 Perpignan, France
+            <strong>Opt out:</strong> opt out of any sale of personal information (we do not sell it)
+          </li>
+          <li>
+            <strong>Non-discrimination:</strong> you will not be discriminated against for
+            exercising your rights
           </li>
         </ul>
         <p>
-          Merci de préciser votre demande et de joindre une copie de votre pièce d&apos;identité.
+          To exercise any right, contact us at {site.legalEmail}. We may need to verify your identity
+          before responding.
         </p>
 
-        <h2>11. Réclamation</h2>
+        <h2>8. Children</h2>
         <p>
-          Si vous estimez que vos droits ne sont pas respectés, vous pouvez déposer
-          une réclamation auprès de la CNIL :
-        </p>
-        <p>
-          <strong>CNIL</strong><br />
-          3 Place de Fontenoy - TSA 80715<br />
-          75334 PARIS CEDEX 07<br />
-          Téléphone : 01 53 73 22 22<br />
-          Site web : www.cnil.fr
+          Our service is intended for adults. We do not knowingly collect personal information from
+          children under 13 (COPPA). If you believe a child has provided us information, contact us
+          and we will delete it.
         </p>
 
-        <h2>12. Mineurs</h2>
+        <h2>9. Changes to This Policy</h2>
         <p>
-          Notre service s&apos;adresse aux personnes majeures. Nous ne collectons pas
-          sciemment de données personnelles d&apos;enfants de moins de 16 ans.
+          We may update this policy to reflect legal or operational changes. We will post any
+          significant changes on this page.
         </p>
 
-        <h2>13. Modifications</h2>
+        <h2>10. Contact</h2>
         <p>
-          Cette politique peut être modifiée pour s&apos;adapter aux évolutions légales
-          ou techniques. Nous vous informerons de tout changement significatif.
-        </p>
-
-        <h2>14. Contact</h2>
-        <p>Pour toute question relative à cette politique de confidentialité :</p>
-        <p>
-          <strong>Email :</strong> liquidation.palette@gmail.com<br />
-          <strong>Téléphone :</strong> +33 7 56 86 75 16
+          <strong>Email:</strong> {site.legalEmail}
+          <br />
+          <strong>Phone:</strong> {site.phone}
         </p>
       </div>
     </div>

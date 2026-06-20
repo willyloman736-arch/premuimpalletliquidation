@@ -1,10 +1,10 @@
 /*
  * The original PaletteAdmin used inline styles throughout (no <style jsx>
  * block). The only rule that inline styles could not express was the input
- * focus state declared as `':focus': { borderColor: '#dc2626' }` on the
+ * focus state declared as `':focus': { borderColor: '#f59e0b' }` on the
  * shared inputStyle object. It is ported here as a real CSS Module rule and
  * applied via the `field` class on every input/textarea/select.
  */
 .field:focus {
-  border-color: #dc2626;
+  border-color: #f59e0b;
 }

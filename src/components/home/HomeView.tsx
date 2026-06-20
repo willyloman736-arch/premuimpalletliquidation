@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -29,61 +29,61 @@ const backgroundImages = [
 
 const videos = [
   {
-    title: 'Nike : style iconique, performance imbattable',
+    title: 'Nike & Adidas: iconic style, unbeatable margins',
     description:
-      'Des modèles légendaires, alliant design tendance et confort ultime, pour affirmer votre personnalité à chaque pas. Parfait pour les passionnés de sneakers ou les revendeurs à la recherche de pièces exclusives à prix réduits.',
+      'Legendary silhouettes pairing on-trend design with all-day comfort. Perfect for sneaker resellers chasing exclusive pieces at liquidation pricing.',
     poster: '/images/posters/nike.jpg',
     src: '/videos/nike-demo.mp4',
   },
   {
-    title: 'Montres de luxe : élégance au poignet, prix imbattables',
+    title: 'Watches: wrist-ready resale at liquidation prices',
     description:
-      'Des modèles prestigieux, mêlant style intemporel et précision horlogère, directement à votre portée. Idéal pour les revendeurs ou les collectionneurs à la recherche de pièces uniques à prix réduit.',
+      'Sharp, in-demand timepieces blending style with everyday precision — ideal for resellers and collectors hunting standout pieces at a discount.',
     poster: '/images/posters/montre.jpg',
     src: '/videos/montre.mp4',
   },
   {
-    title: 'Vêtements femmes : mode féminine à prix cassés',
+    title: "Women's apparel: top brands at wholesale",
     description:
-      'Des vêtements tendance pour toutes les saisons, issus des plus grandes marques, en palettes à prix grossiste. Une opportunité parfaite pour les boutiques et e-commerçants souhaitant élargir leur stock à faible coût.',
+      'On-trend womenswear for every season from the biggest names, packed at wholesale pricing — a perfect way to expand inventory affordably.',
     poster: '/images/posters/vetement.jpg',
     src: '/videos/vetement.mp4',
   },
   {
-    title: 'Chaussures et crampons : performance et style sur le terrain',
+    title: 'Soccer cleats & footwear: gear that moves',
     description:
-      'Des modèles prisés par les joueurs amateurs comme professionnels, disponibles en palettes à prix réduit. Idéal pour les clubs, académies et revendeurs cherchant à équiper leurs joueurs avec du matériel de qualité.',
+      'Cleats and performance footwear favored by amateur and pro players alike — ideal for clubs, academies and resellers stocking quality gear.',
     poster: '/images/posters/crampon.jpg',
     src: '/videos/crampon.mp4',
   },
 ];
 
 const stats = [
-  { icon: Package, number: '500+', label: 'Palettes vendues', color: '#DC2626' },
-  { icon: Users, number: '100+', label: 'Clients satisfaits', color: '#059669' },
-  { icon: DollarSign, number: '€750K+', label: 'Profits générés', color: '#7C3AED' },
-  { icon: Award, number: '99%', label: 'Taux de satisfaction', color: '#EA580C' },
+  { icon: Package, number: '500+', label: 'Pallets Sold' },
+  { icon: Users, number: '100+', label: 'Active Resellers' },
+  { icon: DollarSign, number: '$750K+', label: 'Profits Generated' },
+  { icon: Award, number: '99%', label: 'Satisfaction Rate' },
 ];
 
 const testimonials = [
   {
-    name: 'Marie L.',
-    business: 'Boutique en ligne',
-    text: "Grâce à PLF, j'ai multiplié mon chiffre d'affaires par 3 en 6 mois !",
+    name: 'Marcus T.',
+    business: 'Amazon FBA Seller',
+    text: "PPL tripled my store's revenue in six months. The margins are real.",
     rating: 5,
     profit: '+300%',
   },
   {
-    name: 'Thomas K.',
-    business: 'Revendeur marketplace',
-    text: 'Des palettes de qualité, un service irréprochable. Je recommande !',
+    name: 'Ashley R.',
+    business: 'eBay Reseller',
+    text: 'Quality pallets, flawless service. I reorder every single month.',
     rating: 5,
     profit: '+250%',
   },
   {
-    name: 'Sophie M.',
-    business: 'Magasin physique',
-    text: "PLF m'a permis de diversifier mon stock avec des produits tendance.",
+    name: 'Jordan P.',
+    business: 'Retail Store Owner',
+    text: 'PPL let me diversify my shelves with trending product, fast.',
     rating: 5,
     profit: '+180%',
   },
@@ -93,13 +93,11 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
   const [currentBgImage, setCurrentBgImage] = useState(0);
   const [playingVideo, setPlayingVideo] = useState<number | null>(null);
   const [isDemoOpen, setIsDemoOpen] = useState(false);
-  const [particles, setParticles] = useState<{ left: string; delay: string; duration: string }[]>([]);
 
   const [videosRef, videosIn] = useInView<HTMLElement>();
   const [statsRef, statsIn] = useInView<HTMLElement>();
   const [featuredRef, featuredIn] = useInView<HTMLElement>();
   const [testimonialsRef, testimonialsIn] = useInView<HTMLElement>();
-  const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -108,22 +106,12 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    setParticles(
-      Array.from({ length: 50 }, () => ({
-        left: `${Math.random() * 100}%`,
-        delay: `${Math.random() * 3}s`,
-        duration: `${3 + Math.random() * 4}s`,
-      })),
-    );
-  }, []);
-
   const scrollToVideos = () => videosRef.current?.scrollIntoView({ behavior: 'smooth' });
 
   return (
     <div className={s.home}>
       {/* Hero ----------------------------------------------------------- */}
-      <section className={s.hero} aria-label="Présentation">
+      <section className={s.hero} aria-label="Introduction">
         <div className={s['hero-background']} aria-hidden="true">
           <div className={s['hero-image-container']}>
             {backgroundImages.map((image, index) => (
@@ -139,52 +127,59 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
 
         <div className={s['hero-content']}>
           <div className="container">
+            <span className={`eyebrow eyebrow-invert ${s['hero-eyebrow']}`}>
+              Premium Pallet Liquidations · USA
+            </span>
             <h1 className={s['hero-title']}>
-              <span className={s['hero-title-main']}>PLF</span>
-              <span className={s['hero-title-sub']}>Palette Liquidation France</span>
+              <span className={s['hero-title-main']}>
+                Wholesale <em>Liquidation</em> Pallets
+              </span>
+              <span className={s['hero-title-sub']}>Real Brands · Real Margins · Shipped Fast</span>
             </h1>
             <p className={s['hero-description']}>
-              Transformez votre business avec nos palettes de liquidation premium. Des opportunités
-              uniques, des profits garantis.
+              We source truckloads of brand-name overstock and customer returns from top US
+              retailers — and pass resale-ready pallets straight to you.
             </p>
             <div className={s['hero-stats']}>
               <div className={s['hero-stat']}>
-                <span className={s['stat-number']}>100+</span>
-                <span className={s['stat-label']}>Clients</span>
+                <span className={s.num}>500+</span>
+                <span className={s.label}>Pallets Sold</span>
               </div>
               <div className={s['hero-stat']}>
-                <span className={s['stat-number']}>99%</span>
-                <span className={s['stat-label']}>Satisfaction</span>
+                <span className={s.num}>99%</span>
+                <span className={s.label}>Satisfaction</span>
               </div>
               <div className={s['hero-stat']}>
-                <span className={s['stat-number']}>48h</span>
-                <span className={s['stat-label']}>Livraison</span>
+                <span className={s.num}>48H</span>
+                <span className={s.label}>Ships</span>
               </div>
             </div>
             <div className={s['hero-actions']}>
-              <Link href="/palettes" className={`${s['btn-hero']} ${s.primary}`}>
+              <Link href="/pallets" className={`${s['btn-hero']} ${s.primary}`}>
                 <Package size={20} aria-hidden="true" />
-                Découvrir nos palettes
+                Shop Pallets
               </Link>
               <button className={`${s['btn-hero']} ${s.secondary}`} onClick={() => setIsDemoOpen(true)}>
                 <Play size={20} aria-hidden="true" />
-                Voir la démo
+                Watch Demo
               </button>
             </div>
           </div>
         </div>
 
-        <button className={s['scroll-indicator']} onClick={scrollToVideos} aria-label="Faire défiler vers le bas">
+        <button className={s['scroll-indicator']} onClick={scrollToVideos} aria-label="Scroll down">
           <ChevronDown size={24} aria-hidden="true" />
         </button>
+        <div className={s['hero-hazard']} aria-hidden="true" />
       </section>
 
       {/* Videos --------------------------------------------------------- */}
       <section ref={videosRef} className={`${s['videos-section']} ${s.reveal} ${videosIn ? s.visible : ''}`}>
         <div className="container">
           <div className={s['section-header']}>
-            <h2>Découvrez PLF en vidéo</h2>
-            <p>Plongez dans l&apos;univers des palettes de liquidation</p>
+            <span className={`eyebrow ${s['section-eyebrow']}`}>See It In Action</span>
+            <h2>Inside The Truckloads</h2>
+            <p>A look at the brand-name product flowing through our warehouse.</p>
           </div>
 
           <div className={s['videos-grid']}>
@@ -215,7 +210,7 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
                           src={video.poster}
                           alt={video.title}
                           fill
-                          className={s['video-thumbnail-img']}
+                          className={s['video-thumb']}
                           sizes="(max-width: 768px) 100vw, 50vw"
                         />
                         <div className={s['video-overlay']}>
@@ -238,24 +233,26 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
       </section>
 
       {/* Stats ---------------------------------------------------------- */}
-      <section ref={statsRef} className={`${s['stats-section']} ${s.reveal} ${statsIn ? s.visible : ''}`}>
-        <div className="container">
-          <div className={s['stats-grid']}>
-            {stats.map((stat) => {
-              const Icon = stat.icon;
-              return (
-                <div key={stat.label} className={s['stat-card']}>
-                  <div
-                    className={s['stat-icon']}
-                    style={{ background: `linear-gradient(135deg, ${stat.color}, ${stat.color}dd)` }}
-                  >
-                    <Icon size={28} aria-hidden="true" />
+      <section
+        ref={statsRef}
+        className={`${s['stats-section']} ${s['section-dark']} ${s.reveal} ${statsIn ? s.visible : ''}`}
+      >
+        <div className={s['stats-inner']}>
+          <div className="container">
+            <div className={s['stats-grid']}>
+              {stats.map((stat) => {
+                const Icon = stat.icon;
+                return (
+                  <div key={stat.label} className={s['stat-card']}>
+                    <div className={s['stat-icon']}>
+                      <Icon size={26} aria-hidden="true" />
+                    </div>
+                    <span className={s['stat-num']}>{stat.number}</span>
+                    <span className={s['stat-label']}>{stat.label}</span>
                   </div>
-                  <span className={s['stat-number']}>{stat.number}</span>
-                  <span className={s['stat-label']}>{stat.label}</span>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
@@ -264,8 +261,9 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
       <section ref={featuredRef} className={`${s['featured-section']} ${s.reveal} ${featuredIn ? s.visible : ''}`}>
         <div className="container">
           <div className={s['section-header']}>
-            <h2>Palettes en vedette</h2>
-            <p>Nos meilleures opportunités du moment</p>
+            <span className={`eyebrow ${s['section-eyebrow']}`}>This Week&apos;s Best Margins</span>
+            <h2>Featured Pallets</h2>
+            <p>Hand-picked truckloads with the strongest resale potential right now.</p>
           </div>
 
           <div className={s['palettes-grid']}>
@@ -275,8 +273,8 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
           </div>
 
           <div className={s['section-footer']}>
-            <Link href="/palettes" className={s['btn-view-all']}>
-              Voir toutes nos palettes
+            <Link href="/pallets" className={s['btn-view-all']}>
+              Shop All Pallets
               <ArrowRight size={20} aria-hidden="true" />
             </Link>
           </div>
@@ -286,12 +284,13 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
       {/* Testimonials --------------------------------------------------- */}
       <section
         ref={testimonialsRef}
-        className={`${s['testimonials-section']} ${s.reveal} ${testimonialsIn ? s.visible : ''}`}
+        className={`${s['testimonials-section']} ${s['section-dark']} ${s.reveal} ${testimonialsIn ? s.visible : ''}`}
       >
         <div className="container">
           <div className={s['section-header']}>
-            <h2>Ils ont réussi avec PLF</h2>
-            <p>Découvrez les success stories de nos clients</p>
+            <span className={`eyebrow eyebrow-invert ${s['section-eyebrow']}`}>Reseller Results</span>
+            <h2>Built With PPL</h2>
+            <p>Real US resellers scaling their business with our pallets.</p>
           </div>
 
           <div className={s['testimonials-grid']}>
@@ -302,14 +301,14 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
                   <figcaption className={s['testimonial-info']}>
                     <h4>{testimonial.name}</h4>
                     <p>{testimonial.business}</p>
-                    <div className={s['testimonial-rating']} aria-label={`${testimonial.rating} sur 5`}>
+                    <div className={s['testimonial-rating']} aria-label={`${testimonial.rating} out of 5`}>
                       {Array.from({ length: testimonial.rating }).map((_, i) => (
                         <Star key={i} size={14} fill="currentColor" aria-hidden="true" />
                       ))}
                     </div>
                   </figcaption>
                   <div className={s['testimonial-profit']}>
-                    <Zap size={16} aria-hidden="true" />
+                    <Zap size={15} aria-hidden="true" />
                     <span>{testimonial.profit}</span>
                   </div>
                 </div>
@@ -322,30 +321,19 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
 
       {/* CTA ------------------------------------------------------------ */}
       <section className={s['cta-section']}>
-        <div className={s['cta-background']} aria-hidden="true">
-          <div className={s['cta-particles']}>
-            {particles.map((p, i) => (
-              <span
-                key={i}
-                className={s.particle}
-                style={{ left: p.left, animationDelay: p.delay, animationDuration: p.duration }}
-              />
-            ))}
-          </div>
-        </div>
-
+        <div className={s['cta-hazard']} aria-hidden="true" />
         <div className="container">
-          <div className={s['cta-content']}>
-            <h2>Prêt à transformer votre business ?</h2>
-            <p>Rejoignez plus de 2500 entrepreneurs qui font confiance à PLF</p>
+          <div className={s['cta-inner']}>
+            <h2>Ready To Scale Your Resale Business?</h2>
+            <p>Join 2,500+ US resellers who source their inventory from Premium Pallet Liquidations.</p>
             <div className={s['cta-actions']}>
-              <Link href="/palettes" className={`${s['btn-cta']} ${s.primary}`}>
+              <Link href="/pallets" className={`${s['btn-cta']} ${s.primary}`}>
                 <Package size={20} aria-hidden="true" />
-                Commencer maintenant
+                Start Shopping
               </Link>
               <Link href="/contact" className={`${s['btn-cta']} ${s.secondary}`}>
                 <ArrowRight size={20} aria-hidden="true" />
-                Demander conseil
+                Talk To Us
               </Link>
             </div>
           </div>
@@ -354,9 +342,15 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
 
       {/* Demo modal ----------------------------------------------------- */}
       {isDemoOpen && (
-        <div className={s['video-modal']} onClick={() => setIsDemoOpen(false)} role="dialog" aria-modal="true" aria-label="Vidéo de démonstration">
+        <div
+          className={s['video-modal']}
+          onClick={() => setIsDemoOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Demo video"
+        >
           <div className={s['video-modal-content']} onClick={(e) => e.stopPropagation()}>
-            <button className={s['video-close']} onClick={() => setIsDemoOpen(false)} aria-label="Fermer la vidéo">
+            <button className={s['video-close']} onClick={() => setIsDemoOpen(false)} aria-label="Close video">
               ×
             </button>
             <video src="/videos/nike-demo.mp4" poster="/images/posters/nike.jpg" controls autoPlay playsInline>

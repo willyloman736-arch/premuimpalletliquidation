@@ -1,78 +1,90 @@
 .palette-card {
-  background: white;
-  border-radius: 20px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .palette-card:hover {
-  transform: translateY(-15px) scale(1.02);
-  box-shadow: 0 25px 60px rgba(220, 38, 38, 0.2);
+  transform: translateY(-6px);
+  border-color: var(--ink);
+  box-shadow: 10px 10px 0 var(--ink);
 }
 
 .palette-image {
   position: relative;
-  height: 250px;
+  height: 230px;
   overflow: hidden;
+  background: var(--concrete);
+  border-bottom: 3px solid var(--amber);
 }
 
 .palette-image :global(img) {
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.45s ease;
 }
 
 .palette-card:hover .palette-image :global(img) {
-  transform: scale(1.1);
+  transform: scale(1.06);
 }
 
 .palette-badges {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 0.85rem;
+  left: 0.85rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
   z-index: 2;
 }
 
 .badge {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 3px;
+  border: 1px solid var(--ink);
+  background: var(--white);
+  color: var(--ink);
   width: fit-content;
 }
 
 .badge.featured {
-  background: linear-gradient(135deg, #dc2626, #b91c1c);
-  color: white;
+  background: var(--amber);
+  color: var(--ink);
 }
 
 .badge.grade {
-  color: var(--primary-red);
+  background: var(--ink);
+  color: var(--amber);
 }
 
 .badge.limited {
-  background: linear-gradient(135deg, #ea580c, #dc2626);
-  color: white;
+  background: #fff;
+  color: #b91c1c;
+  border-color: #b91c1c;
   animation: card-pulse 2s infinite;
 }
 
 .palette-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(220, 38, 38, 0.9);
+  background: rgba(10, 10, 10, 0.78);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.25s ease;
 }
 
 .palette-card:hover .palette-overlay {
@@ -80,149 +92,169 @@
 }
 
 .btn-overlay {
-  background: white;
-  color: var(--primary-red);
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
+  background: var(--amber);
+  color: var(--ink);
+  padding: 0.7rem 1.4rem;
+  border-radius: 4px;
   text-decoration: none;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: all 0.3s ease;
+  border: 2px solid var(--ink);
+  transition: transform 0.2s ease;
 }
 
 .btn-overlay:hover {
-  transform: scale(1.1);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
 }
 
 .palette-content {
-  padding: 1.5rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
 .palette-content h3 {
-  font-size: 1.3rem;
-  margin-bottom: 0.75rem;
-  color: var(--gray-dark);
+  font-size: 1.15rem;
+  margin-bottom: 0.6rem;
+  color: var(--ink);
+  letter-spacing: 0;
 }
 
 .palette-content p {
-  color: var(--gray-medium);
-  font-size: 0.95rem;
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
+  color: var(--fg-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.1rem;
+  line-height: 1.55;
 }
 
 .palette-info {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1.1rem;
   flex-wrap: wrap;
+  padding: 0.75rem;
+  background: var(--concrete-200);
+  border: 1px solid var(--line);
+  border-radius: 4px;
 }
 
 .info-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  color: var(--gray-medium);
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--fg-muted);
 }
 
 .info-item svg {
-  color: var(--primary-red);
+  color: var(--amber-deep);
 }
 
 .palette-price {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 1.1rem;
   flex-wrap: wrap;
 }
 
 .price-current {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: var(--primary-red);
+  font-family: var(--font-mono);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--ink);
 }
 
 .price-original {
-  font-size: 1.1rem;
-  color: var(--gray-medium);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--fg-soft);
   text-decoration: line-through;
 }
 
 .price-discount {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  background: var(--ink);
+  color: var(--amber);
+  padding: 0.2rem 0.55rem;
+  border-radius: 3px;
+  font-size: 0.78rem;
   font-weight: 700;
 }
 
 .palette-actions {
   display: flex;
-  gap: 0.75rem;
-  align-items: center;
+  gap: 0.6rem;
+  align-items: stretch;
   margin-top: auto;
 }
 
 .btn-add-cart {
   flex: 1;
-  background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
-  color: white;
-  border: none;
-  padding: 0.75rem 1rem;
-  border-radius: 12px;
-  font-weight: 600;
+  background: var(--amber);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  padding: 0.7rem 1rem;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  transition: all 0.3s ease;
+  transition: all 0.18s ease;
 }
 
 .btn-add-cart:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+  background: var(--amber-bright);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--ink);
 }
 
 .btn-details {
-  background: var(--light-red);
-  color: var(--primary-red);
-  border: none;
-  padding: 0.75rem;
-  border-radius: 12px;
+  background: var(--ink);
+  color: var(--amber);
+  border: 2px solid var(--ink);
+  padding: 0.7rem;
+  border-radius: 4px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.18s ease;
 }
 
 .btn-details:hover {
-  background: var(--primary-red);
-  color: white;
-  transform: rotate(90deg);
+  background: var(--amber);
+  color: var(--ink);
 }
 
 /* List layout (catalogue list view) */
 .list {
   display: flex;
+  flex-direction: row;
   align-items: stretch;
 }
 
 .list .palette-image {
   width: 300px;
-  height: 280px;
-  flex-shrink: 0;
+  height: auto;
+  min-height: 260px;
+  border-bottom: none;
+  border-right: 3px solid var(--amber);
 }
 
 .list .palette-content {
@@ -235,7 +267,7 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.05);
+    transform: scale(1.06);
   }
 }
 
@@ -243,15 +275,20 @@
   .list {
     flex-direction: column;
   }
-
   .list .palette-image {
     width: 100%;
     height: 200px;
+    min-height: 0;
+    border-right: none;
+    border-bottom: 3px solid var(--amber);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .palette-card:hover {
+    transform: none;
+  }
+  .palette-card:hover .palette-image :global(img) {
     transform: none;
   }
   .badge.limited {

@@ -66,7 +66,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setIsAuthenticated(true);
       return { success: true };
     }
-    return { success: false, error: 'Identifiants incorrects' };
+    return { success: false, error: 'Invalid credentials' };
   };
 
   const logout = () => {

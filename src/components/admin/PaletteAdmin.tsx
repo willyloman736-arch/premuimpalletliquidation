@@ -53,7 +53,7 @@ const EMPTY_FORM: FormState = {
   dimensions: '',
   available: true,
   featured: false,
-  category: 'Électronique',
+  category: 'Electronics',
   origin: '',
   rating: 4.5,
 };
@@ -324,7 +324,7 @@ export default function PaletteAdmin() {
 
   // Supprimer une palette
   const deletePalette = async (id: number) => {
-    if (window.confirm('Êtes-vous sûr de vouloir supprimer cette palette ?')) {
+    if (window.confirm('Are you sure you want to delete this pallet?')) {
       // Trouver la palette à supprimer
       const paletteToDelete = palettes.find((p) => p.id === id);
 
@@ -435,12 +435,12 @@ export default function PaletteAdmin() {
           <h1
             style={{
               margin: 0,
-              color: '#dc2626',
+              color: '#f59e0b',
               fontSize: isMobile ? '20px' : '28px',
               fontWeight: 700,
             }}
           >
-            {isMobile ? 'Admin Palettes' : 'Administration des Palettes'}
+            {isMobile ? 'Admin' : 'Pallet Admin'}
           </h1>
 
           {/* Version desktop */}
@@ -450,7 +450,7 @@ export default function PaletteAdmin() {
                 type="button"
                 style={{
                   ...buttonStyle,
-                  backgroundColor: '#dc2626',
+                  backgroundColor: '#f59e0b',
                   color: 'white',
                 }}
                 onClick={() => setShowForm(true)}
@@ -463,16 +463,16 @@ export default function PaletteAdmin() {
                 style={{
                   padding: '8px 16px',
                   borderRadius: '6px',
-                  border: '2px solid #dc2626',
+                  border: '2px solid #f59e0b',
                   cursor: 'pointer',
                   fontSize: '14px',
                   fontWeight: 500,
                   backgroundColor: 'transparent',
-                  color: '#dc2626',
+                  color: '#f59e0b',
                 }}
                 onClick={logout}
               >
-                Déconnexion
+                Logout
               </button>
             </div>
           )}
@@ -482,11 +482,11 @@ export default function PaletteAdmin() {
             <button
               type="button"
               data-mobile-menu
-              aria-label="Ouvrir le menu"
+              aria-label="Open menu"
               aria-expanded={showMobileMenu}
               style={{
                 ...buttonStyle,
-                backgroundColor: '#dc2626',
+                backgroundColor: '#f59e0b',
                 color: 'white',
                 padding: '8px',
               }}
@@ -518,7 +518,7 @@ export default function PaletteAdmin() {
                 type="button"
                 style={{
                   ...buttonStyle,
-                  backgroundColor: '#dc2626',
+                  backgroundColor: '#f59e0b',
                   color: 'white',
                   width: '100%',
                   marginBottom: '10px',
@@ -536,9 +536,9 @@ export default function PaletteAdmin() {
                 type="button"
                 style={{
                   ...buttonStyle,
-                  border: '2px solid #dc2626',
+                  border: '2px solid #f59e0b',
                   backgroundColor: 'transparent',
-                  color: '#dc2626',
+                  color: '#f59e0b',
                   width: '100%',
                   justifyContent: 'center',
                 }}
@@ -547,7 +547,7 @@ export default function PaletteAdmin() {
                   setShowMobileMenu(false);
                 }}
               >
-                Déconnexion
+                Logout
               </button>
             </div>
           )}
@@ -569,21 +569,21 @@ export default function PaletteAdmin() {
             justifyContent: 'space-between',
             alignItems: 'center',
             gap: '15px',
-            color: '#dc2626',
+            color: '#f59e0b',
             fontSize: '14px',
           }}
         >
           <span>
-            Mode démonstration — connectez Supabase (NEXT_PUBLIC_SUPABASE_URL /
-            NEXT_PUBLIC_SUPABASE_ANON_KEY) pour activer la sauvegarde.
+            Demo mode — connect Supabase (NEXT_PUBLIC_SUPABASE_URL /
+            NEXT_PUBLIC_SUPABASE_ANON_KEY) to enable saving.
           </span>
           <button
             type="button"
-            aria-label="Fermer la bannière"
+            aria-label="Dismiss banner"
             style={{
               background: 'transparent',
               border: 'none',
-              color: '#dc2626',
+              color: '#f59e0b',
               cursor: 'pointer',
               padding: '2px',
               display: 'flex',
@@ -610,7 +610,7 @@ export default function PaletteAdmin() {
           }}
         >
           <label htmlFor="palette-search" className="sr-only">
-            Rechercher une palette
+            Search pallets
           </label>
           <input
             id="palette-search"
@@ -625,7 +625,7 @@ export default function PaletteAdmin() {
             }}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Rechercher une palette par nom..."
+            placeholder="Search pallets by name..."
           />
         </div>
       )}
@@ -665,7 +665,7 @@ export default function PaletteAdmin() {
                       <h3
                         style={{
                           margin: '0 0 8px 0',
-                          color: '#dc2626',
+                          color: '#f59e0b',
                           fontSize: '18px',
                           fontWeight: 600,
                         }}
@@ -682,7 +682,7 @@ export default function PaletteAdmin() {
                         <span
                           style={{
                             backgroundColor: '#fef2f2',
-                            color: '#dc2626',
+                            color: '#f59e0b',
                             padding: '4px 8px',
                             borderRadius: '4px',
                             fontSize: '12px',
@@ -694,7 +694,7 @@ export default function PaletteAdmin() {
                         <span
                           style={{
                             backgroundColor: '#fef2f2',
-                            color: '#dc2626',
+                            color: '#f59e0b',
                             padding: '4px 8px',
                             borderRadius: '4px',
                             fontSize: '12px',
@@ -708,11 +708,11 @@ export default function PaletteAdmin() {
                     <div style={{ display: 'flex', gap: '8px' }}>
                       <button
                         type="button"
-                        aria-label={`Modifier ${palette.title}`}
+                        aria-label={`Edit ${palette.title}`}
                         style={{
                           ...buttonStyle,
                           backgroundColor: '#fef2f2',
-                          color: '#dc2626',
+                          color: '#f59e0b',
                           padding: '6px',
                         }}
                         onClick={() => editPalette(palette)}
@@ -721,11 +721,11 @@ export default function PaletteAdmin() {
                       </button>
                       <button
                         type="button"
-                        aria-label={`Supprimer ${palette.title}`}
+                        aria-label={`Delete ${palette.title}`}
                         style={{
                           ...buttonStyle,
                           backgroundColor: '#fef2f2',
-                          color: '#dc2626',
+                          color: '#f59e0b',
                           padding: '6px',
                         }}
                         onClick={() => deletePalette(palette.id)}
@@ -756,13 +756,13 @@ export default function PaletteAdmin() {
                     }}
                   >
                     <div>
-                      <strong>Prix:</strong> {palette.price}€
+                      <strong>Price:</strong> ${palette.price.toLocaleString('en-US')}
                     </div>
                     <div>
-                      <strong>Prix original:</strong> {palette.original_price}€
+                      <strong>Original price:</strong> ${palette.original_price.toLocaleString('en-US')}
                     </div>
                     <div>
-                      <strong>Quantité:</strong> {palette.quantity}
+                      <strong>Quantity:</strong> {palette.quantity}
                     </div>
                     <div>
                       <strong>Profit:</strong>{' '}
@@ -772,7 +772,7 @@ export default function PaletteAdmin() {
 
                   {palette.content && palette.content.length > 0 && (
                     <div style={{ marginTop: '15px' }}>
-                      <strong style={{ fontSize: '13px', color: '#4b5563' }}>Contenu:</strong>
+                      <strong style={{ fontSize: '13px', color: '#4b5563' }}>Contents:</strong>
                       <div style={{ marginTop: '5px' }}>
                         {palette.content.slice(0, 3).map((item, index) => (
                           <span
@@ -780,7 +780,7 @@ export default function PaletteAdmin() {
                             style={{
                               display: 'inline-block',
                               backgroundColor: '#fef2f2',
-                              color: '#dc2626',
+                              color: '#f59e0b',
                               padding: '2px 6px',
                               borderRadius: '3px',
                               fontSize: '11px',
@@ -793,7 +793,7 @@ export default function PaletteAdmin() {
                         ))}
                         {palette.content.length > 3 && (
                           <span style={{ fontSize: '11px', color: '#6b7280' }}>
-                            +{palette.content.length - 3} autres
+                            +{palette.content.length - 3} more
                           </span>
                         )}
                       </div>
@@ -826,16 +826,16 @@ export default function PaletteAdmin() {
               <h2
                 style={{
                   margin: 0,
-                  color: '#dc2626',
+                  color: '#f59e0b',
                   fontSize: '24px',
                   fontWeight: 600,
                 }}
               >
-                {editingId ? 'Modifier la Palette' : 'Nouvelle Palette'}
+                {editingId ? 'Edit Pallet' : 'New Pallet'}
               </h2>
               <button
                 type="button"
-                aria-label="Fermer le formulaire"
+                aria-label="Close form"
                 style={{
                   ...buttonStyle,
                   backgroundColor: '#f3f4f6',
@@ -859,7 +859,7 @@ export default function PaletteAdmin() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                 <div>
                   <label htmlFor="palette-title" style={labelStyle}>
-                    Titre *
+                    Title *
                   </label>
                   <input
                     id="palette-title"
@@ -867,7 +867,7 @@ export default function PaletteAdmin() {
                     style={inputStyle}
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                    placeholder="Nom de la palette"
+                    placeholder="Pallet name"
                   />
                 </div>
 
@@ -885,14 +885,14 @@ export default function PaletteAdmin() {
                     }}
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    placeholder="Description détaillée de la palette"
+                    placeholder="Detailed pallet description"
                   />
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                   <div>
                     <label htmlFor="palette-price" style={labelStyle}>
-                      Prix de vente *
+                      Sale price *
                     </label>
                     <input
                       id="palette-price"
@@ -907,7 +907,7 @@ export default function PaletteAdmin() {
                   </div>
                   <div>
                     <label htmlFor="palette-original-price" style={labelStyle}>
-                      Prix original *
+                      Original price *
                     </label>
                     <input
                       id="palette-original-price"
@@ -930,11 +930,11 @@ export default function PaletteAdmin() {
                       borderRadius: '6px',
                       padding: '10px',
                       fontSize: '14px',
-                      color: '#dc2626',
+                      color: '#f59e0b',
                     }}
                   >
                     <strong>
-                      Profit estimé: {calculateProfit(formData.price, formData.original_price)}
+                      Est. profit: {calculateProfit(formData.price, formData.original_price)}
                     </strong>
                   </div>
                 )}
@@ -960,7 +960,7 @@ export default function PaletteAdmin() {
                   </div>
                   <div>
                     <label htmlFor="palette-category" style={labelStyle}>
-                      Catégorie *
+                      Category *
                     </label>
                     <select
                       id="palette-category"
@@ -969,7 +969,7 @@ export default function PaletteAdmin() {
                       value={formData.category}
                       onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                     >
-                      {CATEGORIES.filter((cat) => cat !== 'Tous').map((category) => (
+                      {CATEGORIES.filter((cat) => cat !== 'All').map((category) => (
                         <option key={category} value={category}>
                           {category}
                         </option>
@@ -983,7 +983,7 @@ export default function PaletteAdmin() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                 <div>
                   <label htmlFor="palette-quantity" style={labelStyle}>
-                    Quantité *
+                    Quantity *
                   </label>
                   <input
                     id="palette-quantity"
@@ -999,7 +999,7 @@ export default function PaletteAdmin() {
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                   <div>
                     <label htmlFor="palette-weight" style={labelStyle}>
-                      Poids
+                      Weight
                     </label>
                     <input
                       id="palette-weight"
@@ -1007,7 +1007,7 @@ export default function PaletteAdmin() {
                       style={inputStyle}
                       value={formData.weight}
                       onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
-                      placeholder="ex: 250g"
+                      placeholder="e.g. 5 lbs"
                     />
                   </div>
                   <div>
@@ -1020,14 +1020,14 @@ export default function PaletteAdmin() {
                       style={inputStyle}
                       value={formData.dimensions}
                       onChange={(e) => setFormData({ ...formData, dimensions: e.target.value })}
-                      placeholder="ex: 15x10x3cm"
+                      placeholder="e.g. 48x40x60 in"
                     />
                   </div>
                 </div>
 
                 <div>
                   <label htmlFor="palette-origin" style={labelStyle}>
-                    Origine
+                    Origin
                   </label>
                   <input
                     id="palette-origin"
@@ -1035,13 +1035,13 @@ export default function PaletteAdmin() {
                     style={inputStyle}
                     value={formData.origin}
                     onChange={(e) => setFormData({ ...formData, origin: e.target.value })}
-                    placeholder="ex: Retours boutiques mode, Surplus boutiques/Fins de série Europe"
+                    placeholder="e.g. Fashion store returns, US retailer overstock"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="palette-rating" style={labelStyle}>
-                    Note
+                    Rating
                   </label>
                   <input
                     id="palette-rating"
@@ -1068,7 +1068,7 @@ export default function PaletteAdmin() {
                       onChange={(e) => setFormData({ ...formData, available: e.target.checked })}
                       style={{ transform: 'scale(1.2)' }}
                     />
-                    <span style={{ fontWeight: 500, color: '#374151' }}>Disponible</span>
+                    <span style={{ fontWeight: 500, color: '#374151' }}>Available</span>
                   </label>
                   <label
                     style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
@@ -1079,7 +1079,7 @@ export default function PaletteAdmin() {
                       onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
                       style={{ transform: 'scale(1.2)' }}
                     />
-                    <span style={{ fontWeight: 500, color: '#374151' }}>En vedette</span>
+                    <span style={{ fontWeight: 500, color: '#374151' }}>Featured</span>
                   </label>
                 </div>
               </div>
@@ -1096,7 +1096,7 @@ export default function PaletteAdmin() {
                   color: '#374151',
                 }}
               >
-                Contenu de la palette
+                Pallet contents
               </label>
               <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
                 <input
@@ -1105,7 +1105,7 @@ export default function PaletteAdmin() {
                   style={{ ...inputStyle, flex: 1 }}
                   value={contentInput}
                   onChange={(e) => setContentInput(e.target.value)}
-                  placeholder="Ajouter un élément"
+                  placeholder="Add an item"
                   onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
                     e.key === 'Enter' && addContentItem()
                   }
@@ -1114,7 +1114,7 @@ export default function PaletteAdmin() {
                   type="button"
                   style={{
                     ...buttonStyle,
-                    backgroundColor: '#dc2626',
+                    backgroundColor: '#f59e0b',
                     color: 'white',
                   }}
                   onClick={addContentItem}
@@ -1147,11 +1147,11 @@ export default function PaletteAdmin() {
                       <span style={{ fontSize: '14px', color: '#374151' }}>{item}</span>
                       <button
                         type="button"
-                        aria-label={`Retirer ${item}`}
+                        aria-label={`Remove ${item}`}
                         style={{
                           backgroundColor: 'transparent',
                           border: 'none',
-                          color: '#dc2626',
+                          color: '#f59e0b',
                           cursor: 'pointer',
                           padding: '2px',
                         }}
@@ -1176,7 +1176,7 @@ export default function PaletteAdmin() {
                   color: '#374151',
                 }}
               >
-                Images de la palette
+                Pallet images
               </label>
               <div
                 style={{
@@ -1199,14 +1199,14 @@ export default function PaletteAdmin() {
                   htmlFor="image-upload"
                   style={{
                     ...buttonStyle,
-                    backgroundColor: '#dc2626',
+                    backgroundColor: '#f59e0b',
                     color: 'white',
                     margin: '0 auto',
                     cursor: 'pointer',
                   }}
                 >
                   <Upload size={16} aria-hidden="true" />
-                  Choisir des images
+                  Choose images
                 </label>
               </div>
               {imageFiles.length > 0 && (
@@ -1254,12 +1254,12 @@ export default function PaletteAdmin() {
                       </div>
                       <button
                         type="button"
-                        aria-label={`Retirer l'image ${entry.name}`}
+                        aria-label={`Remove image ${entry.name}`}
                         style={{
                           position: 'absolute',
                           top: '4px',
                           right: '4px',
-                          backgroundColor: '#dc2626',
+                          backgroundColor: '#f59e0b',
                           color: 'white',
                           border: 'none',
                           borderRadius: '50%',
@@ -1298,14 +1298,14 @@ export default function PaletteAdmin() {
                 }}
                 onClick={resetForm}
               >
-                Annuler
+                Cancel
               </button>
               <button
                 type="button"
                 disabled={saving}
                 style={{
                   ...buttonStyle,
-                  backgroundColor: '#dc2626',
+                  backgroundColor: '#f59e0b',
                   color: 'white',
                   cursor: saving ? 'not-allowed' : 'pointer',
                   opacity: saving ? 0.7 : 1,
@@ -1313,7 +1313,7 @@ export default function PaletteAdmin() {
                 onClick={savePalette}
               >
                 <Save size={16} aria-hidden="true" />
-                {editingId ? 'Mettre à jour' : 'Créer la palette'}
+                {editingId ? 'Update' : 'Create pallet'}
               </button>
             </div>
           </div>

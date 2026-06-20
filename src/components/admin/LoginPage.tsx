@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, type CSSProperties, type FormEvent } from 'react';
-import { LogIn, Eye, EyeOff } from 'lucide-react';
+import { LogIn, Eye, EyeOff, Boxes } from 'lucide-react';
 import { useAuth } from '@/lib/auth';
 import s from './LoginPage.module.css';
 
@@ -20,7 +20,7 @@ export default function LoginPage() {
     const result = await login(formData.username, formData.password);
 
     if (!result.success) {
-      setError(result.error ?? 'Identifiants incorrects');
+      setError(result.error ?? 'Invalid credentials');
     }
 
     setLoading(false);
@@ -28,32 +28,43 @@ export default function LoginPage() {
 
   const inputStyle: CSSProperties = {
     width: '100%',
-    padding: '12px 16px',
-    border: '2px solid #fee2e2',
-    borderRadius: '8px',
+    padding: '12px 14px',
+    border: '1px solid #d6d3d1',
+    borderRadius: '4px',
     fontSize: '16px',
     outline: 'none',
     transition: 'border-color 0.2s',
+  };
+
+  const labelStyle: CSSProperties = {
+    display: 'block',
+    marginBottom: '8px',
+    fontWeight: 600,
+    color: '#0a0a0a',
+    fontSize: '13px',
+    textTransform: 'uppercase',
+    letterSpacing: '0.04em',
+    fontFamily: 'var(--font-display)',
   };
 
   return (
     <div
       style={{
         minHeight: '100vh',
-        backgroundColor: '#fef2f2',
+        backgroundColor: '#0a0a0a',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontFamily: 'system-ui, -apple-system, sans-serif',
+        padding: '24px',
       }}
     >
       <div
         style={{
           backgroundColor: 'white',
           padding: '40px',
-          borderRadius: '16px',
-          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
-          border: '1px solid #fecaca',
+          borderRadius: '8px',
+          border: '2px solid #0a0a0a',
+          boxShadow: '10px 10px 0 #f59e0b',
           width: '100%',
           maxWidth: '420px',
         }}
@@ -64,50 +75,37 @@ export default function LoginPage() {
             style={{
               width: '60px',
               height: '60px',
-              backgroundColor: '#dc2626',
-              borderRadius: '50%',
+              backgroundColor: '#f59e0b',
+              borderRadius: '6px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              margin: '0 auto 15px',
+              margin: '0 auto 16px',
             }}
           >
-            <LogIn size={24} color="white" aria-hidden="true" />
+            <Boxes size={28} color="#0a0a0a" aria-hidden="true" />
           </div>
           <h1
             style={{
-              color: '#dc2626',
-              fontSize: '24px',
+              color: '#0a0a0a',
+              fontSize: '26px',
               fontWeight: 700,
               margin: '0 0 5px 0',
+              textTransform: 'uppercase',
+              fontFamily: 'var(--font-display)',
             }}
           >
             Administration
           </h1>
-          <p
-            style={{
-              color: '#6b7280',
-              fontSize: '14px',
-              margin: 0,
-            }}
-          >
-            Connectez-vous pour gérer les palettes
+          <p style={{ color: '#52525b', fontSize: '14px', margin: 0 }}>
+            Sign in to manage pallets
           </p>
         </div>
 
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: '20px' }}>
-            <label
-              htmlFor="login-username"
-              style={{
-                display: 'block',
-                marginBottom: '8px',
-                fontWeight: 500,
-                color: '#374151',
-                fontSize: '14px',
-              }}
-            >
-              Nom d&apos;utilisateur
+            <label htmlFor="login-username" style={labelStyle}>
+              Username
             </label>
             <input
               id="login-username"
@@ -122,17 +120,8 @@ export default function LoginPage() {
           </div>
 
           <div style={{ marginBottom: '25px' }}>
-            <label
-              htmlFor="login-password"
-              style={{
-                display: 'block',
-                marginBottom: '8px',
-                fontWeight: 500,
-                color: '#374151',
-                fontSize: '14px',
-              }}
-            >
-              Mot de passe
+            <label htmlFor="login-password" style={labelStyle}>
+              Password
             </label>
             <div style={{ position: 'relative' }}>
               <input
@@ -140,10 +129,7 @@ export default function LoginPage() {
                 type={showPassword ? 'text' : 'password'}
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                style={{
-                  ...inputStyle,
-                  paddingRight: '45px',
-                }}
+                style={{ ...inputStyle, paddingRight: '45px' }}
                 placeholder="••••••••"
                 required
                 disabled={loading}
@@ -151,7 +137,7 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                aria-label={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
                 style={{
                   position: 'absolute',
                   right: '12px',
@@ -160,7 +146,7 @@ export default function LoginPage() {
                   background: 'none',
                   border: 'none',
                   cursor: 'pointer',
-                  color: '#6b7280',
+                  color: '#52525b',
                 }}
               >
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -173,9 +159,9 @@ export default function LoginPage() {
               style={{
                 backgroundColor: '#fef2f2',
                 border: '1px solid #fecaca',
-                color: '#dc2626',
+                color: '#b91c1c',
                 padding: '12px 16px',
-                borderRadius: '8px',
+                borderRadius: '4px',
                 marginBottom: '20px',
                 fontSize: '14px',
               }}
@@ -189,30 +175,33 @@ export default function LoginPage() {
             disabled={loading}
             style={{
               width: '100%',
-              padding: '12px 16px',
-              backgroundColor: loading ? '#9ca3af' : '#dc2626',
-              color: 'white',
-              border: 'none',
-              borderRadius: '8px',
-              fontSize: '16px',
-              fontWeight: 500,
+              padding: '13px 16px',
+              backgroundColor: loading ? '#a1a1aa' : '#f59e0b',
+              color: '#0a0a0a',
+              border: '2px solid #0a0a0a',
+              borderRadius: '4px',
+              fontSize: '15px',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
               cursor: loading ? 'not-allowed' : 'pointer',
               transition: 'background-color 0.2s',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               gap: '8px',
+              fontFamily: 'var(--font-display)',
             }}
           >
             {loading ? (
               <>
                 <div className={s.spinner} />
-                Connexion...
+                Signing in…
               </>
             ) : (
               <>
                 <LogIn size={16} aria-hidden="true" />
-                Se connecter
+                Sign In
               </>
             )}
           </button>

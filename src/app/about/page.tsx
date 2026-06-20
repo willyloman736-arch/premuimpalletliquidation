@@ -14,69 +14,66 @@ import {
 import s from './about.module.css';
 
 export const metadata: Metadata = {
-  title: 'À Propos',
+  title: 'About',
   description:
-    "Découvrez l'histoire, les valeurs et le parcours de PLF - Palette Liquidation France, votre partenaire de confiance pour l'achat de palettes de liquidation de qualité.",
+    'Learn the story, values and journey of Premium Pallet Liquidations — your trusted US source for brand-name liquidation pallets, shipped nationwide.',
 };
 
 const stats = [
-  { number: '500+', label: 'Palettes vendues', icon: Package },
-  { number: '100+', label: 'Clients satisfaits', icon: Users },
-  { number: '3', label: "Années d'expérience", icon: Award },
-  { number: '99%', label: 'Taux de satisfaction', icon: Star },
+  { number: '500+', label: 'Pallets Sold', icon: Package },
+  { number: '100+', label: 'Active Resellers', icon: Users },
+  { number: '3', label: 'Years In Business', icon: Award },
+  { number: '99%', label: 'Satisfaction Rate', icon: Star },
 ];
 
 const values = [
   {
     icon: Shield,
-    title: 'Transparence',
+    title: 'Transparency',
     description:
-      'Nous vous fournissons des descriptions détaillées et des photos réelles de chaque palette.',
+      'We provide detailed descriptions and representative photos for every pallet, so you always know what you are buying.',
   },
   {
     icon: Award,
-    title: 'Qualité',
+    title: 'Quality',
     description:
-      'Chaque palette est soigneusement inspectée avant la mise en vente pour garantir la meilleure qualité.',
+      'Every pallet is carefully inspected and graded before it goes on sale to guarantee the best possible quality.',
   },
   {
     icon: Users,
-    title: 'Service Client',
+    title: 'Customer Service',
     description:
-      'Notre équipe dédiée vous accompagne à chaque étape de votre achat et après-vente.',
+      'Our dedicated reseller specialists support you at every step of your purchase and beyond.',
   },
   {
     icon: Truck,
-    title: 'Logistique',
-    description:
-      'Expédition rapide et sécurisée dans toute la France avec suivi en temps réel.',
+    title: 'Logistics',
+    description: 'Fast, secure shipping nationwide across the USA with real-time tracking.',
   },
 ];
 
 const timeline = [
   {
     year: '2022',
-    title: 'Création de PLF',
+    title: 'PPL Launches',
     description:
-      "Lancement de Palette Liquidation France avec une vision claire : démocratiser l'achat de palettes de liquidation.",
+      'Premium Pallet Liquidations launches with a clear vision: make liquidation pallets accessible to every US reseller.',
   },
   {
     year: '2023',
-    title: 'Expansion nationale',
-    description:
-      'Extension de nos services à toute la France avec un réseau de partenaires logistiques.',
+    title: 'Nationwide Expansion',
+    description: 'We expand shipping to all 50 states with a network of trusted logistics partners.',
   },
   {
     year: '2024',
-    title: 'Innovation digitale',
+    title: 'New Online Platform',
     description:
-      "Lancement de notre plateforme en ligne nouvelle génération pour une expérience d'achat optimisée.",
+      'We launch our next-generation online platform for a streamlined buying experience.',
   },
   {
     year: '2025',
-    title: 'Leadership du marché',
-    description:
-      'PLF devient la référence française de la vente de palettes de liquidation en ligne.',
+    title: 'Market Leader',
+    description: 'PPL becomes a go-to US source for brand-name pallet liquidation online.',
   },
 ];
 
@@ -88,31 +85,32 @@ export default function AboutPage() {
         <div className="container">
           <div className={s['hero-content']}>
             <div className={s['hero-text']}>
-              <h1>À Propos de PLF</h1>
+              <span className="eyebrow eyebrow-invert">Who we are</span>
+              <h1>About Premium Pallet Liquidations</h1>
               <p className={s['hero-subtitle']}>
-                Palette Liquidation France, votre partenaire de confiance pour l&apos;achat
-                de palettes de liquidation de qualité.
+                Your trusted US source for brand-name liquidation pallets — resale-ready inventory
+                with real margins, shipped fast across the country.
               </p>
               <div className={s['hero-features']}>
                 <div className={s['feature-badge']}>
                   <CheckCircle size={20} aria-hidden="true" />
-                  <span>100% Français</span>
+                  <span>US-based</span>
                 </div>
                 <div className={s['feature-badge']}>
                   <CheckCircle size={20} aria-hidden="true" />
-                  <span>Qualité garantie</span>
+                  <span>Quality graded</span>
                 </div>
                 <div className={s['feature-badge']}>
                   <CheckCircle size={20} aria-hidden="true" />
-                  <span>Service premium</span>
+                  <span>Nationwide shipping</span>
                 </div>
               </div>
             </div>
             <div className={s['hero-image']}>
               <div className={s['hero-card']}>
                 <Package size={80} aria-hidden="true" />
-                <h3>PLF</h3>
-                <p>Votre succès, notre mission</p>
+                <h3>PPL</h3>
+                <p>Your success, our mission</p>
               </div>
             </div>
           </div>
@@ -126,11 +124,7 @@ export default function AboutPage() {
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               return (
-                <div
-                  key={index}
-                  className={s['stat-card']}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
+                <div key={index} className={s['stat-card']}>
                   <Icon size={32} aria-hidden="true" />
                   <h3>{stat.number}</h3>
                   <p>{stat.label}</p>
@@ -146,30 +140,30 @@ export default function AboutPage() {
         <div className="container">
           <div className={s['story-content']}>
             <div className={s['story-text']}>
-              <h2>Notre Histoire</h2>
+              <span className="eyebrow">Our story</span>
+              <h2>Built For US Resellers</h2>
               <p>
-                PLF - Palette Liquidation France est née d&apos;une passion pour l&apos;entrepreneuriat
-                et d&apos;une vision claire : rendre accessible à tous l&apos;achat de palettes de
-                liquidation de qualité.
+                Premium Pallet Liquidations was born from a passion for entrepreneurship and a clear
+                vision: make quality liquidation pallets accessible to every reseller in America.
               </p>
               <p>
-                Fondée par une équipe d&apos;experts du secteur, nous avons développé un réseau
-                de partenaires fiables nous permettant de proposer les meilleures opportunités
-                du marché français.
+                Founded by a team of industry experts, we&apos;ve built a network of trusted US
+                retail partners and carriers that lets us offer the best opportunities on the market
+                — and ship them straight to your door.
               </p>
               <div className={s['story-highlights']}>
                 <div className={s.highlight}>
                   <Target size={24} aria-hidden="true" />
                   <div>
-                    <h4>Notre Mission</h4>
-                    <p>Démocratiser l&apos;accès aux palettes de liquidation</p>
+                    <h4>Our Mission</h4>
+                    <p>Make liquidation pallets accessible to every US reseller</p>
                   </div>
                 </div>
                 <div className={s.highlight}>
                   <Award size={24} aria-hidden="true" />
                   <div>
-                    <h4>Notre Vision</h4>
-                    <p>Devenir la référence française du secteur</p>
+                    <h4>Our Vision</h4>
+                    <p>Become America&apos;s most trusted pallet liquidation source</p>
                   </div>
                 </div>
               </div>
@@ -177,7 +171,7 @@ export default function AboutPage() {
             <div className={s['story-image']}>
               <div className={s['image-placeholder']}>
                 <Package size={120} aria-hidden="true" />
-                <p>L&apos;excellence française au service de votre réussite</p>
+                <p>American sourcing in service of your success</p>
               </div>
             </div>
           </div>
@@ -188,18 +182,15 @@ export default function AboutPage() {
       <section className={s['values-section']}>
         <div className="container">
           <div className={s['section-header']}>
-            <h2>Nos Valeurs</h2>
-            <p>Les principes qui guident notre action au quotidien</p>
+            <span className="eyebrow">What we stand for</span>
+            <h2>Our Values</h2>
+            <p>The principles that guide everything we do.</p>
           </div>
           <div className={s['values-grid']}>
             {values.map((value, index) => {
               const Icon = value.icon;
               return (
-                <div
-                  key={index}
-                  className={s['value-card']}
-                  style={{ animationDelay: `${index * 0.15}s` }}
-                >
+                <div key={index} className={s['value-card']}>
                   <div className={s['value-icon']}>
                     <Icon size={28} aria-hidden="true" />
                   </div>
@@ -216,15 +207,15 @@ export default function AboutPage() {
       <section className={s['timeline-section']}>
         <div className="container">
           <div className={s['section-header']}>
-            <h2>Notre Parcours</h2>
-            <p>Les étapes clés de notre développement</p>
+            <span className="eyebrow">Our journey</span>
+            <h2>Milestones</h2>
+            <p>The key moments in our growth.</p>
           </div>
           <div className={s.timeline}>
             {timeline.map((item, index) => (
               <div
                 key={index}
                 className={`${s['timeline-item']} ${index % 2 === 0 ? s.left : s.right}`}
-                style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className={s['timeline-content']}>
                   <div className={s['timeline-year']}>{item.year}</div>
@@ -240,17 +231,18 @@ export default function AboutPage() {
 
       {/* CTA Section */}
       <section className={s['cta-section']}>
+        <div className={s['cta-hazard']} aria-hidden="true" />
         <div className="container">
           <div className={s['cta-content']}>
-            <h2>Prêt à commencer ?</h2>
-            <p>Découvrez nos palettes de liquidation et trouvez les opportunités qui vous correspondent.</p>
+            <h2>Ready To Get Started?</h2>
+            <p>Browse our liquidation pallets and find the opportunities that fit your business.</p>
             <div className={s['cta-buttons']}>
-              <Link href="/palettes" className={s['btn-primary']}>
-                Voir les palettes
+              <Link href="/pallets" className={s['btn-primary']}>
+                Shop Pallets
                 <ArrowRight size={20} aria-hidden="true" />
               </Link>
               <Link href="/contact" className={s['btn-secondary']}>
-                Nous contacter
+                Contact Us
               </Link>
             </div>
           </div>

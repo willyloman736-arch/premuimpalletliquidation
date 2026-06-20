@@ -26,7 +26,7 @@ export interface Palette {
   estimatedProfit: string;
 }
 
-/** A line item stored in localStorage under `plf_cart`. */
+/** A line item stored in localStorage under `ppl_cart`. */
 export interface CartItem {
   id: number;
   name: string;

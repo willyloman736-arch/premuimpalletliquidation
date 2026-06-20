@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { Oswald, Inter, JetBrains_Mono } from 'next/font/google';
 import { site } from '@/lib/site';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -6,30 +7,51 @@ import SiteChrome from '@/components/layout/SiteChrome';
 import LoadingScreen from '@/components/layout/LoadingScreen';
 import './globals.css';
 
+const oswald = Oswald({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-oswald',
+  display: 'swap',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['500', '700'],
+  variable: '--font-mono-jb',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     default: site.title,
-    template: `%s | ${site.name}`,
+    template: `%s · ${site.name}`,
   },
   description: site.description,
-  applicationName: site.title,
+  applicationName: site.fullName,
   authors: [{ name: site.fullName }],
   keywords: [
-    'palette de liquidation',
-    'palette liquidation France',
-    'achat palette',
-    'palette revente',
-    'liquidation stock',
-    'palette destockage',
-    'PLF',
+    'liquidation pallets',
+    'wholesale pallets',
+    'buy liquidation pallets',
+    'amazon return pallets',
+    'overstock pallets',
+    'pallet liquidation USA',
+    'resale pallets',
+    'Premium Pallet Liquidations',
   ],
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
-    locale: 'fr_FR',
+    locale: 'en_US',
     url: site.url,
-    siteName: site.title,
+    siteName: site.fullName,
     title: site.title,
     description: site.description,
     images: [{ url: '/images/backgrounds/fond.jpg', width: 1200, height: 630, alt: site.fullName }],
@@ -44,7 +66,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#dc2626',
+  themeColor: '#0a0a0a',
   width: 'device-width',
   initialScale: 1,
 };
@@ -52,25 +74,28 @@ export const viewport: Viewport = {
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Store',
-  name: site.title,
+  name: site.fullName,
   description: site.description,
   url: site.url,
   email: site.email,
   telephone: site.phone,
+  priceRange: '$$',
+  currenciesAccepted: 'USD',
   image: `${site.url}/images/backgrounds/fond.jpg`,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '281 Rue Blanche SELVA',
-    postalCode: '66000',
-    addressLocality: 'Perpignan',
-    addressCountry: 'FR',
+    streetAddress: '4820 Logistics Parkway, Suite 200',
+    addressLocality: 'Atlanta',
+    addressRegion: 'GA',
+    postalCode: '30336',
+    addressCountry: 'US',
   },
-  areaServed: 'FR',
+  areaServed: 'US',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr">
+    <html lang="en" className={`${oswald.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
       <body>
         <script
           type="application/ld+json"
@@ -78,9 +103,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <LoadingScreen />
         <a href="#main-content" className="skip-link">
-          Aller au contenu principal
+          Skip to main content
         </a>
-        <div className="layout-shell">
+        <div className="app-shell">
           <Header />
           <main id="main-content" className="main-content">
             {children}

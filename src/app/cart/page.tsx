@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import CartView from '@/components/cart/CartView';
 
 export const metadata: Metadata = {
-  title: 'Panier',
+  title: 'Cart',
   description:
-    'Consultez votre panier PLF - Palette Liquidation France : ajustez les quantités, appliquez un code promo et finalisez votre commande de palettes de liquidation.',
+    'Review your Premium Pallet Liquidations cart: adjust quantities, apply a promo code and check out your liquidation pallet order.',
 };
 
 export default function CartPage() {

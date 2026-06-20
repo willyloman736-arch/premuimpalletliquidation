@@ -19,23 +19,23 @@ export default function NewsletterForm() {
   return (
     <form className={s['newsletter-form']} onSubmit={handleSubmit}>
       <label htmlFor="newsletter-email" className="sr-only">
-        Votre adresse email
+        Your email address
       </label>
       <input
         id="newsletter-email"
         type="email"
-        placeholder="Votre email"
+        placeholder="Your email"
         className={s['newsletter-input']}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
       />
-      <button type="submit" className={s['newsletter-btn']} aria-label="S'inscrire à la newsletter">
+      <button type="submit" className={s['newsletter-btn']} aria-label="Subscribe to the newsletter">
         <ArrowRight size={18} aria-hidden="true" />
       </button>
       {done && (
         <span className={s['newsletter-note']} role="status">
-          Merci, vous êtes inscrit !
+          Thanks — you&apos;re subscribed!
         </span>
       )}
     </form>

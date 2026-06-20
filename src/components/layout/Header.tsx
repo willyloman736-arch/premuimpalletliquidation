@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ShoppingCart, Package } from 'lucide-react';
+import { Menu, X, ShoppingCart, Package, Boxes } from 'lucide-react';
 import { navItems } from '@/lib/site';
 import { cartCount, onCartChange, readCart } from '@/lib/cart';
 import s from './Header.module.css';
@@ -15,7 +15,7 @@ export default function Header() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => setIsScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -26,23 +26,23 @@ export default function Header() {
     return onCartChange(update);
   }, []);
 
-  const navIcons: Record<string, typeof Package | undefined> = { '/palettes': Package };
+  const navIcons: Record<string, typeof Package | undefined> = { '/pallets': Package };
 
   return (
     <header className={`${s.header} ${isScrolled ? s['header-scrolled'] : ''}`}>
       <div className="container">
         <div className={s['header-content']}>
-          <Link href="/" className={s.logo} aria-label={`${'PLF'} — Palette Liquidation France, accueil`}>
-            <div className={s['logo-icon']}>
-              <Package size={32} aria-hidden="true" />
-            </div>
-            <div className={s['logo-text']}>
-              <span className={s['logo-main']}>PLF</span>
-              <span className={s['logo-sub']}>Palette Liquidation France</span>
-            </div>
+          <Link href="/" className={s.logo} aria-label="Premium Pallet Liquidations — home">
+            <span className={s['logo-badge']}>
+              <Boxes size={26} aria-hidden="true" />
+            </span>
+            <span className={s['logo-text']}>
+              <span className={s['logo-main']}>Premium Pallet</span>
+              <span className={s['logo-sub']}>Liquidations</span>
+            </span>
           </Link>
 
-          <nav className={s['nav-desktop']} aria-label="Navigation principale">
+          <nav className={s['nav-desktop']} aria-label="Primary">
             {navItems.map((item) => {
               const Icon = navIcons[item.path];
               const active = pathname === item.path;
@@ -53,7 +53,7 @@ export default function Header() {
                   className={`${s['nav-link']} ${active ? s.active : ''}`}
                   aria-current={active ? 'page' : undefined}
                 >
-                  {Icon && <Icon size={18} aria-hidden="true" />}
+                  {Icon && <Icon size={17} aria-hidden="true" />}
                   {item.label}
                 </Link>
               );
@@ -61,17 +61,21 @@ export default function Header() {
           </nav>
 
           <div className={s['header-actions']}>
-            <Link href="/cart" className={s['cart-btn']} aria-label={`Panier, ${count} article${count > 1 ? 's' : ''}`}>
-              <ShoppingCart size={20} aria-hidden="true" />
+            <Link
+              href="/cart"
+              className={s['cart-btn']}
+              aria-label={`Cart, ${count} item${count === 1 ? '' : 's'}`}
+            >
+              <ShoppingCart size={19} aria-hidden="true" />
               {count > 0 && <span className={s['cart-badge']}>{count}</span>}
             </Link>
             <button
               className={s['menu-toggle']}
               onClick={() => setIsMenuOpen((v) => !v)}
-              aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMenuOpen}
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
@@ -101,7 +105,7 @@ export default function Header() {
               onClick={() => setIsMenuOpen(false)}
             >
               <ShoppingCart size={20} aria-hidden="true" />
-              Panier ({count})
+              Cart ({count})
             </Link>
           </div>
         </div>

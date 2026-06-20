@@ -1,85 +1,100 @@
 .legal-page {
-  padding: 120px 0 80px;
+  padding: 3.5rem 0 5rem;
   min-height: 100vh;
-  background: #f8fafc;
+  background: var(--paper);
 }
 
 .legal-page h1 {
-  color: #dc2626;
-  font-size: 2rem;
+  color: var(--ink);
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
   font-weight: 700;
-  margin-bottom: 30px;
-  border-bottom: 3px solid #dc2626;
-  padding-bottom: 15px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 4px solid var(--amber);
 }
 
 .legal-page h2 {
-  color: #1e293b;
-  font-size: 1.5rem;
+  color: var(--ink);
+  font-size: 1.4rem;
   font-weight: 600;
-  margin-top: 30px;
-  margin-bottom: 15px;
+  text-transform: none;
+  margin-top: 2.25rem;
+  margin-bottom: 0.9rem;
+  padding-left: 0.85rem;
+  border-left: 3px solid var(--amber);
 }
 
 .legal-page h3 {
-  color: #374151;
-  font-size: 1.2rem;
+  color: var(--ink-700);
+  font-size: 1.1rem;
   font-weight: 600;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: 1.4rem;
+  margin-bottom: 0.6rem;
 }
 
 .legal-page p {
-  color: #374151;
-  line-height: 1.6;
-  margin-bottom: 15px;
+  color: var(--fg-muted);
+  line-height: 1.7;
+  margin-bottom: 0.9rem;
 }
 
 .legal-page ul {
-  color: #374151;
-  line-height: 1.6;
-  margin-bottom: 15px;
-  padding-left: 20px;
+  color: var(--fg-muted);
+  line-height: 1.7;
+  margin-bottom: 0.9rem;
+  padding-left: 1.25rem;
 }
 
 .legal-page li {
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .legal-page a {
-  color: #dc2626;
+  color: var(--amber-deep);
   text-decoration: underline;
+  font-weight: 600;
 }
 
 .legal-page strong {
-  color: #1e293b;
+  color: var(--ink);
+}
+
+.legal-page .updated {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--fg-soft);
 }
 
 .cookie-table {
-  margin: 20px 0;
+  margin: 1.25rem 0;
   overflow-x: auto;
 }
 
 .legal-page table {
   width: 100%;
   border-collapse: collapse;
-  background: #f8fafc;
-  border-radius: 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
   overflow: hidden;
+  font-size: 0.92rem;
 }
 
 .legal-page th {
-  background: #dc2626;
-  color: white;
+  background: var(--ink);
+  color: var(--amber);
   padding: 12px;
   text-align: left;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .legal-page td {
   padding: 12px;
-  border-bottom: 1px solid #e5e7eb;
-  color: #374151;
+  border-bottom: 1px solid var(--line);
+  color: var(--fg-muted);
 }
 
 .legal-page tbody tr:last-child td {
@@ -87,5 +102,5 @@
 }
 
 .legal-page tbody tr:nth-child(even) {
-  background: white;
+  background: var(--concrete-200);
 }

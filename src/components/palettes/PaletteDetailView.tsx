@@ -27,6 +27,8 @@ import { addPaletteToCart } from '@/lib/cart';
 import MessageModal, { type MessageVariant } from '@/components/ui/MessageModal';
 import s from './PaletteDetailView.module.css';
 
+const usd = (value: number) => `$${value.toLocaleString('en-US')}`;
+
 type TabId = 'description' | 'contents' | 'delivery';
 
 interface PaletteDetailViewProps {
@@ -72,15 +74,14 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
           url: window.location.href,
         });
       } catch {
-        // Partage annulé ou indisponible — aucune action.
+        // Share cancelled or unavailable — no action.
       }
     } else {
-      // Fallback - copier l'URL
       navigator.clipboard.writeText(window.location.href);
       setMessageModal({
         open: true,
-        title: 'Lien copié',
-        message: 'Lien copié dans le presse-papiers !',
+        title: 'Link copied',
+        message: 'Link copied to clipboard!',
         variant: 'success',
       });
     }
@@ -93,10 +94,10 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
       {/* Breadcrumb */}
       <section className={s.breadcrumb}>
         <div className="container">
-          <nav className={s['breadcrumb-nav']} aria-label="Fil d'Ariane">
-            <Link href="/">Accueil</Link>
+          <nav className={s['breadcrumb-nav']} aria-label="Breadcrumb">
+            <Link href="/">Home</Link>
             <span>/</span>
-            <Link href="/palettes">Nos palettes</Link>
+            <Link href="/pallets">Pallets</Link>
             <span>/</span>
             <span>{palette.title}</span>
           </nav>
@@ -112,7 +113,7 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
               <div className={s['main-image']}>
                 <Image
                   src={palette.images[currentImageIndex]}
-                  alt={`Palette ${palette.title} — visuel ${currentImageIndex + 1}`}
+                  alt={`${palette.title} — image ${currentImageIndex + 1}`}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   priority
@@ -123,7 +124,7 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
                       type="button"
                       className={`${s['nav-btn']} ${s.prev}`}
                       onClick={prevImage}
-                      aria-label="Image précédente"
+                      aria-label="Previous image"
                     >
                       <ChevronLeft size={24} aria-hidden="true" />
                     </button>
@@ -131,19 +132,17 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
                       type="button"
                       className={`${s['nav-btn']} ${s.next}`}
                       onClick={nextImage}
-                      aria-label="Image suivante"
+                      aria-label="Next image"
                     >
                       <ChevronRight size={24} aria-hidden="true" />
                     </button>
                   </>
                 )}
                 <div className={s['image-badges']}>
-                  {palette.featured && (
-                    <span className={`${s.badge} ${s.featured}`}>⭐ Vedette</span>
-                  )}
+                  {palette.featured && <span className={`${s.badge} ${s.featured}`}>★ Featured</span>}
                   <span className={`${s.badge} ${s.grade}`}>{palette.condition}</span>
                   {palette.limitedTime && (
-                    <span className={`${s.badge} ${s.limited}`}>⏰ Offre limitée</span>
+                    <span className={`${s.badge} ${s.limited}`}>⏱ Limited offer</span>
                   )}
                 </div>
               </div>
@@ -156,11 +155,11 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
                       key={image}
                       className={`${s.thumbnail} ${index === currentImageIndex ? s.active : ''}`}
                       onClick={() => setCurrentImageIndex(index)}
-                      aria-label={`Voir l'image ${index + 1} de ${palette.title}`}
+                      aria-label={`View image ${index + 1} of ${palette.title}`}
                     >
                       <Image
                         src={image}
-                        alt={`Palette ${palette.title} — miniature ${index + 1}`}
+                        alt={`${palette.title} — thumbnail ${index + 1}`}
                         width={80}
                         height={80}
                       />
@@ -179,7 +178,7 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
                     type="button"
                     className={`${s['action-btn']} ${isLiked ? s.liked : ''}`}
                     onClick={() => setIsLiked(!isLiked)}
-                    aria-label={isLiked ? 'Retirer des favoris' : 'Ajouter aux favoris'}
+                    aria-label={isLiked ? 'Remove from favorites' : 'Add to favorites'}
                     aria-pressed={isLiked}
                   >
                     <Heart size={20} fill={isLiked ? 'currentColor' : 'none'} aria-hidden="true" />
@@ -188,7 +187,7 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
                     type="button"
                     className={s['action-btn']}
                     onClick={shareProduct}
-                    aria-label="Partager cette palette"
+                    aria-label="Share this pallet"
                   >
                     <Share2 size={20} aria-hidden="true" />
                   </button>
@@ -196,7 +195,7 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
               </div>
 
               <div className={s['product-rating']}>
-                <div className={s.stars} aria-label={`Note ${palette.rating} sur 5`}>
+                <div className={s.stars} aria-label={`Rating ${palette.rating} out of 5`}>
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
@@ -214,11 +213,11 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
               <div className={s['product-highlights']}>
                 <div className={s['highlight-item']}>
                   <Package size={20} aria-hidden="true" />
-                  <span>{palette.quantity} articles inclus</span>
+                  <span>{palette.quantity} items included</span>
                 </div>
                 <div className={s['highlight-item']}>
                   <TrendingUp size={20} aria-hidden="true" />
-                  <span>Profit estimé: {palette.estimatedProfit}</span>
+                  <span>Est. profit: {palette.estimatedProfit}</span>
                 </div>
                 <div className={s['highlight-item']}>
                   <Award size={20} aria-hidden="true" />
@@ -226,32 +225,32 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
                 </div>
                 <div className={s['highlight-item']}>
                   <Truck size={20} aria-hidden="true" />
-                  <span>Livraison sous 48h</span>
+                  <span>Ships in 48h</span>
                 </div>
               </div>
 
               <div className={s['product-pricing']}>
                 <div className={s['price-main']}>
-                  <span className={s['current-price']}>{palette.price}€</span>
-                  <span className={s['original-price']}>{palette.original_price}€</span>
+                  <span className={s['current-price']}>{usd(palette.price)}</span>
+                  <span className={s['original-price']}>{usd(palette.original_price)}</span>
                 </div>
                 <div className={s['price-savings']}>
                   <span className={s['discount-badge']}>-{discountPercentage}%</span>
                   <span className={s['savings-text']}>
-                    Vous économisez {palette.original_price - palette.price}€
+                    You save {usd(palette.original_price - palette.price)}
                   </span>
                 </div>
               </div>
 
               <div className={s['product-purchase']}>
                 <div className={s['quantity-selector']}>
-                  <label htmlFor="quantity">Quantité:</label>
+                  <label htmlFor="quantity">Quantity:</label>
                   <div className={s['quantity-controls']}>
                     <button
                       type="button"
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
                       disabled={quantity <= 1}
-                      aria-label="Diminuer la quantité"
+                      aria-label="Decrease quantity"
                     >
                       -
                     </button>
@@ -259,7 +258,7 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
                     <button
                       type="button"
                       onClick={() => setQuantity(quantity + 1)}
-                      aria-label="Augmenter la quantité"
+                      aria-label="Increase quantity"
                     >
                       +
                     </button>
@@ -269,10 +268,10 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
                 <div className={s['purchase-actions']}>
                   <button type="button" className={s['btn-add-to-cart']} onClick={addToCart}>
                     <ShoppingCart size={20} aria-hidden="true" />
-                    Ajouter au panier
+                    Add to Cart
                   </button>
                   <div className={s['total-price']}>
-                    Total: <strong>{palette.price * quantity}€</strong>
+                    Total: <strong>{usd(palette.price * quantity)}</strong>
                   </div>
                 </div>
               </div>
@@ -280,15 +279,15 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
               <div className={s['trust-signals']}>
                 <div className={s['trust-item']}>
                   <Shield size={16} aria-hidden="true" />
-                  <span>Paiement sécurisé</span>
+                  <span>Secure checkout</span>
                 </div>
                 <div className={s['trust-item']}>
                   <Truck size={16} aria-hidden="true" />
-                  <span>Livraison gratuite dès 1000€</span>
+                  <span>Free shipping over $1,000</span>
                 </div>
                 <div className={s['trust-item']}>
                   <CheckCircle size={16} aria-hidden="true" />
-                  <span>Garantie satisfait ou remboursé</span>
+                  <span>Satisfaction guaranteed</span>
                 </div>
               </div>
             </div>
@@ -306,7 +305,7 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
               onClick={() => setSelectedTab('description')}
             >
               <Info size={18} aria-hidden="true" />
-              Description détaillée
+              Detailed description
             </button>
             <button
               type="button"
@@ -314,7 +313,7 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
               onClick={() => setSelectedTab('contents')}
             >
               <Package size={18} aria-hidden="true" />
-              Contenu de la palette
+              Pallet contents
             </button>
             <button
               type="button"
@@ -322,69 +321,68 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
               onClick={() => setSelectedTab('delivery')}
             >
               <Truck size={18} aria-hidden="true" />
-              Livraison &amp; Retours
+              Shipping &amp; Returns
             </button>
           </div>
 
           <div className={s['tabs-content']}>
             {selectedTab === 'description' && (
               <div className={s['tab-content']}>
-                <h3>À propos de cette palette</h3>
+                <h3>About this pallet</h3>
                 <p>
-                  Cette palette {palette.title.toLowerCase()} représente une opportunité
-                  exceptionnelle pour les revendeurs et entrepreneurs. Avec un potentiel de profit
-                  de {palette.estimatedProfit}, elle contient {palette.quantity} articles
-                  soigneusement sélectionnés.
+                  This {palette.title.toLowerCase()} is an outstanding opportunity for resellers and
+                  entrepreneurs. With an estimated profit potential of {palette.estimatedProfit}, it
+                  contains {palette.quantity} carefully selected items.
                 </p>
-                <h4>Caractéristiques principales :</h4>
+                <h4>Key features:</h4>
                 <ul>
-                  <li>Condition: {palette.condition} - Produits en excellent état</li>
-                  <li>Quantité: {palette.quantity} articles variés</li>
-                  <li>Profit estimé: {palette.estimatedProfit}</li>
-                  <li>Catégorie: {palette.category}</li>
-                  <li>Note client: {palette.rating}/5 étoiles</li>
+                  <li>Condition: {palette.condition} — products in excellent shape</li>
+                  <li>Quantity: {palette.quantity} assorted items</li>
+                  <li>Estimated profit: {palette.estimatedProfit}</li>
+                  <li>Category: {palette.category}</li>
+                  <li>Customer rating: {palette.rating}/5 stars</li>
                 </ul>
               </div>
             )}
 
             {selectedTab === 'contents' && (
               <div className={s['tab-content']}>
-                <h3>Contenu de la palette</h3>
+                <h3>Pallet contents</h3>
                 <div className={s['contents-grid']}>
                   <div className={s['content-item']}>
                     <Package size={24} aria-hidden="true" />
                     <div>
-                      <h4>Articles inclus</h4>
-                      <p>{palette.quantity} produits assortis de qualité</p>
+                      <h4>Items included</h4>
+                      <p>{palette.quantity} assorted quality products</p>
                     </div>
                   </div>
                   <div className={s['content-item']}>
                     <Star size={24} aria-hidden="true" />
                     <div>
                       <h4>Condition</h4>
-                      <p>{palette.condition} - Contrôlé qualité</p>
+                      <p>{palette.condition} — quality checked</p>
                     </div>
                   </div>
                   <div className={s['content-item']}>
                     <TrendingUp size={24} aria-hidden="true" />
                     <div>
-                      <h4>Potentiel de revente</h4>
-                      <p>Profit estimé de {palette.estimatedProfit}</p>
+                      <h4>Resale potential</h4>
+                      <p>Estimated profit of {palette.estimatedProfit}</p>
                     </div>
                   </div>
                   <div className={s['content-item']}>
                     <Eye size={24} aria-hidden="true" />
                     <div>
-                      <h4>Transparence</h4>
-                      <p>Photos réelles de la palette</p>
+                      <h4>Transparency</h4>
+                      <p>Representative photos of the pallet</p>
                     </div>
                   </div>
                 </div>
                 <div className={s['content-warning']}>
                   <AlertCircle size={20} aria-hidden="true" />
                   <p>
-                    <strong>Important:</strong> Le contenu exact peut varier légèrement. Les photos
-                    sont représentatives de la qualité et du type de produits inclus.
+                    <strong>Important:</strong> Exact contents may vary slightly. Photos are
+                    representative of the quality and type of products included.
                   </p>
                 </div>
               </div>
@@ -392,34 +390,34 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
 
             {selectedTab === 'delivery' && (
               <div className={s['tab-content']}>
-                <h3>Livraison et Retours</h3>
+                <h3>Shipping and Returns</h3>
                 <div className={s['delivery-grid']}>
                   <div className={s['delivery-item']}>
                     <Truck size={24} aria-hidden="true" />
                     <div>
-                      <h4>Livraison rapide</h4>
-                      <p>Expédition sous 24h - Livraison en 48h partout en France</p>
+                      <h4>Fast shipping</h4>
+                      <p>Ships within 48h — delivered nationwide across the USA</p>
                     </div>
                   </div>
                   <div className={s['delivery-item']}>
                     <MapPin size={24} aria-hidden="true" />
                     <div>
-                      <h4>Zone de livraison</h4>
-                      <p>France métropolitaine et DOM-TOM</p>
+                      <h4>Delivery area</h4>
+                      <p>All 50 US states (continental US &amp; beyond)</p>
                     </div>
                   </div>
                   <div className={s['delivery-item']}>
                     <Shield size={24} aria-hidden="true" />
                     <div>
-                      <h4>Garantie</h4>
-                      <p>Satisfait ou remboursé sous 7 jours</p>
+                      <h4>Guarantee</h4>
+                      <p>Report any issues within 7 days of delivery</p>
                     </div>
                   </div>
                   <div className={s['delivery-item']}>
                     <Clock size={24} aria-hidden="true" />
                     <div>
-                      <h4>Suivi de commande</h4>
-                      <p>Numéro de suivi fourni dès l&apos;expédition</p>
+                      <h4>Order tracking</h4>
+                      <p>Tracking number provided as soon as it ships</p>
                     </div>
                   </div>
                 </div>
@@ -433,32 +431,32 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
       {related.length > 0 && (
         <section className={s['related-section']}>
           <div className="container">
-            <h2>Palettes similaires</h2>
+            <h2>Similar pallets</h2>
             <div className={s['related-grid']}>
               {related.map((relatedPalette) => (
                 <div key={relatedPalette.id} className={s['related-card']}>
                   <div className={s['related-image']}>
                     <Image
                       src={relatedPalette.images[0]}
-                      alt={`Palette ${relatedPalette.title}`}
+                      alt={relatedPalette.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 300px"
                     />
                     <div className={s['related-overlay']}>
-                      <Link href={`/palette/${relatedPalette.id}`} className={s['btn-view']}>
+                      <Link href={`/pallet/${relatedPalette.id}`} className={s['btn-view']}>
                         <Eye size={16} aria-hidden="true" />
-                        Voir
+                        View
                       </Link>
                     </div>
                   </div>
                   <div className={s['related-content']}>
                     <h4>{relatedPalette.title}</h4>
                     <div className={s['related-price']}>
-                      <span className={s.price}>{relatedPalette.price}€</span>
-                      <span className={s.original}>{relatedPalette.original_price}€</span>
+                      <span className={s.price}>{usd(relatedPalette.price)}</span>
+                      <span className={s.original}>{usd(relatedPalette.original_price)}</span>
                     </div>
                     <div className={s['related-info']}>
-                      <span className={s.quantity}>{relatedPalette.quantity} articles</span>
+                      <span className={s.quantity}>{relatedPalette.quantity} items</span>
                       <span className={s.profit}>{relatedPalette.estimatedProfit}</span>
                     </div>
                   </div>

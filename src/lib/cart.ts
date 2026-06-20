@@ -1,6 +1,6 @@
 import type { CartItem, Palette } from '@/types/palette';
 
-const CART_KEY = 'plf_cart';
+const CART_KEY = 'ppl_cart';
 const CART_EVENT = 'cart-updated';
 
 /** Reads the cart from localStorage (safe on the server — returns []). */

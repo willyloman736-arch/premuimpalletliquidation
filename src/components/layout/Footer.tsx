@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import {
-  Package,
+  Boxes,
   Mail,
   Phone,
   MapPin,
@@ -8,9 +8,9 @@ import {
   Instagram,
   Twitter,
   ArrowRight,
-  Shield,
+  ShieldCheck,
   Truck,
-  Award,
+  BadgeCheck,
   Clock,
 } from 'lucide-react';
 import { site, navItems, legalLinks } from '@/lib/site';
@@ -18,10 +18,10 @@ import NewsletterForm from './NewsletterForm';
 import s from './Footer.module.css';
 
 const features = [
-  { icon: Shield, title: 'Paiement sécurisé', description: 'Transactions 100% sécurisées' },
-  { icon: Truck, title: 'Livraison rapide', description: 'Expédition sous 48h' },
-  { icon: Award, title: 'Qualité garantie', description: 'Palettes vérifiées' },
-  { icon: Clock, title: 'Support 24/7', description: 'Assistance dédiée' },
+  { icon: ShieldCheck, title: 'Secure Checkout', description: '100% secure transactions' },
+  { icon: Truck, title: 'Fast Shipping', description: 'Ships nationwide in 48h' },
+  { icon: BadgeCheck, title: 'Graded Quality', description: 'Every pallet inspected' },
+  { icon: Clock, title: 'Dedicated Support', description: 'Reseller specialists on call' },
 ];
 
 export default function Footer() {
@@ -29,6 +29,8 @@ export default function Footer() {
 
   return (
     <footer className={s.footer}>
+      <div className={s.hazard} aria-hidden="true" />
+
       <div className={s['footer-features']}>
         <div className="container">
           <div className={s['features-grid']}>
@@ -55,18 +57,17 @@ export default function Footer() {
           <div className={s['footer-grid']}>
             <div>
               <div className={s['footer-logo']}>
-                <div className={s['logo-icon']}>
-                  <Package size={32} aria-hidden="true" />
-                </div>
-                <div className={s['logo-text']}>
-                  <span className={s['logo-main']}>PLF</span>
-                  <span className={s['logo-sub']}>Palette Liquidation France</span>
-                </div>
+                <span className={s['logo-badge']}>
+                  <Boxes size={26} aria-hidden="true" />
+                </span>
+                <span className={s['logo-text']}>
+                  <span className={s['logo-main']}>Premium Pallet</span>
+                  <span className={s['logo-sub']}>Liquidations</span>
+                </span>
               </div>
               <p className={s['footer-description']}>
-                Votre partenaire de confiance pour l&apos;achat de palettes de liquidation.
-                Découvrez des opportunités uniques de revente avec nos palettes soigneusement
-                sélectionnées.
+                Truckloads of brand-name overstock and customer returns from top US retailers —
+                resale-ready pallets with real margins, shipped fast across the USA.
               </p>
               <div className={s['social-links']}>
                 <a href={site.social.facebook} className={s['social-link']} aria-label="Facebook">
@@ -75,19 +76,19 @@ export default function Footer() {
                 <a href={site.social.instagram} className={s['social-link']} aria-label="Instagram">
                   <Instagram size={20} aria-hidden="true" />
                 </a>
-                <a href={site.social.twitter} className={s['social-link']} aria-label="Twitter">
+                <a href={site.social.twitter} className={s['social-link']} aria-label="X (Twitter)">
                   <Twitter size={20} aria-hidden="true" />
                 </a>
               </div>
             </div>
 
-            <nav aria-label="Navigation du pied de page">
-              <h3 className={s['footer-title']}>Navigation</h3>
+            <nav aria-label="Footer navigation">
+              <h3 className={s['footer-title']}>Explore</h3>
               <ul className={s['footer-links']}>
                 {navItems.map((link) => (
                   <li key={link.path}>
                     <Link href={link.path} className={s['footer-link']}>
-                      <ArrowRight size={16} aria-hidden="true" />
+                      <ArrowRight size={15} aria-hidden="true" />
                       {link.label}
                     </Link>
                   </li>
@@ -95,13 +96,13 @@ export default function Footer() {
               </ul>
             </nav>
 
-            <nav aria-label="Informations légales">
-              <h3 className={s['footer-title']}>Informations</h3>
+            <nav aria-label="Legal">
+              <h3 className={s['footer-title']}>Legal</h3>
               <ul className={s['footer-links']}>
                 {legalLinks.map((link) => (
                   <li key={link.path}>
                     <Link href={link.path} className={s['footer-link']}>
-                      <ArrowRight size={16} aria-hidden="true" />
+                      <ArrowRight size={15} aria-hidden="true" />
                       {link.label}
                     </Link>
                   </li>
@@ -128,7 +129,7 @@ export default function Footer() {
 
               <div className={s.newsletter}>
                 <h4>Newsletter</h4>
-                <p>Recevez nos meilleures offres</p>
+                <p>Get first access to new truckloads &amp; deals.</p>
                 <NewsletterForm />
               </div>
             </div>
@@ -139,10 +140,10 @@ export default function Footer() {
       <div className={s['footer-bottom']}>
         <div className="container">
           <div className={s['footer-bottom-content']}>
-            <p>&copy; {currentYear} PLF - Palette Liquidation France. Tous droits réservés.</p>
+            <p>&copy; {currentYear} Premium Pallet Liquidations. All rights reserved.</p>
             <div className={s['footer-badges']}>
-              <span className={s.badge}>🇫🇷 Made in France</span>
-              <span className={s.badge}>✅ Site sécurisé</span>
+              <span className={s.badge}>🇺🇸 Ships Nationwide</span>
+              <span className={s.badge}>🔒 Secure Checkout</span>
             </div>
           </div>
         </div>

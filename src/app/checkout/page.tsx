@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import CheckoutView from '@/components/checkout/CheckoutView';
 
 export const metadata: Metadata = {
-  title: 'Commande',
+  title: 'Checkout',
   description:
-    'Finalisez votre commande PLF - Palette Liquidation France : informations de livraison, mode de paiement sécurisé et récapitulatif de votre panier de palettes.',
+    'Complete your Premium Pallet Liquidations order: shipping information, secure payment method and your cart summary.',
 };
 
 export default function CheckoutPage() {

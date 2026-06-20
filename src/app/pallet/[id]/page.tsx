@@ -20,8 +20,8 @@ export async function generateMetadata({ params }: PaletteDetailPageProps): Prom
 
   if (!palette) {
     return {
-      title: 'Palette non trouvée',
-      description: "La palette que vous recherchez n'existe pas ou n'est plus disponible.",
+      title: 'Pallet not found',
+      description: "The pallet you're looking for doesn't exist or is no longer available.",
     };
   }
 
@@ -41,11 +41,11 @@ export default async function PaletteDetailPage({ params }: PaletteDetailPagePro
       <div className={s['palette-not-found']}>
         <div className="container">
           <Package size={64} aria-hidden="true" />
-          <h2>Palette non trouvée</h2>
-          <p>La palette que vous recherchez n&apos;existe pas ou n&apos;est plus disponible.</p>
-          <Link href="/palettes" className={s['btn-back']}>
+          <h2>Pallet not found</h2>
+          <p>The pallet you&apos;re looking for doesn&apos;t exist or is no longer available.</p>
+          <Link href="/pallets" className={s['btn-back']}>
             <ArrowLeft size={18} aria-hidden="true" />
-            Retour aux palettes
+            Back to pallets
           </Link>
         </div>
       </div>

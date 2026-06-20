@@ -22,6 +22,9 @@ import { readCart, writeCart } from '@/lib/cart';
 import { emailjsConfig, stripeConfig, ENABLED_PAYMENT_METHODS } from '@/lib/config';
 import s from './CheckoutView.module.css';
 
+const money = (value: number) =>
+  `$${value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
 const stripePublishableKey = stripeConfig.publishableKey;
 const stripePromise = stripePublishableKey ? loadStripe(stripePublishableKey) : null;
 
@@ -41,6 +44,7 @@ interface CustomerInfo {
   address: string;
   city: string;
   zipCode: string;
+  state: string;
   country: string;
 }
 
@@ -59,7 +63,7 @@ type StripeConfirmFn = () => Promise<{
   paymentIntent?: { status?: string };
 }>;
 
-/** Assigne une fonction de confirmation Stripe sur la ref (utilisée au submit du formulaire parent). */
+/** Assigns a Stripe confirmation function to the ref (used on the parent form submit). */
 function StripePaymentBridge({
   confirmRef,
 }: {
@@ -92,19 +96,19 @@ function StripePaymentBridge({
 const allPaymentMethods: PaymentMethod[] = [
   {
     id: 'carte',
-    name: 'Carte bancaire',
+    name: 'Credit Card',
     icon: CreditCard,
-    description: 'Paiement sécurisé par carte',
-    delay: 'Immédiat',
+    description: 'Secure card payment',
+    delay: 'Immediate',
     fee: 0,
     popular: true,
   },
   {
     id: 'virement',
-    name: 'Virement Bancaire',
+    name: 'Bank Transfer (ACH)',
     icon: Building2,
-    description: 'Paiement sécurisé par virement',
-    delay: '2-3 jours ouvrés',
+    description: 'Secure bank transfer',
+    delay: '2-3 business days',
     fee: 0,
     popular: false,
   },
@@ -112,44 +116,26 @@ const allPaymentMethods: PaymentMethod[] = [
     id: 'applepay',
     name: 'Apple Pay',
     icon: Smartphone,
-    description: 'Paiement rapide et sécurisé',
-    delay: 'Instantané',
+    description: 'Fast & secure',
+    delay: 'Instant',
     fee: 0,
     popular: false,
   },
 ];
 
-// Filtrer les méthodes selon la configuration
 const paymentMethods = allPaymentMethods.filter((method) =>
   ENABLED_PAYMENT_METHODS.includes(method.id),
 );
 
-// Liste des pays
-const countries = [
-  'Afghanistan', 'Afrique du Sud', 'Albanie', 'Algérie', 'Allemagne', 'Andorre', 'Angola', 'Antigua-et-Barbuda', 'Arabie saoudite', 'Argentine', 'Arménie', 'Australie', 'Autriche', 'Azerbaïdjan',
-  'Bahamas', 'Bahreïn', 'Bangladesh', 'Barbade', 'Bélarus', 'Belgique', 'Belize', 'Bénin', 'Bhoutan', 'Bolivie', 'Bosnie-Herzégovine', 'Botswana', 'Brésil', 'Brunei', 'Bulgarie', 'Burkina Faso', 'Burundi',
-  'Cambodge', 'Cameroun', 'Canada', 'Cap-Vert', 'Chili', 'Chine', 'Chypre', 'Colombie', 'Comores', 'Congo', 'Corée du Nord', 'Corée du Sud', 'Costa Rica', "Côte d'Ivoire", 'Croatie', 'Cuba',
-  'Danemark', 'Djibouti', 'Dominique',
-  'Égypte', 'Émirats arabes unis', 'Équateur', 'Érythrée', 'Espagne', 'Estonie', 'Eswatini', 'États-Unis', 'Éthiopie',
-  'Fidji', 'Finlande', 'France',
-  'Gabon', 'Gambie', 'Géorgie', 'Ghana', 'Grèce', 'Grenade', 'Guatemala', 'Guinée', 'Guinée-Bissau', 'Guinée équatoriale', 'Guyana',
-  'Haïti', 'Honduras', 'Hongrie',
-  'Îles Marshall', 'Îles Salomon', 'Inde', 'Indonésie', 'Irak', 'Iran', 'Irlande', 'Islande', 'Israël', 'Italie',
-  'Jamaïque', 'Japon', 'Jordanie',
-  'Kazakhstan', 'Kenya', 'Kirghizistan', 'Kiribati', 'Koweït',
-  'Laos', 'Lesotho', 'Lettonie', 'Liban', 'Libéria', 'Libye', 'Liechtenstein', 'Lituanie', 'Luxembourg',
-  'Macédoine du Nord', 'Madagascar', 'Malaisie', 'Malawi', 'Maldives', 'Mali', 'Malte', 'Maroc', 'Maurice', 'Mauritanie', 'Mexique', 'Micronésie', 'Moldavie', 'Monaco', 'Mongolie', 'Monténégro', 'Mozambique', 'Myanmar',
-  'Namibie', 'Nauru', 'Népal', 'Nicaragua', 'Niger', 'Nigeria', 'Norvège', 'Nouvelle-Zélande',
-  'Oman', 'Ouganda', 'Ouzbékistan',
-  'Pakistan', 'Palaos', 'Panama', 'Papouasie-Nouvelle-Guinée', 'Paraguay', 'Pays-Bas', 'Pérou', 'Philippines', 'Pologne', 'Portugal',
-  'Qatar',
-  'République centrafricaine', 'République démocratique du Congo', 'République dominicaine', 'République tchèque', 'Roumanie', 'Royaume-Uni', 'Russie', 'Rwanda',
-  'Saint-Christophe-et-Niévès', 'Sainte-Lucie', 'Saint-Marin', 'Saint-Vincent-et-les-Grenadines', 'Salvador', 'Samoa', 'São Tomé-et-Príncipe', 'Sénégal', 'Serbie', 'Seychelles', 'Sierra Leone', 'Singapour', 'Slovaquie', 'Slovénie', 'Somalie', 'Soudan', 'Soudan du Sud', 'Sri Lanka', 'Suède', 'Suisse', 'Suriname', 'Syrie',
-  'Tadjikistan', 'Tanzanie', 'Tchad', 'Thaïlande', 'Timor oriental', 'Togo', 'Tonga', 'Trinité-et-Tobago', 'Tunisie', 'Turkménistan', 'Turquie', 'Tuvalu',
-  'Ukraine', 'Uruguay',
-  'Vanuatu', 'Vatican', 'Venezuela', 'Viêt Nam',
-  'Yémen',
-  'Zambie', 'Zimbabwe',
+// US states + DC
+const usStates = [
+  'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware',
+  'District of Columbia', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa',
+  'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+  'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
+  'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon',
+  'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah',
+  'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming',
 ];
 
 export default function CheckoutView() {
@@ -164,7 +150,8 @@ export default function CheckoutView() {
     address: '',
     city: '',
     zipCode: '',
-    country: '',
+    state: '',
+    country: 'United States',
   });
   const [orderSubmitted, setOrderSubmitted] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -191,8 +178,7 @@ export default function CheckoutView() {
       setMessageModal({
         open: true,
         message: String(message),
-        title:
-          title ?? (variant === 'error' ? 'Erreur' : variant === 'success' ? 'Succès' : 'Information'),
+        title: title ?? (variant === 'error' ? 'Error' : variant === 'success' ? 'Success' : 'Information'),
         variant: variant ?? 'info',
       });
     },
@@ -203,37 +189,30 @@ export default function CheckoutView() {
     setMessageModal((prev) => ({ ...prev, open: false }));
   }, []);
 
-  // Initialiser EmailJS (uniquement s'il est configuré)
   useEffect(() => {
     if (emailjsConfig.enabled) {
       emailjs.init(emailjsConfig.publicKey);
     }
   }, []);
 
-  // Charger le panier
   useEffect(() => {
     setCartItems(readCart());
   }, []);
 
-  // Calculer les totaux
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const shipping = subtotal >= 1000 ? 0 : 50; // Frais de 50€ si montant < 1000€
+  const shipping = subtotal >= 1000 ? 0 : 50; // $50 flat under $1,000
   const total = subtotal + shipping;
 
   useEffect(() => {
-    // ========== PAIEMENT PAR CARTE ==========
-    // Tout ce code Stripe est laissé en place pour réactivation facile.
-    // Pour réactiver : ajoutez 'carte' dans ENABLED_PAYMENT_METHODS.
-
+    // Card payment (Stripe) — only runs when 'carte' is enabled.
     if (selectedPayment !== 'carte') {
       setStripeClientSecret(null);
       setStripePrepareError('');
       return;
     }
 
-    // Le code ci-dessous ne s'exécutera que si 'carte' est réactivée
     if (!stripePublishableKey || !stripePromise) {
-      setStripePrepareError('Clé publique Stripe manquante (NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY).');
+      setStripePrepareError('Missing Stripe publishable key (NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY).');
       setStripeClientSecret(null);
       return;
     }
@@ -246,7 +225,7 @@ export default function CheckoutView() {
 
     const amountCents = Math.round(total * 100);
     if (amountCents < 50) {
-      setStripePrepareError('Le montant minimum pour un paiement carte est de 0,50 €.');
+      setStripePrepareError('The minimum amount for a card payment is $0.50.');
       return;
     }
 
@@ -257,9 +236,9 @@ export default function CheckoutView() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             amount: amountCents,
-            currency: 'eur',
+            currency: 'usd',
             metadata: {
-              source: 'plf_checkout',
+              source: 'ppl_checkout',
               customer_email: customerInfo.email || '',
               customer_name: `${customerInfo.firstName || ''} ${customerInfo.lastName || ''}`.trim(),
             },
@@ -267,10 +246,10 @@ export default function CheckoutView() {
         });
         const data = await res.json().catch(() => ({}));
         if (!res.ok) {
-          throw new Error(data.error || `Erreur serveur (${res.status})`);
+          throw new Error(data.error || `Server error (${res.status})`);
         }
         if (!data.clientSecret) {
-          throw new Error('Réponse Stripe invalide.');
+          throw new Error('Invalid Stripe response.');
         }
         if (!cancelled) {
           setStripeClientSecret(data.clientSecret);
@@ -278,7 +257,7 @@ export default function CheckoutView() {
       } catch (err) {
         if (!cancelled) {
           setStripePrepareError(
-            err instanceof Error ? err.message : 'Impossible de préparer le paiement.',
+            err instanceof Error ? err.message : 'Unable to prepare the payment.',
           );
         }
       }
@@ -289,30 +268,26 @@ export default function CheckoutView() {
     };
   }, [selectedPayment, total, customerInfo.email, customerInfo.firstName, customerInfo.lastName]);
 
-  // Fonction pour envoyer les emails
   const sendOrderEmails = async (orderNumber: string) => {
-    // Mode démo : si EmailJS n'est pas configuré, on considère la commande
-    // comme passée sans envoyer d'email.
+    // Demo mode: if EmailJS isn't configured, treat the order as placed without sending email.
     if (!emailjsConfig.enabled) {
       return { success: true, orderNumber, skipped: true };
     }
 
-    const orderDate = new Date().toLocaleDateString('fr-FR', {
+    const orderDate = new Date().toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
     });
     try {
-      // Préparer les données communes
       const customerFullName = `${customerInfo.firstName} ${customerInfo.lastName}`;
-      const customerFullAddress = `${customerInfo.address}, ${customerInfo.zipCode} ${customerInfo.city}, ${customerInfo.country}`;
+      const customerFullAddress = `${customerInfo.address}, ${customerInfo.city}, ${customerInfo.state} ${customerInfo.zipCode}, ${customerInfo.country}`;
       const paymentMethodName =
         paymentMethods.find((m) => m.id === selectedPayment)?.name || selectedPayment;
       const cartItemsText = cartItems
-        .map((item) => `${item.name} x${item.quantity} - ${(item.price * item.quantity).toFixed(2)}€`)
+        .map((item) => `${item.name} x${item.quantity} - ${money(item.price * item.quantity)}`)
         .join('\n');
 
-      // 1. EMAIL CLIENT
       const clientParams = {
         to_email: customerInfo.email,
         customer_name: customerFullName,
@@ -329,7 +304,6 @@ export default function CheckoutView() {
         clientParams,
       );
 
-      // 2. EMAIL ADMIN
       let adminStatus: number | undefined;
       if (emailjsConfig.templateAdmin) {
         const adminParams = {
@@ -352,80 +326,67 @@ export default function CheckoutView() {
         adminStatus = adminResult.status;
       }
 
-      return {
-        success: true,
-        orderNumber,
-        clientStatus: clientResult.status,
-        adminStatus,
-      };
+      return { success: true, orderNumber, clientStatus: clientResult.status, adminStatus };
     } catch (error) {
-      // Même en cas d'erreur email, on continue le processus
       return {
         success: false,
-        error: error instanceof Error ? error.message : 'Erreur inconnue',
+        error: error instanceof Error ? error.message : 'Unknown error',
         orderNumber,
       };
     }
   };
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setCustomerInfo((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setCustomerInfo((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!selectedPayment) {
-      showMessageModal('Veuillez sélectionner une méthode de paiement.', {
-        title: 'Moyen de paiement',
+      showMessageModal('Please select a payment method.', {
+        title: 'Payment method',
         variant: 'info',
       });
       return;
     }
 
     if (cartItems.length === 0) {
-      showMessageModal('Votre panier est vide.', { title: 'Panier', variant: 'info' });
+      showMessageModal('Your cart is empty.', { title: 'Cart', variant: 'info' });
       return;
     }
 
-    const orderNumber = `PLF-${Date.now()}`;
+    const orderNumber = `PPL-${Date.now()}`;
     const capturedTotal = total;
 
     setIsProcessing(true);
 
     try {
-      // ========== TRAITEMENT PAIEMENT PAR CARTE ==========
-      // Ce bloc ne s'exécutera que si 'carte' est dans ENABLED_PAYMENT_METHODS
       if (selectedPayment === 'carte') {
         if (stripePrepareError) {
-          showMessageModal(stripePrepareError, { title: 'Paiement par carte', variant: 'error' });
+          showMessageModal(stripePrepareError, { title: 'Card payment', variant: 'error' });
           return;
         }
         if (!stripeClientSecret) {
-          showMessageModal(
-            'Le paiement par carte est en cours de préparation. Patientez un instant puis réessayez.',
-            { title: 'Paiement par carte', variant: 'info' },
-          );
+          showMessageModal('The card payment is still being prepared. Please wait a moment and try again.', {
+            title: 'Card payment',
+            variant: 'info',
+          });
           return;
         }
         if (!cardPaymentConfirmRef.current) {
-          showMessageModal(
-            'Le module de paiement Stripe charge encore. Réessayez dans une seconde.',
-            { title: 'Paiement par carte', variant: 'info' },
-          );
+          showMessageModal('The Stripe payment module is still loading. Try again in a second.', {
+            title: 'Card payment',
+            variant: 'info',
+          });
           return;
         }
 
         const stripeResult = await cardPaymentConfirmRef.current();
         if (stripeResult?.error) {
-          showMessageModal(stripeResult.error.message || 'Le paiement a échoué.', {
-            title: 'Paiement',
+          showMessageModal(stripeResult.error.message || 'The payment failed.', {
+            title: 'Payment',
             variant: 'error',
           });
           return;
@@ -433,10 +394,10 @@ export default function CheckoutView() {
 
         const status = stripeResult?.paymentIntent?.status;
         if (status !== 'succeeded' && status !== 'processing') {
-          showMessageModal(
-            'Le paiement n’a pas pu être finalisé. Vérifiez vos informations ou réessayez.',
-            { title: 'Paiement', variant: 'error' },
-          );
+          showMessageModal('The payment could not be completed. Check your details or try again.', {
+            title: 'Payment',
+            variant: 'error',
+          });
           return;
         }
 
@@ -447,8 +408,7 @@ export default function CheckoutView() {
         return;
       }
 
-      // Traitement pour les autres méthodes de paiement (virement, applepay)
-      // L'email de confirmation est envoyé pour ces méthodes (si EmailJS est configuré)
+      // Other methods (bank transfer, Apple Pay) — send confirmation email if configured.
       await sendOrderEmails(orderNumber);
 
       setOrderConfirmation({ orderNumber, total: capturedTotal });
@@ -456,8 +416,8 @@ export default function CheckoutView() {
       setCartItems([]);
       writeCart([]);
     } catch {
-      showMessageModal('Une erreur est survenue. Veuillez réessayer ou nous contacter.', {
-        title: 'Erreur',
+      showMessageModal('Something went wrong. Please try again or contact us.', {
+        title: 'Error',
         variant: 'error',
       });
     } finally {
@@ -465,19 +425,10 @@ export default function CheckoutView() {
     }
   };
 
-  const goBack = () => {
-    router.push('/cart');
-  };
+  const goBack = () => router.push('/cart');
+  const goToPallets = () => router.push('/pallets');
+  const goHome = () => router.push('/');
 
-  const goToPalettes = () => {
-    router.push('/palettes');
-  };
-
-  const goHome = () => {
-    router.push('/');
-  };
-
-  // Si commande validée, afficher la confirmation
   if (orderSubmitted) {
     return (
       <OrderConfirmation
@@ -486,22 +437,21 @@ export default function CheckoutView() {
         orderTotal={orderConfirmation.total}
         customerInfo={customerInfo}
         goHome={goHome}
-        goToPalettes={goToPalettes}
+        goToPallets={goToPallets}
       />
     );
   }
 
-  // Si panier vide
   if (cartItems.length === 0) {
     return (
       <div className={s['checkout-empty']}>
         <div className="container">
           <div className={s['empty-content']}>
             <AlertCircle size={64} aria-hidden="true" />
-            <h2>Votre panier est vide</h2>
-            <p>Ajoutez des palettes à votre panier avant de procéder au paiement</p>
-            <button onClick={goToPalettes} className={s['btn-primary']}>
-              Voir nos palettes
+            <h2>Your Cart Is Empty</h2>
+            <p>Add pallets to your cart before checking out.</p>
+            <button onClick={goToPallets} className={s['btn-primary']}>
+              See Our Pallets
             </button>
           </div>
         </div>
@@ -523,18 +473,18 @@ export default function CheckoutView() {
         <div className={s['checkout-header']}>
           <button onClick={goBack} className={s['back-link']}>
             <ArrowLeft size={20} aria-hidden="true" />
-            Retour au panier
+            Back to cart
           </button>
-          <h1>Finaliser votre commande</h1>
+          <h1>Checkout</h1>
         </div>
 
         <div className={s['checkout-layout']}>
-          {/* Formulaire principal */}
+          {/* Main form */}
           <div className={s['checkout-main']}>
             <form onSubmit={handleSubmit}>
-              {/* Informations client */}
+              {/* Customer info */}
               <div className={s['checkout-section']}>
-                <h3>Informations de livraison</h3>
+                <h3>Shipping Information</h3>
                 <div className={s['form-grid']}>
                   <div className={s['form-group']}>
                     <label htmlFor="email">Email *</label>
@@ -545,11 +495,11 @@ export default function CheckoutView() {
                       value={customerInfo.email}
                       onChange={handleInputChange}
                       required
-                      placeholder="votre@email.com"
+                      placeholder="you@email.com"
                     />
                   </div>
                   <div className={s['form-group']}>
-                    <label htmlFor="firstName">Prénom *</label>
+                    <label htmlFor="firstName">First name *</label>
                     <input
                       type="text"
                       id="firstName"
@@ -557,11 +507,11 @@ export default function CheckoutView() {
                       value={customerInfo.firstName}
                       onChange={handleInputChange}
                       required
-                      placeholder="Prénom"
+                      placeholder="First name"
                     />
                   </div>
                   <div className={s['form-group']}>
-                    <label htmlFor="lastName">Nom *</label>
+                    <label htmlFor="lastName">Last name *</label>
                     <input
                       type="text"
                       id="lastName"
@@ -569,11 +519,11 @@ export default function CheckoutView() {
                       value={customerInfo.lastName}
                       onChange={handleInputChange}
                       required
-                      placeholder="Nom"
+                      placeholder="Last name"
                     />
                   </div>
                   <div className={s['form-group']}>
-                    <label htmlFor="phone">Téléphone *</label>
+                    <label htmlFor="phone">Phone *</label>
                     <input
                       type="tel"
                       id="phone"
@@ -581,11 +531,11 @@ export default function CheckoutView() {
                       value={customerInfo.phone}
                       onChange={handleInputChange}
                       required
-                      placeholder="06 12 34 56 78"
+                      placeholder="(555) 123-4567"
                     />
                   </div>
                   <div className={`${s['form-group']} ${s['full-width']}`}>
-                    <label htmlFor="address">Adresse *</label>
+                    <label htmlFor="address">Address *</label>
                     <input
                       type="text"
                       id="address"
@@ -593,11 +543,11 @@ export default function CheckoutView() {
                       value={customerInfo.address}
                       onChange={handleInputChange}
                       required
-                      placeholder="123 Rue de la Paix"
+                      placeholder="123 Main St"
                     />
                   </div>
                   <div className={s['form-group']}>
-                    <label htmlFor="city">Ville *</label>
+                    <label htmlFor="city">City *</label>
                     <input
                       type="text"
                       id="city"
@@ -605,11 +555,11 @@ export default function CheckoutView() {
                       value={customerInfo.city}
                       onChange={handleInputChange}
                       required
-                      placeholder="Paris"
+                      placeholder="Atlanta"
                     />
                   </div>
                   <div className={s['form-group']}>
-                    <label htmlFor="zipCode">Code postal *</label>
+                    <label htmlFor="zipCode">ZIP code *</label>
                     <input
                       type="text"
                       id="zipCode"
@@ -617,22 +567,22 @@ export default function CheckoutView() {
                       value={customerInfo.zipCode}
                       onChange={handleInputChange}
                       required
-                      placeholder="75001"
+                      placeholder="30301"
                     />
                   </div>
                   <div className={`${s['form-group']} ${s['full-width']}`}>
-                    <label htmlFor="country">Pays *</label>
+                    <label htmlFor="state">State *</label>
                     <select
-                      id="country"
-                      name="country"
-                      value={customerInfo.country}
+                      id="state"
+                      name="state"
+                      value={customerInfo.state}
                       onChange={handleInputChange}
                       required
                     >
-                      <option value="">Sélectionnez un pays</option>
-                      {countries.map((country) => (
-                        <option key={country} value={country}>
-                          {country}
+                      <option value="">Select a state</option>
+                      {usStates.map((state) => (
+                        <option key={state} value={state}>
+                          {state}
                         </option>
                       ))}
                     </select>
@@ -640,10 +590,9 @@ export default function CheckoutView() {
                 </div>
               </div>
 
-              {/* Méthodes de paiement */}
+              {/* Payment methods */}
               <div className={s['checkout-section']}>
-                <h3>Mode de paiement</h3>
-                {/* Les méthodes affichées ici sont filtrées selon ENABLED_PAYMENT_METHODS */}
+                <h3>Payment Method</h3>
                 <div className={s['payment-methods']}>
                   {paymentMethods.map((method) => {
                     const Icon = method.icon;
@@ -672,7 +621,7 @@ export default function CheckoutView() {
                                 <p>{method.description}</p>
                               </div>
                             </div>
-                            {method.popular && <span className={s['popular-badge']}>Populaire</span>}
+                            {method.popular && <span className={s['popular-badge']}>Popular</span>}
                           </div>
                           <div className={s['payment-details']}>
                             <div className={s['payment-meta']}>
@@ -680,7 +629,7 @@ export default function CheckoutView() {
                                 <Clock size={16} aria-hidden="true" /> {method.delay}
                               </span>
                               <span>
-                                <Shield size={16} aria-hidden="true" /> Sécurisé
+                                <Shield size={16} aria-hidden="true" /> Secure
                               </span>
                             </div>
                           </div>
@@ -698,13 +647,12 @@ export default function CheckoutView() {
                             className={s['stripe-inline-panel']}
                             onClick={(e) => e.stopPropagation()}
                             role="region"
-                            aria-label="Formulaire de paiement par carte"
+                            aria-label="Card payment form"
                           >
                             {!stripePublishableKey && (
                               <p className={s['stripe-error-banner']}>
-                                Ajoutez{' '}
-                                <code>NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY</code> dans votre fichier
-                                d&rsquo;environnement, puis redémarrez le serveur de développement.
+                                Add <code>NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY</code> to your
+                                environment file, then restart the dev server.
                               </p>
                             )}
                             {stripePrepareError && (
@@ -720,8 +668,8 @@ export default function CheckoutView() {
                                     appearance: {
                                       theme: 'stripe',
                                       variables: {
-                                        colorPrimary: '#dc2626',
-                                        borderRadius: '8px',
+                                        colorPrimary: '#f59e0b',
+                                        borderRadius: '4px',
                                       },
                                     },
                                   }}
@@ -731,13 +679,9 @@ export default function CheckoutView() {
                                 </Elements>
                               </div>
                             )}
-                            {stripePublishableKey &&
-                              !stripeClientSecret &&
-                              !stripePrepareError && (
-                                <p className={s['stripe-loading-banner']}>
-                                  Préparation du paiement sécurisé…
-                                </p>
-                              )}
+                            {stripePublishableKey && !stripeClientSecret && !stripePrepareError && (
+                              <p className={s['stripe-loading-banner']}>Preparing secure payment…</p>
+                            )}
                           </div>
                         )}
                       </React.Fragment>
@@ -750,19 +694,19 @@ export default function CheckoutView() {
                 {isProcessing ? (
                   <>
                     <span className={s.spinner}></span>
-                    Traitement en cours...
+                    Processing...
                   </>
                 ) : (
-                  `Passer la commande - ${total.toFixed(2)}€`
+                  `Place Order - ${money(total)}`
                 )}
               </button>
             </form>
           </div>
 
-          {/* Résumé commande */}
+          {/* Order summary */}
           <div className={s['order-summary']}>
             <div className={s['summary-card']}>
-              <h3>Récapitulatif</h3>
+              <h3>Summary</h3>
 
               <div className={s['cart-items-summary']}>
                 {cartItems.map((item) => (
@@ -770,36 +714,36 @@ export default function CheckoutView() {
                     <span>
                       {item.name} x{item.quantity}
                     </span>
-                    <span>{(item.price * item.quantity).toFixed(2)}€</span>
+                    <span>{money(item.price * item.quantity)}</span>
                   </div>
                 ))}
               </div>
 
               <div className={s['summary-totals']}>
                 <div className={s['summary-row']}>
-                  <span>Sous-total</span>
-                  <span>{subtotal.toFixed(2)}€</span>
+                  <span>Subtotal</span>
+                  <span>{money(subtotal)}</span>
                 </div>
                 <div className={s['summary-row']}>
-                  <span>Livraison</span>
+                  <span>Shipping</span>
                   <span className={shipping === 0 ? s.free : ''}>
-                    {shipping === 0 ? 'Gratuite' : `${shipping}€`}
+                    {shipping === 0 ? 'Free' : money(shipping)}
                   </span>
                 </div>
                 <div className={s['summary-total']}>
                   <span>Total</span>
-                  <span>{total.toFixed(2)}€</span>
+                  <span>{money(total)}</span>
                 </div>
               </div>
 
               <div className={s['security-badges']}>
                 <div className={s['security-item']}>
                   <Shield size={16} aria-hidden="true" />
-                  <span>Paiement sécurisé SSL</span>
+                  <span>Secure SSL checkout</span>
                 </div>
                 <div className={s['security-item']}>
                   <CheckCircle size={16} aria-hidden="true" />
-                  <span>Garantie satisfait</span>
+                  <span>Satisfaction guaranteed</span>
                 </div>
               </div>
             </div>
@@ -810,21 +754,20 @@ export default function CheckoutView() {
   );
 }
 
-// Composant de confirmation de commande
 function OrderConfirmation({
   paymentMethod,
   orderNumber,
   orderTotal,
   customerInfo,
   goHome,
-  goToPalettes,
+  goToPallets,
 }: {
   paymentMethod: string;
   orderNumber: string;
   orderTotal: number;
   customerInfo: CustomerInfo;
   goHome: () => void;
-  goToPalettes: () => void;
+  goToPallets: () => void;
 }) {
   const isCard = paymentMethod === 'carte';
 
@@ -835,14 +778,14 @@ function OrderConfirmation({
           <div className={s['success-icon']}>
             <CheckCircle size={64} aria-hidden="true" />
           </div>
-          <h1>Commande confirmée !</h1>
+          <h1>Order Confirmed!</h1>
           <p className={s['order-number']}>
-            Numéro de commande : <strong>{orderNumber}</strong>
+            Order number: <strong>{orderNumber}</strong>
           </p>
 
           <div className={s['confirmation-details']}>
             <div className={s['customer-details']}>
-              <h3>Informations de livraison</h3>
+              <h3>Shipping Information</h3>
               <div className={s['delivery-card']}>
                 <div className={s['customer-name']}>
                   {customerInfo.firstName} {customerInfo.lastName}
@@ -850,57 +793,58 @@ function OrderConfirmation({
                 <div className={s['customer-address']}>
                   <p>{customerInfo.address}</p>
                   <p>
-                    {customerInfo.zipCode} {customerInfo.city}, {customerInfo.country}
+                    {customerInfo.city}, {customerInfo.state} {customerInfo.zipCode}
                   </p>
+                  <p>{customerInfo.country}</p>
                 </div>
                 <div className={s['customer-contact']}>
                   <p>
                     <strong>Email:</strong> {customerInfo.email}
                   </p>
                   <p>
-                    <strong>Téléphone:</strong> {customerInfo.phone}
+                    <strong>Phone:</strong> {customerInfo.phone}
                   </p>
                 </div>
               </div>
             </div>
 
             <div className={s['next-steps']}>
-              <h3>Prochaines étapes</h3>
+              <h3>Next Steps</h3>
               {isCard ? (
                 <div className={s['steps-list']}>
                   <div className={s['step-item']}>
                     <span className={s['step-number']}>1</span>
                     <span>
-                      Paiement par carte sécurisé ; le libellé sur votre relevé peut mentionner
-                      votre prestataire de paiement ou votre banque.
+                      Secure card payment processed; your statement may show your payment provider or
+                      bank.
                     </span>
                   </div>
                   <div className={s['step-item']}>
                     <span className={s['step-number']}>2</span>
-                    <span>Nous préparons votre commande pour l&rsquo;expédition.</span>
+                    <span>We prepare your order for shipping.</span>
                   </div>
                   <div className={s['step-item']}>
                     <span className={s['step-number']}>3</span>
-                    <span>Conservez votre numéro de commande pour toute question.</span>
+                    <span>Keep your order number for any questions.</span>
                   </div>
                 </div>
               ) : (
                 <div className={s['steps-list']}>
                   <div className={s['step-item']}>
                     <span className={s['step-number']}>1</span>
-                    <span>Vous recevrez un email de confirmation</span>
+                    <span>You&apos;ll receive a confirmation email</span>
                   </div>
                   <div className={s['step-item']}>
                     <span className={s['step-number']}>2</span>
-                    <span>Un agent vous contactera pour finaliser le paiement</span>
+                    <span>An agent will reach out to finalize payment</span>
                   </div>
                   <div className={s['step-item']}>
                     <span className={s['step-number']}>3</span>
-                    <span>Suivi de votre commande par email</span>
+                    <span>Order tracking by email</span>
                   </div>
                   <div className={s['step-item']}>
                     <span className={s['step-number']}>4</span>
-                    <span>Livraison sous 48h après validation du paiement</span>
+                    <span>Ships within 48h after payment is confirmed</span>
                   </div>
                 </div>
               )}
@@ -908,15 +852,15 @@ function OrderConfirmation({
           </div>
 
           <p className={s['confirmation-total-line']}>
-            Montant total réglé : <strong>{Number(orderTotal).toFixed(2)}€</strong>
+            Total paid: <strong>{money(Number(orderTotal))}</strong>
           </p>
 
           <div className={s['confirmation-actions']}>
-            <button onClick={goToPalettes} className={s['btn-primary']}>
-              Continuer mes achats
+            <button onClick={goToPallets} className={s['btn-primary']}>
+              Continue shopping
             </button>
             <button onClick={goHome} className={s['btn-secondary']}>
-              Retour à l&apos;accueil
+              Back to home
             </button>
           </div>
         </div>

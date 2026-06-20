@@ -3,9 +3,9 @@ import { getPalettes, getAvailablePalettes } from '@/data/palettes';
 import CatalogView from '@/components/palettes/CatalogView';
 
 export const metadata: Metadata = {
-  title: 'Nos Palettes',
+  title: 'Shop Pallets',
   description:
-    'Découvrez notre collection complète de palettes de liquidation premium : électronique, textile, maison, jouets, sport et beauté à prix grossiste.',
+    'Browse our full lineup of premium liquidation pallets — electronics, apparel, home, toys, sports and beauty at wholesale pricing, shipped nationwide across the USA.',
 };
 
 export default async function PalettesPage() {

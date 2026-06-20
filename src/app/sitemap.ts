@@ -7,11 +7,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticRoutes: { path: string; priority: number }[] = [
     { path: '', priority: 1 },
-    { path: '/palettes', priority: 0.9 },
+    { path: '/pallets', priority: 0.9 },
     { path: '/about', priority: 0.6 },
     { path: '/contact', priority: 0.6 },
-    { path: '/legal/cgu', priority: 0.3 },
-    { path: '/legal/cgv', priority: 0.3 },
+    { path: '/legal/terms', priority: 0.3 },
+    { path: '/legal/sales', priority: 0.3 },
     { path: '/legal/privacy', priority: 0.3 },
     { path: '/legal/cookies', priority: 0.3 },
   ];
@@ -22,11 +22,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority,
   }));
 
-  const paletteEntries: MetadataRoute.Sitemap = palettes.map((p) => ({
-    url: `${site.url}/palette/${p.id}`,
+  const palletEntries: MetadataRoute.Sitemap = palettes.map((p) => ({
+    url: `${site.url}/pallet/${p.id}`,
     changeFrequency: 'weekly',
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...paletteEntries];
+  return [...staticEntries, ...palletEntries];
 }

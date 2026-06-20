@@ -15,10 +15,12 @@ function AdminGate() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: '#fef2f2',
+          backgroundColor: '#0a0a0a',
         }}
       >
-        <div style={{ color: '#dc2626', fontSize: '18px' }}>Chargement...</div>
+        <div style={{ color: '#f59e0b', fontSize: '18px', fontFamily: 'var(--font-mono)' }}>
+          Loading…
+        </div>
       </div>
     );
   }
