@@ -10,7 +10,7 @@ export const conditions = ["Grade A+","Grade A","Grade A-B","Grade B+","Grade B"
 /**
  * Catalogue imported from the Wholesale Ninjas product export
  * (exports/plf-products-generic.csv) — 41 wholesale liquidation pallets.
- * Prices shown in USD. Connect Supabase (NEXT_PUBLIC_SUPABASE_URL / _ANON_KEY) to override.
+ * Images are self-hosted + optimized under /public/images/catalog. Prices in USD.
  */
 export const seedPalettes: Palette[] = [
   {
@@ -35,12 +35,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/iphone-premium-mix-pallet-30-units/01.jpg",
-      "https://wholesalenijas.com/images/products/iphone-premium-mix-pallet-30-units/02.jpg",
-      "https://wholesalenijas.com/images/products/iphone-premium-mix-pallet-30-units/03.jpg",
-      "https://wholesalenijas.com/images/products/iphone-premium-mix-pallet-30-units/04.jpg",
-      "https://wholesalenijas.com/images/products/iphone-premium-mix-pallet-30-units/05.jpg",
-      "https://wholesalenijas.com/images/products/iphone-premium-mix-pallet-30-units/06.jpg"
+      "/images/catalog/iphone-premium-mix-pallet-30-units/01.jpg",
+      "/images/catalog/iphone-premium-mix-pallet-30-units/02.jpg",
+      "/images/catalog/iphone-premium-mix-pallet-30-units/03.jpg",
+      "/images/catalog/iphone-premium-mix-pallet-30-units/04.jpg",
+      "/images/catalog/iphone-premium-mix-pallet-30-units/05.jpg",
+      "/images/catalog/iphone-premium-mix-pallet-30-units/06.jpg"
     ]
   },
   {
@@ -65,19 +65,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/nike-air-force-1-authentic-pallet-150-units/01.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-1-authentic-pallet-150-units/02.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-1-authentic-pallet-150-units/03.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-1-authentic-pallet-150-units/04.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-1-authentic-pallet-150-units/05.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-1-authentic-pallet-150-units/06.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-1-authentic-pallet-150-units/07.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-1-authentic-pallet-150-units/08.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-1-authentic-pallet-150-units/09.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-1-authentic-pallet-150-units/10.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-1-authentic-pallet-150-units/11.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-1-authentic-pallet-150-units/12.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-1-authentic-pallet-150-units/13.jpg"
+      "/images/catalog/nike-air-force-1-authentic-pallet-150-units/01.jpg",
+      "/images/catalog/nike-air-force-1-authentic-pallet-150-units/02.jpg",
+      "/images/catalog/nike-air-force-1-authentic-pallet-150-units/03.jpg",
+      "/images/catalog/nike-air-force-1-authentic-pallet-150-units/04.jpg",
+      "/images/catalog/nike-air-force-1-authentic-pallet-150-units/05.jpg",
+      "/images/catalog/nike-air-force-1-authentic-pallet-150-units/06.jpg"
     ]
   },
   {
@@ -102,15 +95,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/nike-air-force-one-low-pallet-100-pairs/01.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-one-low-pallet-100-pairs/02.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-one-low-pallet-100-pairs/03.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-one-low-pallet-100-pairs/04.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-one-low-pallet-100-pairs/05.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-one-low-pallet-100-pairs/06.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-one-low-pallet-100-pairs/07.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-one-low-pallet-100-pairs/08.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-one-low-pallet-100-pairs/09.jpg"
+      "/images/catalog/nike-air-force-one-low-pallet-100-pairs/01.jpg",
+      "/images/catalog/nike-air-force-one-low-pallet-100-pairs/02.jpg",
+      "/images/catalog/nike-air-force-one-low-pallet-100-pairs/03.jpg",
+      "/images/catalog/nike-air-force-one-low-pallet-100-pairs/04.jpg",
+      "/images/catalog/nike-air-force-one-low-pallet-100-pairs/05.jpg",
+      "/images/catalog/nike-air-force-one-low-pallet-100-pairs/06.jpg"
     ]
   },
   {
@@ -135,10 +125,10 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/professional-power-tools-pallet-100-items/01.jpg",
-      "https://wholesalenijas.com/images/products/professional-power-tools-pallet-100-items/02.jpg",
-      "https://wholesalenijas.com/images/products/professional-power-tools-pallet-100-items/03.jpg",
-      "https://wholesalenijas.com/images/products/professional-power-tools-pallet-100-items/04.jpg"
+      "/images/catalog/professional-power-tools-pallet-100-items/01.jpg",
+      "/images/catalog/professional-power-tools-pallet-100-items/02.jpg",
+      "/images/catalog/professional-power-tools-pallet-100-items/03.jpg",
+      "/images/catalog/professional-power-tools-pallet-100-items/04.jpg"
     ]
   },
   {
@@ -163,16 +153,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/premium-kitchen-small-appliances-pallet-100-units/01.jpg",
-      "https://wholesalenijas.com/images/products/premium-kitchen-small-appliances-pallet-100-units/02.jpg",
-      "https://wholesalenijas.com/images/products/premium-kitchen-small-appliances-pallet-100-units/03.jpg",
-      "https://wholesalenijas.com/images/products/premium-kitchen-small-appliances-pallet-100-units/04.jpg",
-      "https://wholesalenijas.com/images/products/premium-kitchen-small-appliances-pallet-100-units/05.jpg",
-      "https://wholesalenijas.com/images/products/premium-kitchen-small-appliances-pallet-100-units/06.jpg",
-      "https://wholesalenijas.com/images/products/premium-kitchen-small-appliances-pallet-100-units/07.jpg",
-      "https://wholesalenijas.com/images/products/premium-kitchen-small-appliances-pallet-100-units/08.jpg",
-      "https://wholesalenijas.com/images/products/premium-kitchen-small-appliances-pallet-100-units/09.jpg",
-      "https://wholesalenijas.com/images/products/premium-kitchen-small-appliances-pallet-100-units/10.jpg"
+      "/images/catalog/premium-kitchen-small-appliances-pallet-100-units/01.jpg",
+      "/images/catalog/premium-kitchen-small-appliances-pallet-100-units/02.jpg",
+      "/images/catalog/premium-kitchen-small-appliances-pallet-100-units/03.jpg",
+      "/images/catalog/premium-kitchen-small-appliances-pallet-100-units/04.jpg",
+      "/images/catalog/premium-kitchen-small-appliances-pallet-100-units/05.jpg",
+      "/images/catalog/premium-kitchen-small-appliances-pallet-100-units/06.jpg"
     ]
   },
   {
@@ -197,15 +183,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/cosmetics-assorted-pallet-350-units/01.jpg",
-      "https://wholesalenijas.com/images/products/cosmetics-assorted-pallet-350-units/02.jpg",
-      "https://wholesalenijas.com/images/products/cosmetics-assorted-pallet-350-units/03.jpg",
-      "https://wholesalenijas.com/images/products/cosmetics-assorted-pallet-350-units/04.jpg",
-      "https://wholesalenijas.com/images/products/cosmetics-assorted-pallet-350-units/05.jpg",
-      "https://wholesalenijas.com/images/products/cosmetics-assorted-pallet-350-units/06.jpg",
-      "https://wholesalenijas.com/images/products/cosmetics-assorted-pallet-350-units/07.jpg",
-      "https://wholesalenijas.com/images/products/cosmetics-assorted-pallet-350-units/08.jpg",
-      "https://wholesalenijas.com/images/products/cosmetics-assorted-pallet-350-units/09.jpg"
+      "/images/catalog/cosmetics-assorted-pallet-350-units/01.jpg",
+      "/images/catalog/cosmetics-assorted-pallet-350-units/02.jpg",
+      "/images/catalog/cosmetics-assorted-pallet-350-units/03.jpg",
+      "/images/catalog/cosmetics-assorted-pallet-350-units/04.jpg",
+      "/images/catalog/cosmetics-assorted-pallet-350-units/05.jpg",
+      "/images/catalog/cosmetics-assorted-pallet-350-units/06.jpg"
     ]
   },
   {
@@ -230,12 +213,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/shein-womens-fashion-pallet-200-units/01.jpg",
-      "https://wholesalenijas.com/images/products/shein-womens-fashion-pallet-200-units/02.jpg",
-      "https://wholesalenijas.com/images/products/shein-womens-fashion-pallet-200-units/03.jpg",
-      "https://wholesalenijas.com/images/products/shein-womens-fashion-pallet-200-units/04.jpg",
-      "https://wholesalenijas.com/images/products/shein-womens-fashion-pallet-200-units/05.jpg",
-      "https://wholesalenijas.com/images/products/shein-womens-fashion-pallet-200-units/06.jpg"
+      "/images/catalog/shein-womens-fashion-pallet-200-units/01.jpg",
+      "/images/catalog/shein-womens-fashion-pallet-200-units/02.jpg",
+      "/images/catalog/shein-womens-fashion-pallet-200-units/03.jpg",
+      "/images/catalog/shein-womens-fashion-pallet-200-units/04.jpg",
+      "/images/catalog/shein-womens-fashion-pallet-200-units/05.jpg",
+      "/images/catalog/shein-womens-fashion-pallet-200-units/06.jpg"
     ]
   },
   {
@@ -260,12 +243,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/premium-handbags-pallet-85-units/01.jpg",
-      "https://wholesalenijas.com/images/products/premium-handbags-pallet-85-units/02.jpg",
-      "https://wholesalenijas.com/images/products/premium-handbags-pallet-85-units/03.jpg",
-      "https://wholesalenijas.com/images/products/premium-handbags-pallet-85-units/04.jpg",
-      "https://wholesalenijas.com/images/products/premium-handbags-pallet-85-units/05.jpg",
-      "https://wholesalenijas.com/images/products/premium-handbags-pallet-85-units/06.jpg"
+      "/images/catalog/premium-handbags-pallet-85-units/01.jpg",
+      "/images/catalog/premium-handbags-pallet-85-units/02.jpg",
+      "/images/catalog/premium-handbags-pallet-85-units/03.jpg",
+      "/images/catalog/premium-handbags-pallet-85-units/04.jpg",
+      "/images/catalog/premium-handbags-pallet-85-units/05.jpg",
+      "/images/catalog/premium-handbags-pallet-85-units/06.jpg"
     ]
   },
   {
@@ -290,12 +273,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/kids-toys-mixed-pallet-300-units/01.jpg",
-      "https://wholesalenijas.com/images/products/kids-toys-mixed-pallet-300-units/02.jpg",
-      "https://wholesalenijas.com/images/products/kids-toys-mixed-pallet-300-units/03.jpg",
-      "https://wholesalenijas.com/images/products/kids-toys-mixed-pallet-300-units/04.jpg",
-      "https://wholesalenijas.com/images/products/kids-toys-mixed-pallet-300-units/05.jpg",
-      "https://wholesalenijas.com/images/products/kids-toys-mixed-pallet-300-units/06.jpg"
+      "/images/catalog/kids-toys-mixed-pallet-300-units/01.jpg",
+      "/images/catalog/kids-toys-mixed-pallet-300-units/02.jpg",
+      "/images/catalog/kids-toys-mixed-pallet-300-units/03.jpg",
+      "/images/catalog/kids-toys-mixed-pallet-300-units/04.jpg",
+      "/images/catalog/kids-toys-mixed-pallet-300-units/05.jpg",
+      "/images/catalog/kids-toys-mixed-pallet-300-units/06.jpg"
     ]
   },
   {
@@ -320,11 +303,11 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/milwaukee-power-tools-pallet-60-pieces/01.jpg",
-      "https://wholesalenijas.com/images/products/milwaukee-power-tools-pallet-60-pieces/02.jpg",
-      "https://wholesalenijas.com/images/products/milwaukee-power-tools-pallet-60-pieces/03.jpg",
-      "https://wholesalenijas.com/images/products/milwaukee-power-tools-pallet-60-pieces/04.jpg",
-      "https://wholesalenijas.com/images/products/milwaukee-power-tools-pallet-60-pieces/05.jpg"
+      "/images/catalog/milwaukee-power-tools-pallet-60-pieces/01.jpg",
+      "/images/catalog/milwaukee-power-tools-pallet-60-pieces/02.jpg",
+      "/images/catalog/milwaukee-power-tools-pallet-60-pieces/03.jpg",
+      "/images/catalog/milwaukee-power-tools-pallet-60-pieces/04.jpg",
+      "/images/catalog/milwaukee-power-tools-pallet-60-pieces/05.jpg"
     ]
   },
   {
@@ -349,13 +332,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/home-electronics-mixed-pallet-80-units/01.jpg",
-      "https://wholesalenijas.com/images/products/home-electronics-mixed-pallet-80-units/02.jpg",
-      "https://wholesalenijas.com/images/products/home-electronics-mixed-pallet-80-units/03.jpg",
-      "https://wholesalenijas.com/images/products/home-electronics-mixed-pallet-80-units/04.jpg",
-      "https://wholesalenijas.com/images/products/home-electronics-mixed-pallet-80-units/05.jpg",
-      "https://wholesalenijas.com/images/products/home-electronics-mixed-pallet-80-units/06.jpg",
-      "https://wholesalenijas.com/images/products/home-electronics-mixed-pallet-80-units/07.jpg"
+      "/images/catalog/home-electronics-mixed-pallet-80-units/01.jpg",
+      "/images/catalog/home-electronics-mixed-pallet-80-units/02.jpg",
+      "/images/catalog/home-electronics-mixed-pallet-80-units/03.jpg",
+      "/images/catalog/home-electronics-mixed-pallet-80-units/04.jpg",
+      "/images/catalog/home-electronics-mixed-pallet-80-units/05.jpg",
+      "/images/catalog/home-electronics-mixed-pallet-80-units/06.jpg"
     ]
   },
   {
@@ -380,15 +362,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/womens-sandals-pallet-180-pairs/01.jpg",
-      "https://wholesalenijas.com/images/products/womens-sandals-pallet-180-pairs/02.jpg",
-      "https://wholesalenijas.com/images/products/womens-sandals-pallet-180-pairs/03.jpg",
-      "https://wholesalenijas.com/images/products/womens-sandals-pallet-180-pairs/04.jpg",
-      "https://wholesalenijas.com/images/products/womens-sandals-pallet-180-pairs/05.jpg",
-      "https://wholesalenijas.com/images/products/womens-sandals-pallet-180-pairs/06.jpg",
-      "https://wholesalenijas.com/images/products/womens-sandals-pallet-180-pairs/07.jpg",
-      "https://wholesalenijas.com/images/products/womens-sandals-pallet-180-pairs/08.jpg",
-      "https://wholesalenijas.com/images/products/womens-sandals-pallet-180-pairs/09.jpg"
+      "/images/catalog/womens-sandals-pallet-180-pairs/01.jpg",
+      "/images/catalog/womens-sandals-pallet-180-pairs/02.jpg",
+      "/images/catalog/womens-sandals-pallet-180-pairs/03.jpg",
+      "/images/catalog/womens-sandals-pallet-180-pairs/04.jpg",
+      "/images/catalog/womens-sandals-pallet-180-pairs/05.jpg",
+      "/images/catalog/womens-sandals-pallet-180-pairs/06.jpg"
     ]
   },
   {
@@ -413,15 +392,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/ninja-kitchen-appliances-pallet-35-units/01.jpg",
-      "https://wholesalenijas.com/images/products/ninja-kitchen-appliances-pallet-35-units/02.jpg",
-      "https://wholesalenijas.com/images/products/ninja-kitchen-appliances-pallet-35-units/03.jpg",
-      "https://wholesalenijas.com/images/products/ninja-kitchen-appliances-pallet-35-units/04.jpg",
-      "https://wholesalenijas.com/images/products/ninja-kitchen-appliances-pallet-35-units/05.jpg",
-      "https://wholesalenijas.com/images/products/ninja-kitchen-appliances-pallet-35-units/06.jpg",
-      "https://wholesalenijas.com/images/products/ninja-kitchen-appliances-pallet-35-units/07.jpg",
-      "https://wholesalenijas.com/images/products/ninja-kitchen-appliances-pallet-35-units/08.jpg",
-      "https://wholesalenijas.com/images/products/ninja-kitchen-appliances-pallet-35-units/09.jpg"
+      "/images/catalog/ninja-kitchen-appliances-pallet-35-units/01.jpg",
+      "/images/catalog/ninja-kitchen-appliances-pallet-35-units/02.jpg",
+      "/images/catalog/ninja-kitchen-appliances-pallet-35-units/03.jpg",
+      "/images/catalog/ninja-kitchen-appliances-pallet-35-units/04.jpg",
+      "/images/catalog/ninja-kitchen-appliances-pallet-35-units/05.jpg",
+      "/images/catalog/ninja-kitchen-appliances-pallet-35-units/06.jpg"
     ]
   },
   {
@@ -446,10 +422,10 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/baccarat-crystal-luxury-fragrance-pallet-25-units/01.jpg",
-      "https://wholesalenijas.com/images/products/baccarat-crystal-luxury-fragrance-pallet-25-units/02.jpg",
-      "https://wholesalenijas.com/images/products/baccarat-crystal-luxury-fragrance-pallet-25-units/03.jpg",
-      "https://wholesalenijas.com/images/products/baccarat-crystal-luxury-fragrance-pallet-25-units/04.jpg"
+      "/images/catalog/baccarat-crystal-luxury-fragrance-pallet-25-units/01.jpg",
+      "/images/catalog/baccarat-crystal-luxury-fragrance-pallet-25-units/02.jpg",
+      "/images/catalog/baccarat-crystal-luxury-fragrance-pallet-25-units/03.jpg",
+      "/images/catalog/baccarat-crystal-luxury-fragrance-pallet-25-units/04.jpg"
     ]
   },
   {
@@ -474,9 +450,9 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/dior-sauvage-fragrance-pallet-15-units/01.jpg",
-      "https://wholesalenijas.com/images/products/dior-sauvage-fragrance-pallet-15-units/02.jpg",
-      "https://wholesalenijas.com/images/products/dior-sauvage-fragrance-pallet-15-units/03.jpg"
+      "/images/catalog/dior-sauvage-fragrance-pallet-15-units/01.jpg",
+      "/images/catalog/dior-sauvage-fragrance-pallet-15-units/02.jpg",
+      "/images/catalog/dior-sauvage-fragrance-pallet-15-units/03.jpg"
     ]
   },
   {
@@ -501,16 +477,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/womens-boots-leather-pallet-100-pairs/01.jpg",
-      "https://wholesalenijas.com/images/products/womens-boots-leather-pallet-100-pairs/02.jpg",
-      "https://wholesalenijas.com/images/products/womens-boots-leather-pallet-100-pairs/03.jpg",
-      "https://wholesalenijas.com/images/products/womens-boots-leather-pallet-100-pairs/04.jpg",
-      "https://wholesalenijas.com/images/products/womens-boots-leather-pallet-100-pairs/05.jpg",
-      "https://wholesalenijas.com/images/products/womens-boots-leather-pallet-100-pairs/06.jpg",
-      "https://wholesalenijas.com/images/products/womens-boots-leather-pallet-100-pairs/07.jpg",
-      "https://wholesalenijas.com/images/products/womens-boots-leather-pallet-100-pairs/08.jpg",
-      "https://wholesalenijas.com/images/products/womens-boots-leather-pallet-100-pairs/09.jpg",
-      "https://wholesalenijas.com/images/products/womens-boots-leather-pallet-100-pairs/10.jpg"
+      "/images/catalog/womens-boots-leather-pallet-100-pairs/01.jpg",
+      "/images/catalog/womens-boots-leather-pallet-100-pairs/02.jpg",
+      "/images/catalog/womens-boots-leather-pallet-100-pairs/03.jpg",
+      "/images/catalog/womens-boots-leather-pallet-100-pairs/04.jpg",
+      "/images/catalog/womens-boots-leather-pallet-100-pairs/05.jpg",
+      "/images/catalog/womens-boots-leather-pallet-100-pairs/06.jpg"
     ]
   },
   {
@@ -535,10 +507,10 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/mixed-sport-shoes-pallet-180-pairs/01.jpg",
-      "https://wholesalenijas.com/images/products/mixed-sport-shoes-pallet-180-pairs/02.jpg",
-      "https://wholesalenijas.com/images/products/mixed-sport-shoes-pallet-180-pairs/03.jpg",
-      "https://wholesalenijas.com/images/products/mixed-sport-shoes-pallet-180-pairs/04.jpg"
+      "/images/catalog/mixed-sport-shoes-pallet-180-pairs/01.jpg",
+      "/images/catalog/mixed-sport-shoes-pallet-180-pairs/02.jpg",
+      "/images/catalog/mixed-sport-shoes-pallet-180-pairs/03.jpg",
+      "/images/catalog/mixed-sport-shoes-pallet-180-pairs/04.jpg"
     ]
   },
   {
@@ -563,15 +535,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/nike-shoes-liquidation-pallet-100-pairs/01.jpg",
-      "https://wholesalenijas.com/images/products/nike-shoes-liquidation-pallet-100-pairs/02.jpg",
-      "https://wholesalenijas.com/images/products/nike-shoes-liquidation-pallet-100-pairs/03.jpg",
-      "https://wholesalenijas.com/images/products/nike-shoes-liquidation-pallet-100-pairs/04.jpg",
-      "https://wholesalenijas.com/images/products/nike-shoes-liquidation-pallet-100-pairs/05.jpg",
-      "https://wholesalenijas.com/images/products/nike-shoes-liquidation-pallet-100-pairs/06.jpg",
-      "https://wholesalenijas.com/images/products/nike-shoes-liquidation-pallet-100-pairs/07.jpg",
-      "https://wholesalenijas.com/images/products/nike-shoes-liquidation-pallet-100-pairs/08.jpg",
-      "https://wholesalenijas.com/images/products/nike-shoes-liquidation-pallet-100-pairs/09.jpg"
+      "/images/catalog/nike-shoes-liquidation-pallet-100-pairs/01.jpg",
+      "/images/catalog/nike-shoes-liquidation-pallet-100-pairs/02.jpg",
+      "/images/catalog/nike-shoes-liquidation-pallet-100-pairs/03.jpg",
+      "/images/catalog/nike-shoes-liquidation-pallet-100-pairs/04.jpg",
+      "/images/catalog/nike-shoes-liquidation-pallet-100-pairs/05.jpg",
+      "/images/catalog/nike-shoes-liquidation-pallet-100-pairs/06.jpg"
     ]
   },
   {
@@ -596,12 +565,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/winter-hooded-jackets-pallet-70-pieces/01.jpg",
-      "https://wholesalenijas.com/images/products/winter-hooded-jackets-pallet-70-pieces/02.jpg",
-      "https://wholesalenijas.com/images/products/winter-hooded-jackets-pallet-70-pieces/03.jpg",
-      "https://wholesalenijas.com/images/products/winter-hooded-jackets-pallet-70-pieces/04.jpg",
-      "https://wholesalenijas.com/images/products/winter-hooded-jackets-pallet-70-pieces/05.jpg",
-      "https://wholesalenijas.com/images/products/winter-hooded-jackets-pallet-70-pieces/06.jpg"
+      "/images/catalog/winter-hooded-jackets-pallet-70-pieces/01.jpg",
+      "/images/catalog/winter-hooded-jackets-pallet-70-pieces/02.jpg",
+      "/images/catalog/winter-hooded-jackets-pallet-70-pieces/03.jpg",
+      "/images/catalog/winter-hooded-jackets-pallet-70-pieces/04.jpg",
+      "/images/catalog/winter-hooded-jackets-pallet-70-pieces/05.jpg",
+      "/images/catalog/winter-hooded-jackets-pallet-70-pieces/06.jpg"
     ]
   },
   {
@@ -626,15 +595,10 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/primark-pyjamas-pallet-500-units/01.jpg",
-      "https://wholesalenijas.com/images/products/primark-pyjamas-pallet-500-units/02.jpg",
-      "https://wholesalenijas.com/images/products/primark-pyjamas-pallet-500-units/03.jpg",
-      "https://wholesalenijas.com/images/products/primark-pyjamas-pallet-500-units/04.jpg",
-      "https://wholesalenijas.com/images/products/primark-pyjamas-pallet-500-units/05.jpg",
-      "https://wholesalenijas.com/images/products/primark-pyjamas-pallet-500-units/06.jpg",
-      "https://wholesalenijas.com/images/products/primark-pyjamas-pallet-500-units/07.jpg",
-      "https://wholesalenijas.com/images/products/primark-pyjamas-pallet-500-units/08.jpg",
-      "https://wholesalenijas.com/images/products/primark-pyjamas-pallet-500-units/09.jpg"
+      "/images/catalog/primark-pyjamas-pallet-500-units/01.jpg",
+      "/images/catalog/primark-pyjamas-pallet-500-units/02.jpg",
+      "/images/catalog/primark-pyjamas-pallet-500-units/03.jpg",
+      "/images/catalog/primark-pyjamas-pallet-500-units/04.jpg"
     ]
   },
   {
@@ -659,15 +623,8 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/boss-sneakers-pallet-100-pairs/01.jpg",
-      "https://wholesalenijas.com/images/products/boss-sneakers-pallet-100-pairs/02.jpg",
-      "https://wholesalenijas.com/images/products/boss-sneakers-pallet-100-pairs/03.jpg",
-      "https://wholesalenijas.com/images/products/boss-sneakers-pallet-100-pairs/04.jpg",
-      "https://wholesalenijas.com/images/products/boss-sneakers-pallet-100-pairs/05.jpg",
-      "https://wholesalenijas.com/images/products/boss-sneakers-pallet-100-pairs/06.jpg",
-      "https://wholesalenijas.com/images/products/boss-sneakers-pallet-100-pairs/07.jpg",
-      "https://wholesalenijas.com/images/products/boss-sneakers-pallet-100-pairs/08.jpg",
-      "https://wholesalenijas.com/images/products/boss-sneakers-pallet-100-pairs/09.jpg"
+      "/images/catalog/boss-sneakers-pallet-100-pairs/03.jpg",
+      "/images/catalog/boss-sneakers-pallet-100-pairs/04.jpg"
     ]
   },
   {
@@ -692,16 +649,7 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/nike-mixed-sneakers-pallet-200-pairs/01.jpg",
-      "https://wholesalenijas.com/images/products/nike-mixed-sneakers-pallet-200-pairs/02.jpg",
-      "https://wholesalenijas.com/images/products/nike-mixed-sneakers-pallet-200-pairs/03.jpg",
-      "https://wholesalenijas.com/images/products/nike-mixed-sneakers-pallet-200-pairs/04.jpg",
-      "https://wholesalenijas.com/images/products/nike-mixed-sneakers-pallet-200-pairs/05.jpg",
-      "https://wholesalenijas.com/images/products/nike-mixed-sneakers-pallet-200-pairs/06.jpg",
-      "https://wholesalenijas.com/images/products/nike-mixed-sneakers-pallet-200-pairs/07.jpg",
-      "https://wholesalenijas.com/images/products/nike-mixed-sneakers-pallet-200-pairs/08.jpg",
-      "https://wholesalenijas.com/images/products/nike-mixed-sneakers-pallet-200-pairs/09.jpg",
-      "https://wholesalenijas.com/images/products/nike-mixed-sneakers-pallet-200-pairs/10.jpg"
+      "/images/catalog/nike-mixed-sneakers-pallet-200-pairs/01.jpg"
     ]
   },
   {
@@ -726,10 +674,7 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/dewalt-power-tools-pallet-60-pieces/01.jpg",
-      "https://wholesalenijas.com/images/products/dewalt-power-tools-pallet-60-pieces/02.jpg",
-      "https://wholesalenijas.com/images/products/dewalt-power-tools-pallet-60-pieces/03.jpg",
-      "https://wholesalenijas.com/images/products/dewalt-power-tools-pallet-60-pieces/04.jpg"
+      "/images/products/placeholder.jpg"
     ]
   },
   {
@@ -754,16 +699,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/hoka-sneakers-pallet-200-pairs/01.jpg",
-      "https://wholesalenijas.com/images/products/hoka-sneakers-pallet-200-pairs/02.jpg",
-      "https://wholesalenijas.com/images/products/hoka-sneakers-pallet-200-pairs/03.jpg",
-      "https://wholesalenijas.com/images/products/hoka-sneakers-pallet-200-pairs/04.jpg",
-      "https://wholesalenijas.com/images/products/hoka-sneakers-pallet-200-pairs/05.jpg",
-      "https://wholesalenijas.com/images/products/hoka-sneakers-pallet-200-pairs/06.jpg",
-      "https://wholesalenijas.com/images/products/hoka-sneakers-pallet-200-pairs/07.jpg",
-      "https://wholesalenijas.com/images/products/hoka-sneakers-pallet-200-pairs/08.jpg",
-      "https://wholesalenijas.com/images/products/hoka-sneakers-pallet-200-pairs/09.jpg",
-      "https://wholesalenijas.com/images/products/hoka-sneakers-pallet-200-pairs/10.jpg"
+      "/images/catalog/hoka-sneakers-pallet-200-pairs/01.jpg",
+      "/images/catalog/hoka-sneakers-pallet-200-pairs/02.jpg",
+      "/images/catalog/hoka-sneakers-pallet-200-pairs/03.jpg",
+      "/images/catalog/hoka-sneakers-pallet-200-pairs/04.jpg",
+      "/images/catalog/hoka-sneakers-pallet-200-pairs/05.jpg",
+      "/images/catalog/hoka-sneakers-pallet-200-pairs/06.jpg"
     ]
   },
   {
@@ -788,16 +729,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/kids-shoes-european-brands-pallet-120-units/01.jpg",
-      "https://wholesalenijas.com/images/products/kids-shoes-european-brands-pallet-120-units/02.jpg",
-      "https://wholesalenijas.com/images/products/kids-shoes-european-brands-pallet-120-units/03.jpg",
-      "https://wholesalenijas.com/images/products/kids-shoes-european-brands-pallet-120-units/04.jpg",
-      "https://wholesalenijas.com/images/products/kids-shoes-european-brands-pallet-120-units/05.jpg",
-      "https://wholesalenijas.com/images/products/kids-shoes-european-brands-pallet-120-units/06.jpg",
-      "https://wholesalenijas.com/images/products/kids-shoes-european-brands-pallet-120-units/07.jpg",
-      "https://wholesalenijas.com/images/products/kids-shoes-european-brands-pallet-120-units/08.jpg",
-      "https://wholesalenijas.com/images/products/kids-shoes-european-brands-pallet-120-units/09.jpg",
-      "https://wholesalenijas.com/images/products/kids-shoes-european-brands-pallet-120-units/10.jpg"
+      "/images/catalog/kids-shoes-european-brands-pallet-120-units/01.jpg",
+      "/images/catalog/kids-shoes-european-brands-pallet-120-units/02.jpg",
+      "/images/catalog/kids-shoes-european-brands-pallet-120-units/03.jpg",
+      "/images/catalog/kids-shoes-european-brands-pallet-120-units/04.jpg",
+      "/images/catalog/kids-shoes-european-brands-pallet-120-units/05.jpg",
+      "/images/catalog/kids-shoes-european-brands-pallet-120-units/06.jpg"
     ]
   },
   {
@@ -822,9 +759,9 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/air-jordan-authentic-sneakers-pallet-50-pairs/01.jpg",
-      "https://wholesalenijas.com/images/products/air-jordan-authentic-sneakers-pallet-50-pairs/02.jpg",
-      "https://wholesalenijas.com/images/products/air-jordan-authentic-sneakers-pallet-50-pairs/03.jpg"
+      "/images/catalog/air-jordan-authentic-sneakers-pallet-50-pairs/01.jpg",
+      "/images/catalog/air-jordan-authentic-sneakers-pallet-50-pairs/02.jpg",
+      "/images/catalog/air-jordan-authentic-sneakers-pallet-50-pairs/03.jpg"
     ]
   },
   {
@@ -849,16 +786,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/zara-pants-pallet-500-units/01.jpg",
-      "https://wholesalenijas.com/images/products/zara-pants-pallet-500-units/02.jpg",
-      "https://wholesalenijas.com/images/products/zara-pants-pallet-500-units/03.jpg",
-      "https://wholesalenijas.com/images/products/zara-pants-pallet-500-units/04.jpg",
-      "https://wholesalenijas.com/images/products/zara-pants-pallet-500-units/05.jpg",
-      "https://wholesalenijas.com/images/products/zara-pants-pallet-500-units/06.jpg",
-      "https://wholesalenijas.com/images/products/zara-pants-pallet-500-units/07.jpg",
-      "https://wholesalenijas.com/images/products/zara-pants-pallet-500-units/08.jpg",
-      "https://wholesalenijas.com/images/products/zara-pants-pallet-500-units/09.jpg",
-      "https://wholesalenijas.com/images/products/zara-pants-pallet-500-units/10.jpg"
+      "/images/catalog/zara-pants-pallet-500-units/01.jpg",
+      "/images/catalog/zara-pants-pallet-500-units/02.jpg",
+      "/images/catalog/zara-pants-pallet-500-units/03.jpg",
+      "/images/catalog/zara-pants-pallet-500-units/04.jpg",
+      "/images/catalog/zara-pants-pallet-500-units/05.jpg",
+      "/images/catalog/zara-pants-pallet-500-units/06.jpg"
     ]
   },
   {
@@ -883,16 +816,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/mixed-sport-sneakers-pallet-200-pairs/01.jpg",
-      "https://wholesalenijas.com/images/products/mixed-sport-sneakers-pallet-200-pairs/02.jpg",
-      "https://wholesalenijas.com/images/products/mixed-sport-sneakers-pallet-200-pairs/03.jpg",
-      "https://wholesalenijas.com/images/products/mixed-sport-sneakers-pallet-200-pairs/04.jpg",
-      "https://wholesalenijas.com/images/products/mixed-sport-sneakers-pallet-200-pairs/05.jpg",
-      "https://wholesalenijas.com/images/products/mixed-sport-sneakers-pallet-200-pairs/06.jpg",
-      "https://wholesalenijas.com/images/products/mixed-sport-sneakers-pallet-200-pairs/07.jpg",
-      "https://wholesalenijas.com/images/products/mixed-sport-sneakers-pallet-200-pairs/08.jpg",
-      "https://wholesalenijas.com/images/products/mixed-sport-sneakers-pallet-200-pairs/09.jpg",
-      "https://wholesalenijas.com/images/products/mixed-sport-sneakers-pallet-200-pairs/10.jpg"
+      "/images/catalog/mixed-sport-sneakers-pallet-200-pairs/01.jpg",
+      "/images/catalog/mixed-sport-sneakers-pallet-200-pairs/02.jpg",
+      "/images/catalog/mixed-sport-sneakers-pallet-200-pairs/03.jpg",
+      "/images/catalog/mixed-sport-sneakers-pallet-200-pairs/04.jpg",
+      "/images/catalog/mixed-sport-sneakers-pallet-200-pairs/05.jpg",
+      "/images/catalog/mixed-sport-sneakers-pallet-200-pairs/06.jpg"
     ]
   },
   {
@@ -917,11 +846,11 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/zara-kids-clothing-pallet-250-units/01.png",
-      "https://wholesalenijas.com/images/products/zara-kids-clothing-pallet-250-units/02.png",
-      "https://wholesalenijas.com/images/products/zara-kids-clothing-pallet-250-units/03.png",
-      "https://wholesalenijas.com/images/products/zara-kids-clothing-pallet-250-units/04.png",
-      "https://wholesalenijas.com/images/products/zara-kids-clothing-pallet-250-units/05.png"
+      "/images/catalog/zara-kids-clothing-pallet-250-units/01.jpg",
+      "/images/catalog/zara-kids-clothing-pallet-250-units/02.jpg",
+      "/images/catalog/zara-kids-clothing-pallet-250-units/03.jpg",
+      "/images/catalog/zara-kids-clothing-pallet-250-units/04.jpg",
+      "/images/catalog/zara-kids-clothing-pallet-250-units/05.jpg"
     ]
   },
   {
@@ -946,11 +875,11 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/zara-jackets-pallet-100-units/01.jpg",
-      "https://wholesalenijas.com/images/products/zara-jackets-pallet-100-units/02.jpg",
-      "https://wholesalenijas.com/images/products/zara-jackets-pallet-100-units/03.jpg",
-      "https://wholesalenijas.com/images/products/zara-jackets-pallet-100-units/04.jpg",
-      "https://wholesalenijas.com/images/products/zara-jackets-pallet-100-units/05.jpg"
+      "/images/catalog/zara-jackets-pallet-100-units/01.jpg",
+      "/images/catalog/zara-jackets-pallet-100-units/02.jpg",
+      "/images/catalog/zara-jackets-pallet-100-units/03.jpg",
+      "/images/catalog/zara-jackets-pallet-100-units/04.jpg",
+      "/images/catalog/zara-jackets-pallet-100-units/05.jpg"
     ]
   },
   {
@@ -975,8 +904,8 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/nike-air-force-1-white-sneakers-pallet-100-pairs/01.jpg",
-      "https://wholesalenijas.com/images/products/nike-air-force-1-white-sneakers-pallet-100-pairs/02.jpg"
+      "/images/catalog/nike-air-force-1-white-sneakers-pallet-100-pairs/01.jpg",
+      "/images/catalog/nike-air-force-1-white-sneakers-pallet-100-pairs/02.jpg"
     ]
   },
   {
@@ -1001,15 +930,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/kids-clothing-mixed-pallet-500-units/01.jpg",
-      "https://wholesalenijas.com/images/products/kids-clothing-mixed-pallet-500-units/02.jpg",
-      "https://wholesalenijas.com/images/products/kids-clothing-mixed-pallet-500-units/03.jpg",
-      "https://wholesalenijas.com/images/products/kids-clothing-mixed-pallet-500-units/04.jpg",
-      "https://wholesalenijas.com/images/products/kids-clothing-mixed-pallet-500-units/05.jpg",
-      "https://wholesalenijas.com/images/products/kids-clothing-mixed-pallet-500-units/06.jpg",
-      "https://wholesalenijas.com/images/products/kids-clothing-mixed-pallet-500-units/07.jpg",
-      "https://wholesalenijas.com/images/products/kids-clothing-mixed-pallet-500-units/08.jpg",
-      "https://wholesalenijas.com/images/products/kids-clothing-mixed-pallet-500-units/09.jpg"
+      "/images/catalog/kids-clothing-mixed-pallet-500-units/01.jpg",
+      "/images/catalog/kids-clothing-mixed-pallet-500-units/02.jpg",
+      "/images/catalog/kids-clothing-mixed-pallet-500-units/03.jpg",
+      "/images/catalog/kids-clothing-mixed-pallet-500-units/04.jpg",
+      "/images/catalog/kids-clothing-mixed-pallet-500-units/05.jpg",
+      "/images/catalog/kids-clothing-mixed-pallet-500-units/06.jpg"
     ]
   },
   {
@@ -1034,15 +960,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/vans-sneakers-pallet-100-pairs/01.jpg",
-      "https://wholesalenijas.com/images/products/vans-sneakers-pallet-100-pairs/02.jpg",
-      "https://wholesalenijas.com/images/products/vans-sneakers-pallet-100-pairs/03.jpg",
-      "https://wholesalenijas.com/images/products/vans-sneakers-pallet-100-pairs/04.jpg",
-      "https://wholesalenijas.com/images/products/vans-sneakers-pallet-100-pairs/05.jpg",
-      "https://wholesalenijas.com/images/products/vans-sneakers-pallet-100-pairs/06.jpg",
-      "https://wholesalenijas.com/images/products/vans-sneakers-pallet-100-pairs/07.jpg",
-      "https://wholesalenijas.com/images/products/vans-sneakers-pallet-100-pairs/08.jpg",
-      "https://wholesalenijas.com/images/products/vans-sneakers-pallet-100-pairs/09.jpg"
+      "/images/catalog/vans-sneakers-pallet-100-pairs/01.jpg",
+      "/images/catalog/vans-sneakers-pallet-100-pairs/02.jpg",
+      "/images/catalog/vans-sneakers-pallet-100-pairs/03.jpg",
+      "/images/catalog/vans-sneakers-pallet-100-pairs/04.jpg",
+      "/images/catalog/vans-sneakers-pallet-100-pairs/05.jpg",
+      "/images/catalog/vans-sneakers-pallet-100-pairs/06.jpg"
     ]
   },
   {
@@ -1067,13 +990,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/haglofs-jackets-pallet-100-units/01.jpg",
-      "https://wholesalenijas.com/images/products/haglofs-jackets-pallet-100-units/02.jpg",
-      "https://wholesalenijas.com/images/products/haglofs-jackets-pallet-100-units/03.jpg",
-      "https://wholesalenijas.com/images/products/haglofs-jackets-pallet-100-units/04.jpg",
-      "https://wholesalenijas.com/images/products/haglofs-jackets-pallet-100-units/05.jpg",
-      "https://wholesalenijas.com/images/products/haglofs-jackets-pallet-100-units/06.jpg",
-      "https://wholesalenijas.com/images/products/haglofs-jackets-pallet-100-units/07.jpg"
+      "/images/catalog/haglofs-jackets-pallet-100-units/01.jpg",
+      "/images/catalog/haglofs-jackets-pallet-100-units/02.jpg",
+      "/images/catalog/haglofs-jackets-pallet-100-units/03.jpg",
+      "/images/catalog/haglofs-jackets-pallet-100-units/04.jpg",
+      "/images/catalog/haglofs-jackets-pallet-100-units/05.jpg",
+      "/images/catalog/haglofs-jackets-pallet-100-units/06.jpg"
     ]
   },
   {
@@ -1098,11 +1020,11 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/mixed-brand-jeans-pallet-500-pieces/01.jpg",
-      "https://wholesalenijas.com/images/products/mixed-brand-jeans-pallet-500-pieces/02.jpg",
-      "https://wholesalenijas.com/images/products/mixed-brand-jeans-pallet-500-pieces/03.jpg",
-      "https://wholesalenijas.com/images/products/mixed-brand-jeans-pallet-500-pieces/04.jpg",
-      "https://wholesalenijas.com/images/products/mixed-brand-jeans-pallet-500-pieces/05.jpg"
+      "/images/catalog/mixed-brand-jeans-pallet-500-pieces/01.jpg",
+      "/images/catalog/mixed-brand-jeans-pallet-500-pieces/02.jpg",
+      "/images/catalog/mixed-brand-jeans-pallet-500-pieces/03.jpg",
+      "/images/catalog/mixed-brand-jeans-pallet-500-pieces/04.jpg",
+      "/images/catalog/mixed-brand-jeans-pallet-500-pieces/05.jpg"
     ]
   },
   {
@@ -1127,13 +1049,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/zara-mixed-clothing-pallet-300-units/01.jpg",
-      "https://wholesalenijas.com/images/products/zara-mixed-clothing-pallet-300-units/02.jpg",
-      "https://wholesalenijas.com/images/products/zara-mixed-clothing-pallet-300-units/03.jpg",
-      "https://wholesalenijas.com/images/products/zara-mixed-clothing-pallet-300-units/04.jpg",
-      "https://wholesalenijas.com/images/products/zara-mixed-clothing-pallet-300-units/05.jpg",
-      "https://wholesalenijas.com/images/products/zara-mixed-clothing-pallet-300-units/06.jpg",
-      "https://wholesalenijas.com/images/products/zara-mixed-clothing-pallet-300-units/07.jpg"
+      "/images/catalog/zara-mixed-clothing-pallet-300-units/01.jpg",
+      "/images/catalog/zara-mixed-clothing-pallet-300-units/02.jpg",
+      "/images/catalog/zara-mixed-clothing-pallet-300-units/03.jpg",
+      "/images/catalog/zara-mixed-clothing-pallet-300-units/04.jpg",
+      "/images/catalog/zara-mixed-clothing-pallet-300-units/05.jpg",
+      "/images/catalog/zara-mixed-clothing-pallet-300-units/06.jpg"
     ]
   },
   {
@@ -1158,15 +1079,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/zara-spring-womens-collection-pallet-300-units/01.webp",
-      "https://wholesalenijas.com/images/products/zara-spring-womens-collection-pallet-300-units/02.webp",
-      "https://wholesalenijas.com/images/products/zara-spring-womens-collection-pallet-300-units/03.webp",
-      "https://wholesalenijas.com/images/products/zara-spring-womens-collection-pallet-300-units/04.webp",
-      "https://wholesalenijas.com/images/products/zara-spring-womens-collection-pallet-300-units/05.jpg",
-      "https://wholesalenijas.com/images/products/zara-spring-womens-collection-pallet-300-units/06.webp",
-      "https://wholesalenijas.com/images/products/zara-spring-womens-collection-pallet-300-units/07.webp",
-      "https://wholesalenijas.com/images/products/zara-spring-womens-collection-pallet-300-units/08.jpg",
-      "https://wholesalenijas.com/images/products/zara-spring-womens-collection-pallet-300-units/09.webp"
+      "/images/catalog/zara-spring-womens-collection-pallet-300-units/01.jpg",
+      "/images/catalog/zara-spring-womens-collection-pallet-300-units/02.jpg",
+      "/images/catalog/zara-spring-womens-collection-pallet-300-units/03.jpg",
+      "/images/catalog/zara-spring-womens-collection-pallet-300-units/04.jpg",
+      "/images/catalog/zara-spring-womens-collection-pallet-300-units/05.jpg",
+      "/images/catalog/zara-spring-womens-collection-pallet-300-units/06.jpg"
     ]
   },
   {
@@ -1191,15 +1109,10 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/kids-sneakers-mixed-pallet-300-pairs/01.jpg",
-      "https://wholesalenijas.com/images/products/kids-sneakers-mixed-pallet-300-pairs/02.jpg",
-      "https://wholesalenijas.com/images/products/kids-sneakers-mixed-pallet-300-pairs/03.jpg",
-      "https://wholesalenijas.com/images/products/kids-sneakers-mixed-pallet-300-pairs/04.jpg",
-      "https://wholesalenijas.com/images/products/kids-sneakers-mixed-pallet-300-pairs/05.jpg",
-      "https://wholesalenijas.com/images/products/kids-sneakers-mixed-pallet-300-pairs/06.jpg",
-      "https://wholesalenijas.com/images/products/kids-sneakers-mixed-pallet-300-pairs/07.jpg",
-      "https://wholesalenijas.com/images/products/kids-sneakers-mixed-pallet-300-pairs/08.jpg",
-      "https://wholesalenijas.com/images/products/kids-sneakers-mixed-pallet-300-pairs/09.jpg"
+      "/images/catalog/kids-sneakers-mixed-pallet-300-pairs/01.jpg",
+      "/images/catalog/kids-sneakers-mixed-pallet-300-pairs/02.jpg",
+      "/images/catalog/kids-sneakers-mixed-pallet-300-pairs/05.jpg",
+      "/images/catalog/kids-sneakers-mixed-pallet-300-pairs/06.jpg"
     ]
   },
   {
@@ -1224,10 +1137,9 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/zara-winter-puffer-jackets-pallet-100-units/01.jpg",
-      "https://wholesalenijas.com/images/products/zara-winter-puffer-jackets-pallet-100-units/02.jpg",
-      "https://wholesalenijas.com/images/products/zara-winter-puffer-jackets-pallet-100-units/03.jpg",
-      "https://wholesalenijas.com/images/products/zara-winter-puffer-jackets-pallet-100-units/04.jpg"
+      "/images/catalog/zara-winter-puffer-jackets-pallet-100-units/02.jpg",
+      "/images/catalog/zara-winter-puffer-jackets-pallet-100-units/03.jpg",
+      "/images/catalog/zara-winter-puffer-jackets-pallet-100-units/04.jpg"
     ]
   },
   {
@@ -1252,12 +1164,12 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/adjustable-caps-pallet-200-pieces/01.jpg",
-      "https://wholesalenijas.com/images/products/adjustable-caps-pallet-200-pieces/02.jpg",
-      "https://wholesalenijas.com/images/products/adjustable-caps-pallet-200-pieces/03.jpg",
-      "https://wholesalenijas.com/images/products/adjustable-caps-pallet-200-pieces/04.jpg",
-      "https://wholesalenijas.com/images/products/adjustable-caps-pallet-200-pieces/05.jpg",
-      "https://wholesalenijas.com/images/products/adjustable-caps-pallet-200-pieces/06.jpg"
+      "/images/catalog/adjustable-caps-pallet-200-pieces/01.jpg",
+      "/images/catalog/adjustable-caps-pallet-200-pieces/02.jpg",
+      "/images/catalog/adjustable-caps-pallet-200-pieces/03.jpg",
+      "/images/catalog/adjustable-caps-pallet-200-pieces/04.jpg",
+      "/images/catalog/adjustable-caps-pallet-200-pieces/05.jpg",
+      "/images/catalog/adjustable-caps-pallet-200-pieces/06.jpg"
     ]
   },
   {
@@ -1282,10 +1194,10 @@ export const seedPalettes: Palette[] = [
       "Manifested lot · ships from US warehouse"
     ],
     "images": [
-      "https://wholesalenijas.com/images/products/mixed-tshirts-pallet-300-pieces/01.jpg",
-      "https://wholesalenijas.com/images/products/mixed-tshirts-pallet-300-pieces/02.jpg",
-      "https://wholesalenijas.com/images/products/mixed-tshirts-pallet-300-pieces/03.jpg",
-      "https://wholesalenijas.com/images/products/mixed-tshirts-pallet-300-pieces/04.jpg"
+      "/images/catalog/mixed-tshirts-pallet-300-pieces/01.jpg",
+      "/images/catalog/mixed-tshirts-pallet-300-pieces/02.jpg",
+      "/images/catalog/mixed-tshirts-pallet-300-pieces/03.jpg",
+      "/images/catalog/mixed-tshirts-pallet-300-pieces/04.jpg"
     ]
   }
 ];
