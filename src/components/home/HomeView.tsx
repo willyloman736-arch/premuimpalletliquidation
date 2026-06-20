@@ -329,7 +329,7 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
       {/* Stats ---------------------------------------------------------- */}
       <section
         ref={statsRef}
-        className={`${s['stats-section']} ${s['section-dark']} ${s.reveal} ${statsIn ? s.visible : ''}`}
+        className={`${s['stats-section']} ${s.reveal} ${statsIn ? s.visible : ''}`}
       >
         <div className={s['stats-inner']}>
           <div className="container">
@@ -389,11 +389,11 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
       {/* Testimonials --------------------------------------------------- */}
       <section
         ref={testimonialsRef}
-        className={`${s['testimonials-section']} ${s['section-dark']} ${s.reveal} ${testimonialsIn ? s.visible : ''}`}
+        className={`${s['testimonials-section']} ${s.reveal} ${testimonialsIn ? s.visible : ''}`}
       >
         <div className="container">
           <div className={s['section-header']}>
-            <span className={`eyebrow eyebrow-invert ${s['section-eyebrow']}`}>Reseller Results</span>
+            <span className={`eyebrow ${s['section-eyebrow']}`}>Reseller Results</span>
             <h2>Built With PPL</h2>
             <p>Real US resellers scaling their business with our pallets.</p>
           </div>

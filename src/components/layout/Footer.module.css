@@ -27,7 +27,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1.25rem;
-  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--ink-700);
   border-radius: 4px;
   transition: border-color 0.25s ease, transform 0.25s ease;
@@ -137,7 +137,7 @@
   justify-content: center;
   width: 42px;
   height: 42px;
-  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--ink-700);
   border-radius: 4px;
   color: var(--fg-invert-muted);
@@ -306,7 +306,7 @@
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.05em;
-  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--ink-700);
   padding: 0.3rem 0.7rem;
   border-radius: 4px;

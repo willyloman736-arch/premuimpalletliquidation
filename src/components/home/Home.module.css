@@ -393,7 +393,7 @@
 /* ---------------------------------------------------------------- Stats --- */
 .stats-section {
   padding: 0 0 0;
-  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  background: var(--concrete-200);
   position: relative;
 }
 
@@ -408,8 +408,9 @@
 }
 
 .stat-card {
-  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--ink-700);
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
   border-radius: 6px;
   padding: 2rem 1.5rem;
   text-align: center;
@@ -447,7 +448,7 @@
   font-size: 0.82rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--fg-invert-muted);
+  color: var(--fg-muted);
 }
 
 /* ------------------------------------------------------------- Featured --- */
@@ -494,9 +495,9 @@
 /* --------------------------------------------------------- Testimonials --- */
 .testimonials-section {
   padding: 6rem 0;
-  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
-  color: #fff;
-  border-top: 1px solid var(--ink-700);
+  background: var(--paper);
+  color: var(--fg);
+  border-top: 1px solid var(--line);
 }
 
 .testimonials-grid {
@@ -506,8 +507,9 @@
 }
 
 .testimonial-card {
-  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--ink-700);
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
   border-radius: 6px;
   padding: 1.75rem;
   transition: border-color 0.25s ease, transform 0.25s ease;
@@ -547,14 +549,14 @@
 .testimonial-info h4 {
   margin: 0 0 0.15rem 0;
   font-size: 1rem;
-  color: #fff;
+  color: var(--fg);
 }
 
 .testimonial-info p {
   margin: 0 0 0.4rem 0;
   font-family: var(--font-mono);
   font-size: 0.78rem;
-  color: var(--fg-invert-muted);
+  color: var(--fg-muted);
 }
 
 .testimonial-rating {
@@ -581,7 +583,7 @@
   font-size: 1.05rem;
   line-height: 1.65;
   margin: 0;
-  color: rgba(255, 255, 255, 0.92);
+  color: var(--fg);
 }
 
 /* ------------------------------------------------------------------ CTA --- */

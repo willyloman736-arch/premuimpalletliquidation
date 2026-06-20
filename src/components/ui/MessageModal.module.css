@@ -18,11 +18,11 @@
   position: relative;
   width: 100%;
   max-width: 420px;
-  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--ink);
-  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
   padding: 28px 24px 24px;
-  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+  box-shadow: 0 20px 50px rgba(15, 44, 42, 0.22);
   text-align: center;
 }
 
@@ -31,8 +31,8 @@
   top: 12px;
   right: 12px;
   border: none;
-  background: rgba(255,255,255,0.1);
-  color: #9fb6b0;
+  background: var(--concrete);
+  color: var(--fg-muted);
   width: 40px;
   height: 40px;
   border-radius: 10px;
@@ -44,8 +44,8 @@
 }
 
 .mm-close:hover {
-  background: rgba(255,255,255,0.18);
-  color: #eafaf7;
+  background: var(--line);
+  color: var(--fg);
 }
 
 .mm-icon-wrap {
@@ -62,22 +62,22 @@
   margin: 0 0 12px;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #eafaf7;
+  color: var(--fg);
 }
 
 .mm-message {
   margin: 0 0 24px;
   font-size: 1rem;
   line-height: 1.55;
-  color: #c7d6d2;
+  color: var(--fg-muted);
   white-space: pre-wrap;
 }
 
 .mm-btn {
   min-width: 120px;
   padding: 12px 28px;
-  border: 2px solid var(--ink);
-  border-radius: 4px;
+  border: 2px solid var(--amber);
+  border-radius: 6px;
   font-family: var(--font-display);
   font-size: 0.95rem;
   font-weight: 700;
@@ -85,13 +85,14 @@
   text-transform: uppercase;
   cursor: pointer;
   background: var(--amber);
-  color: var(--ink);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(13, 148, 136, 0.3);
   transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
 }
 
 .mm-btn:hover {
-  background: var(--amber-bright);
-  transform: translate(-2px, -2px);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+  background: var(--amber-deep);
+  border-color: var(--amber-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(13, 148, 136, 0.38);
 }

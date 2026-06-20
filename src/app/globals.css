@@ -1,15 +1,16 @@
 @import 'tailwindcss';
 
 /* ==========================================================================
-   Premium Pallet Liquidations — Aurora dark glassmorphism
-   Dark teal/cyan aurora backdrop, frosted glass surfaces, bright teal accents.
+   Premium Pallet Liquidations — Crisp white + teal
+   Light, crisp storefront: white surfaces, dark teal-charcoal text, teal accent.
+   A few sections stay dark on purpose (hero photo, page headers, footer, CTA).
    ========================================================================== */
 @theme {
-  --color-amber: #2dd4bf;
-  --color-amber-bright: #5eead4;
-  --color-amber-deep: #14b8a6;
-  --color-ink: #052e29;
-  --color-paper: #06201d;
+  --color-amber: #0d9488;
+  --color-amber-bright: #14b8a6;
+  --color-amber-deep: #0f766e;
+  --color-ink: #06302b;
+  --color-paper: #f6fafa;
 
   --font-display: var(--font-oswald), 'Arial Narrow', sans-serif;
   --font-sans: var(--font-inter), system-ui, sans-serif;
@@ -17,53 +18,53 @@
 }
 
 :root {
-  /* Brand accents (bright teal / cyan) */
-  --amber: #2dd4bf;
-  --amber-bright: #5eead4;
-  --amber-deep: #14b8a6;
-  --amber-soft: rgba(45, 212, 191, 0.14);
+  /* Brand accent (teal) */
+  --amber: #0d9488;
+  --amber-bright: #14b8a6;
+  --amber-deep: #0f766e;
+  --amber-soft: #ccfbf1;
   --cyan: #22d3ee;
 
-  /* Dark / ink — kept dark for text on bright accents */
-  --ink: #052e29;
-  --ink-900: rgba(3, 16, 14, 0.55);
-  --ink-800: rgba(255, 255, 255, 0.06);
-  --ink-700: rgba(255, 255, 255, 0.12);
-  --ink-600: rgba(255, 255, 255, 0.16);
-  --ink-500: rgba(255, 255, 255, 0.22);
+  /* Dark — text on teal fills + the intentional dark bands */
+  --ink: #06302b;
+  --ink-900: #07221e;
+  --ink-800: rgba(255, 255, 255, 0.05);
+  --ink-700: rgba(255, 255, 255, 0.14);
+  --ink-600: rgba(255, 255, 255, 0.2);
+  --ink-500: rgba(255, 255, 255, 0.26);
 
-  /* Glass surfaces */
-  --glass: rgba(255, 255, 255, 0.07);
-  --glass-2: rgba(255, 255, 255, 0.11);
-  --glass-dark: rgba(4, 22, 19, 0.5);
-  --glass-border: rgba(255, 255, 255, 0.14);
-  --glass-blur: blur(16px) saturate(1.25);
-  --glass-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+  /* Surfaces */
+  --glass: #ffffff;
+  --glass-2: #f1f7f5;
+  --glass-dark: #0b2a25; /* dark accent bands: page headers, footer, CTA-less blocks */
+  --glass-border: #e3ece9;
+  --glass-blur: blur(12px) saturate(1.05);
+  --glass-shadow: 0 12px 30px rgba(15, 44, 42, 0.08);
 
-  /* Light surfaces now transparent / faint glass (aurora shows through) */
+  /* Light section bands */
   --paper: transparent;
-  --concrete: rgba(255, 255, 255, 0.08);
-  --concrete-200: rgba(255, 255, 255, 0.04);
-  --white: rgba(255, 255, 255, 0.07);
+  --concrete: #eef5f3;
+  --concrete-200: #f3f9f7;
+  --white: #ffffff;
 
-  /* Text (light on dark) */
-  --fg: #eafaf7;
-  --fg-muted: rgba(234, 250, 247, 0.66);
-  --fg-soft: rgba(234, 250, 247, 0.42);
-  --fg-invert: #052e29;
-  --fg-invert-muted: rgba(234, 250, 247, 0.7);
+  /* Text */
+  --fg: #0f2c2a;
+  --fg-muted: #5b716d;
+  --fg-soft: #93a5a1;
+  --fg-invert: #ffffff;
+  --fg-invert-muted: rgba(255, 255, 255, 0.72);
 
   /* Lines */
-  --line: rgba(255, 255, 255, 0.12);
-  --line-dark: rgba(255, 255, 255, 0.1);
+  --line: #e3ece9;
+  --line-dark: #d6e3df;
 
-  /* Soft shadows */
-  --shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 18px 50px rgba(0, 0, 0, 0.45);
+  /* Soft light shadows */
+  --shadow: 0 6px 18px rgba(15, 44, 42, 0.06);
+  --shadow-lg: 0 18px 44px rgba(15, 44, 42, 0.12);
   --shadow-hard: var(--glass-shadow);
-  --shadow-hard-amber: 0 10px 30px rgba(45, 212, 191, 0.35);
+  --shadow-hard-amber: 0 10px 26px rgba(13, 148, 136, 0.25);
 
-  /* Accent divider (replaces hazard stripe) */
+  /* Accent divider */
   --hazard: linear-gradient(90deg, transparent, var(--amber-deep), var(--cyan), var(--amber-deep), transparent);
 
   --radius: 10px;
@@ -96,18 +97,14 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  background-color: #06201d;
-  background-image:
-    radial-gradient(60% 55% at 12% 8%, rgba(20, 184, 166, 0.28), transparent 60%),
-    radial-gradient(55% 50% at 88% 14%, rgba(34, 211, 238, 0.2), transparent 60%),
-    radial-gradient(65% 60% at 75% 95%, rgba(13, 148, 136, 0.24), transparent 62%),
-    linear-gradient(160deg, #06201d 0%, #05272300 30%, #062f33 100%);
+  background-color: #f6fafa;
+  background-image: linear-gradient(180deg, #f8fcfb 0%, #eef6f4 100%);
   background-attachment: fixed;
 }
 
 ::selection {
   background: var(--amber);
-  color: var(--ink);
+  color: #fff;
 }
 
 h1,
@@ -155,7 +152,7 @@ video {
 
 .main-content {
   flex: 1;
-  margin-top: 110px; /* announcement bar (34) + header (76) */
+  margin-top: 110px;
   position: relative;
   animation: shell-fade-in 0.5s ease-out;
 }
@@ -174,7 +171,7 @@ video {
   height: 2px;
   width: 100%;
   background: var(--hazard);
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .eyebrow {
@@ -186,7 +183,7 @@ video {
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--amber);
+  color: var(--amber-deep);
 }
 
 .eyebrow::before {
@@ -196,13 +193,14 @@ video {
   background: var(--amber);
 }
 
-.eyebrow-invert { color: var(--amber); }
+/* On dark bands the eyebrow uses the brighter accent */
+.eyebrow-invert {
+  color: var(--cyan);
+}
 
-/* --- Glass surfaces ------------------------------------------------------- */
+/* --- Surfaces ------------------------------------------------------------- */
 .surface {
   background: var(--glass);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--glass-shadow);
@@ -229,47 +227,44 @@ video {
 
 .btn-primary {
   background-color: var(--amber);
-  color: var(--ink);
-  box-shadow: 0 8px 26px rgba(45, 212, 191, 0.32);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(13, 148, 136, 0.28);
 }
 
 .btn-primary:hover {
-  background-color: var(--amber-bright);
+  background-color: var(--amber-deep);
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(45, 212, 191, 0.45);
+  box-shadow: 0 12px 28px rgba(13, 148, 136, 0.36);
 }
 
 .btn-primary:active { transform: translateY(0); }
 
 .btn-secondary {
-  background: var(--glass);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border-color: var(--glass-border);
+  background: #fff;
+  border-color: var(--line);
   color: var(--fg);
 }
 
 .btn-secondary:hover {
   border-color: var(--amber);
-  color: var(--amber);
-  background: var(--glass-2);
+  color: var(--amber-deep);
 }
 
 .btn-invert {
   background-color: var(--amber);
   border-color: var(--amber);
-  color: var(--ink);
+  color: #fff;
 }
 
-.btn-invert:hover { background-color: var(--amber-bright); border-color: var(--amber-bright); }
+.btn-invert:hover { background-color: var(--amber-deep); border-color: var(--amber-deep); }
 
 .btn-ghost {
   background-color: transparent;
-  border-color: var(--glass-border);
+  border-color: var(--line);
   color: var(--fg);
 }
 
-.btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+.btn-ghost:hover { border-color: var(--amber); color: var(--amber-deep); }
 
 /* --- Chips ---------------------------------------------------------------- */
 .chip {
@@ -283,21 +278,19 @@ video {
   text-transform: uppercase;
   padding: 5px 10px;
   border-radius: var(--radius);
-  border: 1px solid var(--glass-border);
-  background: var(--glass);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--line);
+  background: #fff;
   color: var(--fg);
 }
 
-.chip-amber { background: var(--amber); border-color: var(--amber); color: var(--ink); }
-.chip-ink { background: var(--glass-dark); border-color: var(--glass-border); color: var(--amber); }
+.chip-amber { background: var(--amber); border-color: var(--amber); color: #fff; }
+.chip-ink { background: var(--glass-dark); border-color: var(--glass-dark); color: var(--cyan); }
 
 .mono { font-family: var(--font-mono); }
 
 /* --- Utility -------------------------------------------------------------- */
 .text-center { text-align: center; }
-.text-amber { color: var(--amber); }
+.text-amber { color: var(--amber-deep); }
 .bg-ink { background-color: var(--glass-dark); }
 .mb-4 { margin-bottom: 1.5rem; }
 .mt-4 { margin-top: 1.5rem; }
@@ -328,7 +321,7 @@ video {
   top: 0;
   z-index: 100000;
   background: var(--amber);
-  color: var(--ink);
+  color: #fff;
   padding: 12px 20px;
   font-family: var(--font-display);
   font-weight: 700;
