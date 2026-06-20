@@ -35,7 +35,7 @@
   color: var(--ink);
   border: 2px solid var(--ink);
   padding: 0.9rem 1.75rem;
-  border-radius: 4px;
+  border-radius: 10px;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -96,7 +96,7 @@
   color: #b91c1c;
   border: 1px solid #b91c1c;
   padding: 0.6rem 1.1rem;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -152,7 +152,7 @@
   width: 80px;
   height: 80px;
   background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
-  border-radius: 4px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -170,7 +170,7 @@
   font-weight: 700;
   text-transform: uppercase;
   padding: 3px 7px;
-  border-radius: 3px;
+  border-radius: 7px;
   border: 1px solid var(--ink);
 }
 
@@ -219,14 +219,14 @@
   gap: 0.6rem;
   background: var(--concrete-200);
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 10px;
   padding: 4px;
 }
 
 .qty-btn {
   background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
-  border-radius: 3px;
+  border-radius: 7px;
   width: 32px;
   height: 32px;
   display: flex;
@@ -278,7 +278,7 @@
   color: #b91c1c;
   cursor: pointer;
   padding: 0.4rem;
-  border-radius: 4px;
+  border-radius: 10px;
   transition: all 0.2s ease;
 }
 
@@ -321,7 +321,7 @@
   min-width: 0;
   padding: 0.7rem;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 10px;
   font-family: var(--font-mono);
   font-size: 0.9rem;
   transition: border-color 0.2s ease;
@@ -337,7 +337,7 @@
   color: var(--amber);
   border: none;
   padding: 0.7rem 0.85rem;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background 0.2s ease;
 }
@@ -353,7 +353,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   padding: 0.5rem 0.75rem;
-  border-radius: 4px;
+  border-radius: 10px;
 }
 
 .promo-message.success {
@@ -400,7 +400,7 @@
   margin-bottom: 0.9rem;
   padding: 0.6rem;
   background: var(--amber-soft);
-  border-radius: 4px;
+  border-radius: 10px;
 }
 
 .price-total {
@@ -420,7 +420,7 @@
   color: var(--ink);
   border: 2px solid var(--ink);
   padding: 1rem;
-  border-radius: 4px;
+  border-radius: 10px;
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 700;
@@ -475,7 +475,7 @@
   background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   padding: 1.75rem;
   border: 1px solid var(--ink);
-  border-radius: 6px;
+  border-radius: 12px;
   box-shadow: 0 16px 40px rgba(0,0,0,0.45);
   max-width: 400px;
   width: 100%;
@@ -518,7 +518,7 @@
 .btn-danger {
   border: 2px solid var(--ink);
   padding: 0.6rem 1.25rem;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
   font-family: var(--font-display);
   font-weight: 700;
@@ -604,7 +604,7 @@
 
 .ship-bar {
   height: 7px;
-  border-radius: 4px;
+  border-radius: 10px;
   background: var(--ink-700);
   overflow: hidden;
 }

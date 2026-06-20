@@ -29,7 +29,7 @@
   padding: 1.25rem;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--ink-700);
-  border-radius: 4px;
+  border-radius: 10px;
   transition: border-color 0.25s ease, transform 0.25s ease;
 }
 
@@ -42,7 +42,7 @@
   background: var(--amber);
   width: 46px;
   height: 46px;
-  border-radius: 4px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,7 +88,7 @@
   color: var(--ink);
   width: 44px;
   height: 44px;
-  border-radius: 4px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,7 +139,7 @@
   height: 42px;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--ink-700);
-  border-radius: 4px;
+  border-radius: 10px;
   color: var(--fg-invert-muted);
   text-decoration: none;
   transition: all 0.2s ease;
@@ -246,7 +246,7 @@
   min-width: 0;
   padding: 0.7rem 0.9rem;
   border: 1px solid var(--ink-600);
-  border-radius: 4px;
+  border-radius: 10px;
   background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: #fff;
   font-size: 0.9rem;
@@ -265,7 +265,7 @@
   padding: 0.7rem 0.85rem;
   background: var(--amber);
   border: 1px solid var(--amber);
-  border-radius: 4px;
+  border-radius: 10px;
   color: var(--ink);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -309,7 +309,7 @@
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--ink-700);
   padding: 0.3rem 0.7rem;
-  border-radius: 4px;
+  border-radius: 10px;
   color: var(--fg-invert-muted);
 }
 
@@ -339,4 +339,23 @@
     justify-content: center;
     flex-wrap: wrap;
   }
+}
+
+/* --- Legal links in the bottom bar --- */
+.footer-legal {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-legal a {
+  color: var(--fg-soft);
+  text-decoration: none;
+  font-size: 0.82rem;
+  transition: color 0.2s ease;
+}
+
+.footer-legal a:hover {
+  color: var(--amber);
 }

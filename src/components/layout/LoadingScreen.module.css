@@ -37,7 +37,7 @@
   color: var(--ink);
   width: 84px;
   height: 84px;
-  border-radius: 6px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;

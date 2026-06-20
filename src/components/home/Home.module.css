@@ -138,7 +138,7 @@
   gap: 0;
   margin-bottom: 2.5rem;
   border: 1px solid var(--ink-600);
-  border-radius: 6px;
+  border-radius: 12px;
   overflow: hidden;
   width: fit-content;
   margin-left: auto;
@@ -185,7 +185,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 1rem 2rem;
-  border-radius: 4px;
+  border-radius: 10px;
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -300,7 +300,7 @@
 .video-card {
   background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
@@ -411,7 +411,7 @@
   background: var(--glass);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
-  border-radius: 6px;
+  border-radius: 12px;
   padding: 2rem 1.5rem;
   text-align: center;
   transition: border-color 0.25s ease, transform 0.25s ease;
@@ -425,7 +425,7 @@
 .stat-icon {
   width: 56px;
   height: 56px;
-  border-radius: 5px;
+  border-radius: 11px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -473,7 +473,7 @@
   color: var(--fg);
   border: 2px solid var(--ink);
   padding: 1rem 2rem;
-  border-radius: 4px;
+  border-radius: 10px;
   text-decoration: none;
   font-family: var(--font-display);
   font-weight: 700;
@@ -510,7 +510,7 @@
   background: var(--glass);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
-  border-radius: 6px;
+  border-radius: 12px;
   padding: 1.75rem;
   transition: border-color 0.25s ease, transform 0.25s ease;
 }
@@ -530,7 +530,7 @@
 .testimonial-avatar {
   width: 48px;
   height: 48px;
-  border-radius: 5px;
+  border-radius: 11px;
   background: var(--amber);
   color: var(--ink);
   display: flex;
@@ -571,7 +571,7 @@
   color: var(--amber);
   border: 1px solid var(--amber-deep);
   padding: 0.4rem 0.7rem;
-  border-radius: 4px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -632,7 +632,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 1.1rem 2.25rem;
-  border-radius: 4px;
+  border-radius: 10px;
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -686,7 +686,7 @@
 
 .video-modal-content video {
   width: 100%;
-  border-radius: 6px;
+  border-radius: 12px;
   border: 1px solid var(--ink-700);
   display: block;
 }
@@ -700,7 +700,7 @@
   border: 2px solid var(--ink);
   width: 42px;
   height: 42px;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 1.5rem;
   display: flex;
@@ -828,7 +828,7 @@
   color: var(--fg);
   padding: 0.3rem 0.7rem;
   border: 1px solid var(--glass-border);
-  border-radius: 5px;
+  border-radius: 11px;
   background: var(--glass);
 }
 
@@ -951,7 +951,7 @@
   color: var(--amber);
   padding: 0.4rem 0.8rem;
   border: 1px solid var(--amber-deep);
-  border-radius: 6px;
+  border-radius: 12px;
   background: var(--amber-soft);
 }
 

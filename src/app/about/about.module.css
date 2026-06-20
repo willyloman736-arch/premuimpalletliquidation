@@ -44,7 +44,7 @@
   background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--ink-700);
   padding: 0.6rem 1rem;
-  border-radius: 4px;
+  border-radius: 10px;
   font-family: var(--font-mono);
   font-size: 0.82rem;
 }
@@ -63,7 +63,7 @@
   color: var(--ink);
   padding: 3rem 2.5rem;
   border: 2px solid var(--ink);
-  border-radius: 6px;
+  border-radius: 12px;
   text-align: center;
   box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.35);
 }
@@ -97,7 +97,7 @@
 .stat-card {
   background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 12px;
   padding: 2rem 1.5rem;
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -171,7 +171,7 @@
   background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
   border-left: 3px solid var(--amber);
-  border-radius: 4px;
+  border-radius: 10px;
 }
 
 .highlight svg {
@@ -200,7 +200,7 @@
   background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--amber);
   padding: 3.5rem 2.5rem;
-  border-radius: 6px;
+  border-radius: 12px;
   text-align: center;
   border: 2px solid var(--ink);
 }
@@ -250,7 +250,7 @@
 .value-card {
   background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 12px;
   padding: 2rem 1.75rem;
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -267,7 +267,7 @@
   color: var(--ink);
   width: 64px;
   height: 64px;
-  border-radius: 5px;
+  border-radius: 11px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -328,7 +328,7 @@
   background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   padding: 1.5rem;
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 12px;
 }
 
 .timeline-content h3 {
@@ -350,7 +350,7 @@
   font-family: var(--font-mono);
   font-weight: 700;
   padding: 0.35rem 0.9rem;
-  border-radius: 3px;
+  border-radius: 7px;
   margin-bottom: 0.85rem;
 }
 
@@ -413,7 +413,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 1rem 2rem;
-  border-radius: 4px;
+  border-radius: 10px;
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: 0.05em;

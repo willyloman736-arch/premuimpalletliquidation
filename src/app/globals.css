@@ -67,8 +67,8 @@
   /* Accent divider */
   --hazard: linear-gradient(90deg, transparent, var(--amber-deep), var(--cyan), var(--amber-deep), transparent);
 
-  --radius: 10px;
-  --radius-lg: 16px;
+  --radius: 12px;
+  --radius-lg: 20px;
 
   /* Back-compat aliases */
   --primary-red: var(--amber);
