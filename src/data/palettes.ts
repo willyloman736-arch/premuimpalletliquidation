@@ -2,7 +2,7 @@ import type { Palette } from '@/types/palette';
 import { getSupabaseClient, isSupabaseConfigured } from '@/lib/supabase';
 
 /** Category filters shown across the catalogue. */
-export const categories = ["All","Footwear","Clothing","Electronics","Tools","Appliances","Cosmetics","Accessories","Toys","General Merchandise"] as const;
+export const categories = ["All","Footwear","Clothing","Electronics","Tools","Appliances","Cosmetics","Accessories","Toys"] as const;
 
 /** Condition grades used by the catalogue and admin. */
 export const conditions = ["Grade A+","Grade A","Grade A-B","Grade B+","Grade B","Grade C"] as const;
@@ -321,7 +321,7 @@ export const seedPalettes: Palette[] = [
     "available": true,
     "featured": false,
     "limitedTime": false,
-    "category": "General Merchandise",
+    "category": "Electronics",
     "origin": "Wholesale Ninjas — verified bulk lot",
     "rating": 4.4,
     "estimatedProfit": "+67%",

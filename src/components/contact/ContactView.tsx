@@ -18,6 +18,8 @@ import {
   Twitter,
   ArrowRight,
 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { emailjsConfig } from '@/lib/config';
 import { site } from '@/lib/site';
 import s from './ContactView.module.css';
 
@@ -28,6 +30,13 @@ const contactInfo = [
     value: site.email,
     href: `mailto:${site.email}`,
     subtitle: 'Reply within 24h',
+  },
+  {
+    icon: MessageCircle,
+    title: 'WhatsApp',
+    value: site.whatsapp,
+    href: site.whatsappHref,
+    subtitle: 'Chat with us now',
   },
   {
     icon: Phone,
@@ -116,6 +125,46 @@ export default function ContactView() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const subject = `Website enquiry — ${formData.subject} — ${formData.name}`;
+    const body = [
+      `Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      formData.company ? `Company: ${formData.company}` : '',
+      `Topic: ${formData.subject}`,
+      '',
+      formData.message,
+    ]
+      .filter(Boolean)
+      .join('\n');
+
+    if (emailjsConfig.enabled) {
+      // Send the enquiry straight to the team inbox.
+      emailjs
+        .send(
+          emailjsConfig.serviceId,
+          emailjsConfig.templateAdmin || emailjsConfig.templateClient,
+          {
+            to_email: site.email,
+            from_name: formData.name,
+            from_email: formData.email,
+            reply_to: formData.email,
+            subject,
+            message: body,
+          },
+          { publicKey: emailjsConfig.publicKey },
+        )
+        .catch(() => {
+          // Silent: the confirmation still shows; the customer can also use WhatsApp/email.
+        });
+    } else {
+      // No email service configured — open a pre-filled message to info@.
+      window.open(
+        `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+        '_blank',
+      );
+    }
+
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);
@@ -168,7 +217,13 @@ export default function ContactView() {
                     <h3>{info.title}</h3>
                     {info.href ? (
                       <p className={s['contact-value']}>
-                        <a href={info.href}>{info.value}</a>
+                        <a
+                          href={info.href}
+                          target={info.href.startsWith('http') ? '_blank' : undefined}
+                          rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        >
+                          {info.value}
+                        </a>
                       </p>
                     ) : (
                       <p className={s['contact-value']}>{info.value}</p>

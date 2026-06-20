@@ -14,12 +14,14 @@ import {
   CheckCircle,
   AlertCircle,
   CreditCard,
+  MessageCircle,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import MessageModal, { type MessageVariant } from '@/components/ui/MessageModal';
 import type { CartItem } from '@/types/palette';
 import { readCart, writeCart } from '@/lib/cart';
 import { emailjsConfig, stripeConfig, ENABLED_PAYMENT_METHODS } from '@/lib/config';
+import { site } from '@/lib/site';
 import s from './CheckoutView.module.css';
 
 const money = (value: number) =>
@@ -268,9 +270,40 @@ export default function CheckoutView() {
     };
   }, [selectedPayment, total, customerInfo.email, customerInfo.firstName, customerInfo.lastName]);
 
+  /** Plain-text order summary lines, shared by the email + WhatsApp paths. */
+  const buildOrderSummary = (orderNumber: string) => {
+    const paymentMethodName =
+      paymentMethods.find((m) => m.id === selectedPayment)?.name || selectedPayment || '—';
+    return [
+      `Order: ${orderNumber}`,
+      `Total: ${money(total)}`,
+      `Payment: ${paymentMethodName}`,
+      '',
+      'Items:',
+      ...cartItems.map((i) => `- ${i.name} x${i.quantity}: ${money(i.price * i.quantity)}`),
+      '',
+      'Customer:',
+      `${customerInfo.firstName} ${customerInfo.lastName}`.trim(),
+      customerInfo.email,
+      customerInfo.phone,
+      `${customerInfo.address}, ${customerInfo.city}, ${customerInfo.state} ${customerInfo.zipCode}, ${customerInfo.country}`,
+    ].filter((l) => l !== undefined);
+  };
+
   const sendOrderEmails = async (orderNumber: string) => {
-    // Demo mode: if EmailJS isn't configured, treat the order as placed without sending email.
+    // No email service configured: open a pre-filled order email to the team inbox
+    // (info@…) so the order still reaches us. Runs inside the submit user-gesture.
     if (!emailjsConfig.enabled) {
+      try {
+        const subject = `New order ${orderNumber} — ${money(total)}`;
+        const body = buildOrderSummary(orderNumber).join('\n');
+        window.open(
+          `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+          '_blank',
+        );
+      } catch {
+        // Ignore — confirmation still shows and the customer can reach us on WhatsApp.
+      }
       return { success: true, orderNumber, skipped: true };
     }
 
@@ -307,6 +340,7 @@ export default function CheckoutView() {
       let adminStatus: number | undefined;
       if (emailjsConfig.templateAdmin) {
         const adminParams = {
+          to_email: site.email, // route the order notification to the team inbox
           customer_name: customerFullName,
           customer_email: customerInfo.email,
           customer_phone: customerInfo.phone,
@@ -339,6 +373,32 @@ export default function CheckoutView() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setCustomerInfo((prev) => ({ ...prev, [name]: value }));
+  };
+
+  /** Opens WhatsApp with a pre-filled quote request for the current cart. */
+  const submitQuoteWhatsApp = () => {
+    if (cartItems.length === 0) {
+      showMessageModal('Your cart is empty.', { title: 'Cart', variant: 'info' });
+      return;
+    }
+    const name = `${customerInfo.firstName} ${customerInfo.lastName}`.trim();
+    const lines = [
+      "Hi Premium Pallet Liquidations — I'd like a quote for this order:",
+      '',
+      ...cartItems.map((i) => `• ${i.name} x${i.quantity} — ${money(i.price * i.quantity)}`),
+      '',
+      `Subtotal: ${money(subtotal)}`,
+      `Shipping: ${shipping === 0 ? 'Free' : money(shipping)}`,
+      `Total: ${money(total)}`,
+    ];
+    if (name || customerInfo.email || customerInfo.phone) {
+      lines.push('', '— My details —');
+      if (name) lines.push(`Name: ${name}`);
+      if (customerInfo.email) lines.push(`Email: ${customerInfo.email}`);
+      if (customerInfo.phone) lines.push(`Phone: ${customerInfo.phone}`);
+    }
+    const url = `${site.whatsappHref}?text=${encodeURIComponent(lines.join('\n'))}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -399,6 +459,11 @@ export default function CheckoutView() {
             variant: 'error',
           });
           return;
+        }
+
+        // Notify the team inbox of the paid order.
+        if (emailjsConfig.enabled) {
+          await sendOrderEmails(orderNumber);
         }
 
         setOrderConfirmation({ orderNumber, total: capturedTotal });
@@ -690,16 +755,31 @@ export default function CheckoutView() {
                 </div>
               </div>
 
-              <button type="submit" className={s['btn-place-order']} disabled={isProcessing}>
-                {isProcessing ? (
-                  <>
-                    <span className={s.spinner}></span>
-                    Processing...
-                  </>
-                ) : (
-                  `Place Order - ${money(total)}`
-                )}
-              </button>
+              <div className={s['checkout-actions']}>
+                <button
+                  type="button"
+                  className={s['btn-whatsapp']}
+                  onClick={submitQuoteWhatsApp}
+                  disabled={isProcessing}
+                >
+                  <MessageCircle size={20} aria-hidden="true" />
+                  Submit Quote on WhatsApp
+                </button>
+                <button type="submit" className={s['btn-place-order']} disabled={isProcessing}>
+                  {isProcessing ? (
+                    <>
+                      <span className={s.spinner}></span>
+                      Processing...
+                    </>
+                  ) : (
+                    `Checkout — ${money(total)}`
+                  )}
+                </button>
+              </div>
+              <p className={s['actions-note']}>
+                Prefer to talk first? Send your cart as a quote on WhatsApp and we&apos;ll reply
+                fast — or check out now and we&apos;ll email your confirmation.
+              </p>
             </form>
           </div>
 

@@ -585,3 +585,59 @@
     transform: none;
   }
 }
+
+/* --- Two-button checkout actions (WhatsApp quote + Checkout) --- */
+.checkout-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.checkout-actions .btn-place-order,
+.checkout-actions .btn-whatsapp {
+  flex: 1;
+  width: auto;
+}
+
+.btn-whatsapp {
+  background: #25d366;
+  color: #fff;
+  border: 2px solid #1da851;
+  padding: 1rem 1.25rem;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.btn-whatsapp:hover:not(:disabled) {
+  background: #1ebe5d;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.35);
+}
+
+.btn-whatsapp:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.actions-note {
+  margin: 0.85rem 0 0;
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  .checkout-actions {
+    flex-direction: column;
+  }
+}
