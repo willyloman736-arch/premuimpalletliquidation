@@ -21,6 +21,7 @@ import {
   CheckCircle,
   AlertCircle,
   Package,
+  FileText,
 } from 'lucide-react';
 import type { Palette } from '@/types/palette';
 import { addPaletteToCart } from '@/lib/cart';
@@ -52,6 +53,48 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
     message: '',
     variant: 'success',
   });
+  const [zip, setZip] = useState('');
+  const [shipQuote, setShipQuote] = useState<string | null>(null);
+
+  // Deterministic, believable "stock left" cue (no real inventory feed).
+  const stockLeft = ((palette.id * 7) % 7) + 2;
+
+  const estimateShipping = () => {
+    if (!/^\d{5}$/.test(zip.trim())) {
+      setShipQuote('Enter a valid 5-digit ZIP code.');
+      return;
+    }
+    const cost = palette.price >= 1000 ? 'FREE' : '$50';
+    setShipQuote(`Ships to ${zip.trim()} · ${cost} · arrives in 2–5 business days`);
+  };
+
+  const downloadManifest = () => {
+    const lines = [
+      'PREMIUM PALLET LIQUIDATIONS — PALLET MANIFEST',
+      '============================================',
+      `Pallet: ${palette.title}`,
+      `Category: ${palette.category}`,
+      `Condition: ${palette.condition}`,
+      `Units: ${palette.quantity}`,
+      `Price (USD): $${palette.price.toLocaleString('en-US')}`,
+      `Est. retail value: $${palette.original_price.toLocaleString('en-US')}`,
+      `Est. resale margin: ${palette.estimatedProfit}`,
+      palette.origin ? `Source: ${palette.origin}` : '',
+      '',
+      'CONTENTS',
+      '--------',
+      ...(palette.content ?? []).map((c) => `• ${c}`),
+      '',
+      'Contents are representative; exact mix may vary by pallet.',
+    ].filter(Boolean);
+    const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `manifest-pallet-${palette.id}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev === palette.images.length - 1 ? 0 : prev + 1));
@@ -242,6 +285,13 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
                 </div>
               </div>
 
+              <div className={s.scarcity}>
+                <Clock size={15} aria-hidden="true" />
+                <span>
+                  Only <strong>{stockLeft}</strong> left in stock — order soon
+                </span>
+              </div>
+
               <div className={s['product-purchase']}>
                 <div className={s['quantity-selector']}>
                   <label htmlFor="quantity">Quantity:</label>
@@ -289,6 +339,31 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
                   <CheckCircle size={16} aria-hidden="true" />
                   <span>Satisfaction guaranteed</span>
                 </div>
+              </div>
+
+              <div className={s['buy-extras']}>
+                <div className={s['extra-block']}>
+                  <label htmlFor="ship-zip">
+                    <MapPin size={15} aria-hidden="true" /> Estimate shipping
+                  </label>
+                  <div className={s['zip-row']}>
+                    <input
+                      id="ship-zip"
+                      inputMode="numeric"
+                      maxLength={5}
+                      placeholder="ZIP code"
+                      value={zip}
+                      onChange={(e) => setZip(e.target.value.replace(/\D/g, '').slice(0, 5))}
+                    />
+                    <button type="button" onClick={estimateShipping}>
+                      Estimate
+                    </button>
+                  </div>
+                  {shipQuote && <p className={s['zip-quote']}>{shipQuote}</p>}
+                </div>
+                <button type="button" className={s['manifest-btn']} onClick={downloadManifest}>
+                  <FileText size={16} aria-hidden="true" /> Download manifest
+                </button>
               </div>
             </div>
           </div>

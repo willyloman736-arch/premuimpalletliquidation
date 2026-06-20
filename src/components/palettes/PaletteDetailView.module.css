@@ -743,3 +743,138 @@
     transform: none;
   }
 }
+
+/* --- Product-depth additions --- */
+.product-gallery {
+  top: 7.5rem;
+}
+
+.scarcity {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--amber-deep);
+  background: var(--amber-soft);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  color: var(--fg);
+}
+
+.scarcity svg {
+  color: var(--amber);
+}
+
+.scarcity strong {
+  color: var(--amber);
+  font-family: var(--font-mono);
+}
+
+.buy-extras {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+.extra-block label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--fg);
+  margin-bottom: 0.5rem;
+}
+
+.extra-block label svg {
+  color: var(--amber);
+}
+
+.zip-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.zip-row input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--glass-border);
+  border-radius: 6px;
+  background: var(--glass);
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.zip-row input::placeholder {
+  color: var(--fg-soft);
+}
+
+.zip-row input:focus {
+  outline: none;
+  border-color: var(--amber);
+}
+
+.zip-row button {
+  padding: 0.7rem 1.1rem;
+  border: none;
+  border-radius: 6px;
+  background: var(--amber);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.zip-row button:hover {
+  background: var(--amber-bright);
+}
+
+.zip-quote {
+  margin: 0.6rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--amber);
+}
+
+.manifest-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.manifest-btn:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.manifest-btn svg {
+  color: var(--amber);
+}
