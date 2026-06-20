@@ -4,7 +4,7 @@
 
 /* --- Hero --- */
 .hero-section {
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: #fff;
   padding: 4.5rem 0;
   position: relative;
@@ -41,7 +41,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--ink-800);
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--ink-700);
   padding: 0.6rem 1rem;
   border-radius: 4px;
@@ -95,7 +95,7 @@
 }
 
 .stat-card {
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
   border-radius: 6px;
   padding: 2rem 1.5rem;
@@ -105,8 +105,8 @@
 
 .stat-card:hover {
   transform: translateY(-5px);
-  border-color: var(--ink);
-  box-shadow: 8px 8px 0 var(--ink);
+  border-color: var(--fg);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
 .stat-card svg {
@@ -117,7 +117,7 @@
 .stat-card h3 {
   font-family: var(--font-mono);
   font-size: 2.4rem;
-  color: var(--ink);
+  color: var(--fg);
   margin-bottom: 0.4rem;
 }
 
@@ -145,7 +145,7 @@
 
 .story-text h2 {
   font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-  color: var(--ink);
+  color: var(--fg);
   margin: 0.75rem 0 1.5rem;
 }
 
@@ -168,7 +168,7 @@
   align-items: flex-start;
   gap: 1rem;
   padding: 1rem;
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
   border-left: 3px solid var(--amber);
   border-radius: 4px;
@@ -181,7 +181,7 @@
 }
 
 .highlight h4 {
-  color: var(--ink);
+  color: var(--fg);
   margin-bottom: 0.25rem;
 }
 
@@ -197,7 +197,7 @@
 }
 
 .image-placeholder {
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--amber);
   padding: 3.5rem 2.5rem;
   border-radius: 6px;
@@ -226,7 +226,7 @@
 
 .section-header h2 {
   font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-  color: var(--ink);
+  color: var(--fg);
   margin-bottom: 0.6rem;
 }
 
@@ -248,7 +248,7 @@
 }
 
 .value-card {
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
   border-radius: 6px;
   padding: 2rem 1.75rem;
@@ -258,8 +258,8 @@
 
 .value-card:hover {
   transform: translateY(-5px);
-  border-color: var(--ink);
-  box-shadow: 8px 8px 0 var(--ink);
+  border-color: var(--fg);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
 .value-icon {
@@ -276,7 +276,7 @@
 
 .value-card h3 {
   font-size: 1.3rem;
-  color: var(--ink);
+  color: var(--fg);
   margin-bottom: 0.75rem;
 }
 
@@ -325,14 +325,14 @@
 }
 
 .timeline-content {
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   padding: 1.5rem;
   border: 1px solid var(--line);
   border-radius: 6px;
 }
 
 .timeline-content h3 {
-  color: var(--ink);
+  color: var(--fg);
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
 }
@@ -345,7 +345,7 @@
 
 .timeline-year {
   display: inline-block;
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--amber);
   font-family: var(--font-mono);
   font-weight: 700;
@@ -390,7 +390,7 @@
 .cta-content h2 {
   font-size: clamp(2rem, 4vw, 3rem);
   margin-bottom: 1rem;
-  color: var(--ink);
+  color: var(--fg);
 }
 
 .cta-content p {
@@ -426,23 +426,23 @@
 }
 
 .btn-primary {
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--amber);
-  box-shadow: 5px 5px 0 rgba(10, 10, 10, 0.2);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
 }
 
 .btn-primary:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 7px 7px 0 rgba(10, 10, 10, 0.25);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--ink);
+  color: var(--fg);
 }
 
 .btn-secondary:hover {
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--amber);
 }
 

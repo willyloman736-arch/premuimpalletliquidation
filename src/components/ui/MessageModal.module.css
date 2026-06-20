@@ -18,11 +18,11 @@
   position: relative;
   width: 100%;
   max-width: 420px;
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--ink);
   border-radius: 6px;
   padding: 28px 24px 24px;
-  box-shadow: 10px 10px 0 var(--ink);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
   text-align: center;
 }
 
@@ -31,8 +31,8 @@
   top: 12px;
   right: 12px;
   border: none;
-  background: #f1f5f9;
-  color: #64748b;
+  background: rgba(255,255,255,0.1);
+  color: #9fb6b0;
   width: 40px;
   height: 40px;
   border-radius: 10px;
@@ -44,8 +44,8 @@
 }
 
 .mm-close:hover {
-  background: #e2e8f0;
-  color: #1e293b;
+  background: rgba(255,255,255,0.18);
+  color: #eafaf7;
 }
 
 .mm-icon-wrap {
@@ -62,14 +62,14 @@
   margin: 0 0 12px;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #1e293b;
+  color: #eafaf7;
 }
 
 .mm-message {
   margin: 0 0 24px;
   font-size: 1rem;
   line-height: 1.55;
-  color: #475569;
+  color: #c7d6d2;
   white-space: pre-wrap;
 }
 
@@ -86,12 +86,12 @@
   cursor: pointer;
   background: var(--amber);
   color: var(--ink);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
   transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
 }
 
 .mm-btn:hover {
   background: var(--amber-bright);
   transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--ink);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }

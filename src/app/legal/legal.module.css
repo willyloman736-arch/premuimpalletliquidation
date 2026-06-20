@@ -5,7 +5,7 @@
 }
 
 .legal-page h1 {
-  color: var(--ink);
+  color: var(--fg);
   font-size: clamp(1.9rem, 4vw, 2.6rem);
   font-weight: 700;
   text-transform: uppercase;
@@ -15,7 +15,7 @@
 }
 
 .legal-page h2 {
-  color: var(--ink);
+  color: var(--fg);
   font-size: 1.4rem;
   font-weight: 600;
   text-transform: none;
@@ -26,7 +26,7 @@
 }
 
 .legal-page h3 {
-  color: var(--ink-700);
+  color: var(--fg-muted);
   font-size: 1.1rem;
   font-weight: 600;
   margin-top: 1.4rem;
@@ -57,7 +57,7 @@
 }
 
 .legal-page strong {
-  color: var(--ink);
+  color: var(--fg);
 }
 
 .legal-page .updated {
@@ -81,7 +81,7 @@
 }
 
 .legal-page th {
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--amber);
   padding: 12px;
   text-align: left;

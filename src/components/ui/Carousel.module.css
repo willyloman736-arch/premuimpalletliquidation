@@ -1,0 +1,94 @@
+.carousel {
+  position: relative;
+}
+
+.track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0.5rem 0.25rem 1rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.track > * {
+  flex: 0 0 clamp(270px, 80vw, 345px);
+  scroll-snap-align: start;
+}
+
+.arrow {
+  position: absolute;
+  top: 38%;
+  z-index: 5;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--fg);
+  background: var(--glass-2);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  transition: all 0.2s ease;
+}
+
+.arrow:hover:not(:disabled) {
+  color: var(--ink);
+  background: var(--amber);
+  border-color: var(--amber);
+  transform: scale(1.08);
+}
+
+.arrow:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.prev {
+  left: -14px;
+}
+
+.next {
+  right: -14px;
+}
+
+.progress {
+  height: 3px;
+  width: 100%;
+  max-width: 240px;
+  margin: 0.75rem auto 0;
+  background: var(--glass-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  background: var(--amber);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+@media (max-width: 560px) {
+  .prev {
+    left: 2px;
+  }
+  .next {
+    right: 2px;
+  }
+  .arrow {
+    width: 40px;
+    height: 40px;
+  }
+}

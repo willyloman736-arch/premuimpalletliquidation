@@ -16,8 +16,10 @@ import {
   Zap,
 } from 'lucide-react';
 import type { Palette } from '@/types/palette';
+import { categories } from '@/data/palettes';
 import { useInView } from '@/lib/useInView';
 import PaletteCard from '@/components/palettes/PaletteCard';
+import Carousel from '@/components/ui/Carousel';
 import s from './Home.module.css';
 
 const backgroundImages = [
@@ -263,14 +265,23 @@ export default function HomeView({ featured }: { featured: Palette[] }) {
           <div className={s['section-header']}>
             <span className={`eyebrow ${s['section-eyebrow']}`}>This Week&apos;s Best Margins</span>
             <h2>Featured Pallets</h2>
-            <p>Hand-picked truckloads with the strongest resale potential right now.</p>
+            <p>Swipe through hand-picked truckloads with the strongest resale potential right now.</p>
+            <nav className={s['category-nav']} aria-label="Shop by category">
+              {categories
+                .filter((c) => c !== 'All')
+                .map((c) => (
+                  <Link key={c} href="/pallets" className={s['category-chip']}>
+                    {c}
+                  </Link>
+                ))}
+            </nav>
           </div>
 
-          <div className={s['palettes-grid']}>
+          <Carousel ariaLabel="Featured pallets">
             {featured.map((palette, index) => (
               <PaletteCard key={palette.id} palette={palette} index={index} priority={index < 2} />
             ))}
-          </div>
+          </Carousel>
 
           <div className={s['section-footer']}>
             <Link href="/pallets" className={s['btn-view-all']}>

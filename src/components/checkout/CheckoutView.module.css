@@ -32,7 +32,7 @@
 }
 
 .checkout-header h1 {
-  color: var(--ink);
+  color: var(--fg);
   font-size: clamp(1.8rem, 3.5vw, 2.4rem);
   margin: 0;
 }
@@ -46,7 +46,7 @@
 }
 
 .checkout-section {
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
   padding: 1.75rem;
   border-radius: var(--radius-lg);
@@ -54,7 +54,7 @@
 }
 
 .checkout-section h3 {
-  color: var(--ink);
+  color: var(--fg);
   font-size: 1.25rem;
   margin-bottom: 1.25rem;
 }
@@ -71,7 +71,7 @@
 
 .form-group label {
   display: block;
-  color: var(--ink);
+  color: var(--fg);
   font-family: var(--font-display);
   font-weight: 600;
   text-transform: uppercase;
@@ -88,7 +88,7 @@
   border-radius: 4px;
   font-size: 1rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
 }
 
 .form-group select {
@@ -114,7 +114,7 @@
 }
 
 .payment-method:hover {
-  border-color: var(--ink);
+  border-color: var(--fg);
 }
 
 .payment-method.selected {
@@ -140,7 +140,7 @@
 }
 
 .payment-info h4 {
-  color: var(--ink);
+  color: var(--fg);
   margin-bottom: 0.2rem;
 }
 
@@ -150,7 +150,7 @@
 }
 
 .popular-badge {
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--amber);
   font-family: var(--font-mono);
   padding: 0.25rem 0.6rem;
@@ -225,7 +225,7 @@
   padding: 1rem;
   border: 1px solid var(--line);
   border-radius: 6px;
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
 }
 
 .stripe-loading-banner {
@@ -258,7 +258,7 @@
 .btn-place-order:hover:not(:disabled) {
   background: var(--amber-bright);
   transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--ink);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
 .btn-place-order:disabled {
@@ -271,7 +271,7 @@
   height: 20px;
   border: 2px solid rgba(10, 10, 10, 0.3);
   border-radius: 50%;
-  border-top-color: var(--ink);
+  border-top-color: var(--fg);
   animation: checkout-spin 0.9s linear infinite;
 }
 
@@ -288,14 +288,14 @@
 }
 
 .summary-card {
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
   padding: 1.75rem;
   border-radius: var(--radius-lg);
 }
 
 .summary-card h3 {
-  color: var(--ink);
+  color: var(--fg);
   margin-bottom: 1.25rem;
 }
 
@@ -339,7 +339,7 @@
   font-family: var(--font-mono);
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--fg);
 }
 
 .security-badges {
@@ -377,7 +377,7 @@
 }
 
 .empty-content h2 {
-  color: var(--ink);
+  color: var(--fg);
   font-size: 2rem;
   margin: 1.25rem 0 0.75rem;
 }
@@ -405,7 +405,7 @@
 .btn-primary:hover {
   background: var(--amber-bright);
   transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--ink);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
 /* --- Order confirmation --- */
@@ -419,7 +419,7 @@
   max-width: 820px;
   margin: 0 auto;
   text-align: center;
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   padding: 3.5rem;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
@@ -431,7 +431,7 @@
 }
 
 .confirmation-content h1 {
-  color: var(--ink);
+  color: var(--fg);
   font-size: clamp(2rem, 4vw, 2.6rem);
   margin-bottom: 0.75rem;
 }
@@ -445,7 +445,7 @@
 
 .confirmation-total-line {
   font-family: var(--font-mono);
-  color: var(--ink);
+  color: var(--fg);
   font-size: 1.05rem;
   margin: 0 0 1.5rem;
 }
@@ -475,7 +475,7 @@
   font-size: 1.2rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--fg);
   margin-bottom: 0.85rem;
 }
 
@@ -486,7 +486,7 @@
 .customer-address p,
 .customer-contact p {
   margin: 0.3rem 0;
-  color: var(--ink-700);
+  color: var(--fg-muted);
   line-height: 1.5;
 }
 
@@ -502,7 +502,7 @@
   align-items: flex-start;
   gap: 1rem;
   padding: 0.75rem 0;
-  color: var(--ink-700);
+  color: var(--fg-muted);
   border-bottom: 1px solid var(--line);
 }
 
@@ -511,7 +511,7 @@
 }
 
 .step-number {
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--amber);
   width: 28px;
   height: 28px;
@@ -534,8 +534,8 @@
 }
 
 .btn-secondary {
-  background: #fff;
-  color: var(--ink);
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  color: var(--fg);
   border: 2px solid var(--ink);
   padding: 0.9rem 1.75rem;
   border-radius: 4px;
@@ -554,7 +554,7 @@
 .confirmation-actions .btn-primary:hover,
 .confirmation-actions .btn-secondary:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
 /* --- Responsive --- */

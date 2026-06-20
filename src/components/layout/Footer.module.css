@@ -1,5 +1,5 @@
 .footer {
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--fg-invert);
   position: relative;
 }
@@ -11,7 +11,7 @@
 }
 
 .footer-features {
-  background: var(--ink-900);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   padding: 2.75rem 0;
   border-bottom: 1px solid var(--ink-700);
 }
@@ -27,7 +27,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1.25rem;
-  background: var(--ink-800);
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--ink-700);
   border-radius: 4px;
   transition: border-color 0.25s ease, transform 0.25s ease;
@@ -137,7 +137,7 @@
   justify-content: center;
   width: 42px;
   height: 42px;
-  background: var(--ink-800);
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--ink-700);
   border-radius: 4px;
   color: var(--fg-invert-muted);
@@ -247,7 +247,7 @@
   padding: 0.7rem 0.9rem;
   border: 1px solid var(--ink-600);
   border-radius: 4px;
-  background: var(--ink-900);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: #fff;
   font-size: 0.9rem;
 }
@@ -283,7 +283,7 @@
 }
 
 .footer-bottom {
-  background: var(--ink-900);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border-top: 1px solid var(--ink-700);
   padding: 1.4rem 0;
 }
@@ -306,7 +306,7 @@
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.05em;
-  background: var(--ink-800);
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--ink-700);
   padding: 0.3rem 0.7rem;
   border-radius: 4px;

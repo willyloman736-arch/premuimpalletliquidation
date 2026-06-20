@@ -1,5 +1,5 @@
 .palette-card {
-  background: var(--white);
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -11,8 +11,8 @@
 
 .palette-card:hover {
   transform: translateY(-6px);
-  border-color: var(--ink);
-  box-shadow: 10px 10px 0 var(--ink);
+  border-color: var(--fg);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
 .palette-image {
@@ -54,8 +54,8 @@
   padding: 4px 9px;
   border-radius: 3px;
   border: 1px solid var(--ink);
-  background: var(--white);
-  color: var(--ink);
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  color: var(--fg);
   width: fit-content;
 }
 
@@ -65,12 +65,12 @@
 }
 
 .badge.grade {
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--amber);
 }
 
 .badge.limited {
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: #b91c1c;
   border-color: #b91c1c;
   animation: card-pulse 2s infinite;
@@ -123,7 +123,7 @@
 .palette-content h3 {
   font-size: 1.15rem;
   margin-bottom: 0.6rem;
-  color: var(--ink);
+  color: var(--fg);
   letter-spacing: 0;
 }
 
@@ -170,7 +170,7 @@
   font-family: var(--font-mono);
   font-size: 1.7rem;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--fg);
 }
 
 .price-original {
@@ -182,7 +182,7 @@
 
 .price-discount {
   font-family: var(--font-mono);
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--amber);
   padding: 0.2rem 0.55rem;
   border-radius: 3px;
@@ -220,11 +220,11 @@
 .btn-add-cart:hover {
   background: var(--amber-bright);
   transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
 .btn-details {
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--amber);
   border: 2px solid var(--ink);
   padding: 0.7rem;

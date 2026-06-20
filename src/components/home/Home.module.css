@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   padding: 4rem 0 5rem;
 }
 
@@ -43,7 +43,39 @@
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.82) 100%);
+  background: linear-gradient(160deg, rgba(6, 32, 29, 0.78) 0%, rgba(5, 39, 35, 0.6) 45%, rgba(6, 47, 51, 0.82) 100%);
+}
+
+.category-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.category-chip {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  transition: all 0.2s ease;
+}
+
+.category-chip:hover {
+  color: var(--ink);
+  background: var(--amber);
+  border-color: var(--amber);
+  transform: translateY(-2px);
 }
 
 .hero-content {
@@ -222,7 +254,7 @@
 
 .section-header h2 {
   font-size: clamp(2rem, 4vw, 3rem);
-  color: var(--ink);
+  color: var(--fg);
   margin-bottom: 0.75rem;
 }
 
@@ -264,7 +296,7 @@
 }
 
 .video-card {
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
   border-radius: 6px;
   overflow: hidden;
@@ -274,8 +306,8 @@
 
 .video-card:hover {
   transform: translateY(-6px);
-  border-color: var(--ink);
-  box-shadow: 10px 10px 0 var(--ink);
+  border-color: var(--fg);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
 .video-card.playing {
@@ -346,7 +378,7 @@
 .video-content h3 {
   font-size: 1.1rem;
   margin-bottom: 0.4rem;
-  color: var(--ink);
+  color: var(--fg);
   letter-spacing: 0;
 }
 
@@ -359,7 +391,7 @@
 /* ---------------------------------------------------------------- Stats --- */
 .stats-section {
   padding: 0 0 0;
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   position: relative;
 }
 
@@ -374,7 +406,7 @@
 }
 
 .stat-card {
-  background: var(--ink-800);
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--ink-700);
   border-radius: 6px;
   padding: 2rem 1.5rem;
@@ -435,7 +467,7 @@
 
 .btn-view-all {
   background: transparent;
-  color: var(--ink);
+  color: var(--fg);
   border: 2px solid var(--ink);
   padding: 1rem 2rem;
   border-radius: 4px;
@@ -454,13 +486,13 @@
   background: var(--amber);
   border-color: var(--ink);
   transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--ink);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
 /* --------------------------------------------------------- Testimonials --- */
 .testimonials-section {
   padding: 6rem 0;
-  background: var(--ink-900);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: #fff;
   border-top: 1px solid var(--ink-700);
 }
@@ -472,7 +504,7 @@
 }
 
 .testimonial-card {
-  background: var(--ink-800);
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--ink-700);
   border-radius: 6px;
   padding: 1.75rem;
@@ -574,7 +606,7 @@
 .cta-inner h2 {
   font-size: clamp(2.2rem, 5vw, 3.4rem);
   margin-bottom: 1rem;
-  color: var(--ink);
+  color: var(--fg);
 }
 
 .cta-inner p {
@@ -609,23 +641,23 @@
 }
 
 .btn-cta.primary {
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--amber);
-  box-shadow: 5px 5px 0 rgba(10, 10, 10, 0.2);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
 }
 
 .btn-cta.primary:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 7px 7px 0 rgba(10, 10, 10, 0.25);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
 }
 
 .btn-cta.secondary {
   background: transparent;
-  color: var(--ink);
+  color: var(--fg);
 }
 
 .btn-cta.secondary:hover {
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--amber);
 }
 

@@ -7,7 +7,7 @@
 
 /* --- Breadcrumb --- */
 .breadcrumb {
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   padding: 1rem 0;
   border-bottom: 1px solid var(--line);
 }
@@ -79,7 +79,7 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  color: var(--ink);
+  color: var(--fg);
 }
 
 .nav-btn:hover {
@@ -142,18 +142,18 @@
   padding: 5px 10px;
   border-radius: 3px;
   border: 1px solid var(--ink);
-  background: #fff;
-  color: var(--ink);
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  color: var(--fg);
   width: fit-content;
 }
 
 .badge.featured { background: var(--amber); color: var(--ink); }
-.badge.grade { background: var(--ink); color: var(--amber); }
-.badge.limited { background: #fff; color: #b91c1c; border-color: #b91c1c; }
+.badge.grade { background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); color: var(--amber); }
+.badge.limited { background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); color: #b91c1c; border-color: #b91c1c; }
 
 /* --- Product info --- */
 .product-info {
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: 2.25rem;
@@ -171,7 +171,7 @@
 
 .product-header h1 {
   font-size: clamp(1.6rem, 3vw, 2.1rem);
-  color: var(--ink);
+  color: var(--fg);
   line-height: 1.1;
   flex: 1;
   letter-spacing: 0;
@@ -187,7 +187,7 @@
   height: 44px;
   border-radius: 4px;
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--fg-muted);
   cursor: pointer;
   display: flex;
@@ -197,8 +197,8 @@
 }
 
 .action-btn:hover {
-  border-color: var(--ink);
-  color: var(--ink);
+  border-color: var(--fg);
+  color: var(--fg);
 }
 
 .action-btn.liked {
@@ -256,14 +256,14 @@
 .highlight-item span {
   font-family: var(--font-mono);
   font-size: 0.82rem;
-  color: var(--ink);
+  color: var(--fg);
 }
 
 /* --- Pricing --- */
 .product-pricing {
   margin-bottom: 2rem;
   padding: 1.4rem;
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border-radius: var(--radius-lg);
 }
 
@@ -325,7 +325,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  color: var(--ink);
+  color: var(--fg);
 }
 
 .quantity-controls {
@@ -334,7 +334,7 @@
   border: 1px solid var(--ink);
   border-radius: 4px;
   overflow: hidden;
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
 }
 
 .quantity-controls button {
@@ -342,7 +342,7 @@
   height: 40px;
   border: none;
   background: var(--concrete-200);
-  color: var(--ink);
+  color: var(--fg);
   cursor: pointer;
   font-weight: 700;
   font-size: 1.1rem;
@@ -362,7 +362,7 @@
   padding: 0 1.5rem;
   font-family: var(--font-mono);
   font-weight: 700;
-  color: var(--ink);
+  color: var(--fg);
   min-width: 56px;
   text-align: center;
 }
@@ -396,13 +396,13 @@
 .btn-add-to-cart:hover {
   background: var(--amber-bright);
   transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--ink);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
 .total-price {
   font-family: var(--font-mono);
   font-size: 1rem;
-  color: var(--ink);
+  color: var(--fg);
   white-space: nowrap;
 }
 
@@ -427,7 +427,7 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.85rem;
-  color: var(--ink);
+  color: var(--fg);
   font-weight: 500;
 }
 
@@ -435,7 +435,7 @@
 
 /* --- Tabs --- */
 .product-tabs {
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   padding: 3rem 0;
   border-top: 1px solid var(--line);
 }
@@ -465,9 +465,9 @@
   position: relative;
 }
 
-.tab-btn:hover { color: var(--ink); }
+.tab-btn:hover { color: var(--fg); }
 
-.tab-btn.active { color: var(--ink); }
+.tab-btn.active { color: var(--fg); }
 
 .tab-btn.active::after {
   content: '';
@@ -488,13 +488,13 @@
 
 .tab-content h3 {
   font-size: 1.4rem;
-  color: var(--ink);
+  color: var(--fg);
   margin-bottom: 1rem;
   letter-spacing: 0;
 }
 
 .tab-content h4 {
-  color: var(--ink);
+  color: var(--fg);
   margin: 1.25rem 0 0.5rem 0;
 }
 
@@ -526,7 +526,7 @@
   align-items: flex-start;
   gap: 1rem;
   padding: 1.25rem;
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
   border-left: 3px solid var(--amber);
   border-radius: 4px;
@@ -541,7 +541,7 @@
 
 .content-item h4,
 .delivery-item h4 {
-  color: var(--ink);
+  color: var(--fg);
   margin: 0 0 0.4rem 0;
   font-size: 1rem;
 }
@@ -565,7 +565,7 @@
 }
 
 .content-warning svg { color: var(--amber-deep); flex-shrink: 0; margin-top: 0.15rem; }
-.content-warning p { color: var(--ink); margin: 0; font-size: 0.92rem; }
+.content-warning p { color: var(--fg); margin: 0; font-size: 0.92rem; }
 
 /* --- Related --- */
 .related-section {
@@ -576,7 +576,7 @@
 .related-section h2 {
   text-align: center;
   font-size: clamp(1.8rem, 4vw, 2.5rem);
-  color: var(--ink);
+  color: var(--fg);
   margin-bottom: 2.5rem;
 }
 
@@ -587,7 +587,7 @@
 }
 
 .related-card {
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -596,8 +596,8 @@
 
 .related-card:hover {
   transform: translateY(-5px);
-  border-color: var(--ink);
-  box-shadow: 8px 8px 0 var(--ink);
+  border-color: var(--fg);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
 .related-image {
@@ -641,7 +641,7 @@
 .related-content { padding: 1.25rem; }
 
 .related-content h4 {
-  color: var(--ink);
+  color: var(--fg);
   margin-bottom: 0.75rem;
   font-size: 1.05rem;
 }
@@ -657,7 +657,7 @@
   font-family: var(--font-mono);
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--fg);
 }
 
 .related-price .original {
@@ -688,7 +688,7 @@
 }
 
 .palette-not-found svg { color: var(--concrete); margin-bottom: 1.5rem; }
-.palette-not-found h2 { font-size: 2rem; color: var(--ink); margin-bottom: 1rem; }
+.palette-not-found h2 { font-size: 2rem; color: var(--fg); margin-bottom: 1rem; }
 .palette-not-found p { color: var(--fg-muted); font-size: 1.1rem; margin-bottom: 2rem; }
 
 .btn-back {
@@ -710,7 +710,7 @@
 .btn-back:hover {
   background: var(--amber-bright);
   transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--ink);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
 /* --- Responsive --- */

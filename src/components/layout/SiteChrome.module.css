@@ -19,26 +19,26 @@
   bottom: 6.25rem;
   background: var(--amber);
   color: var(--ink);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
 .call-btn:hover {
   background: var(--amber-bright);
   transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--ink);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
 .scroll-top-btn {
   bottom: 1.75rem;
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--amber);
-  box-shadow: 4px 4px 0 rgba(10, 10, 10, 0.25);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
 }
 
 .scroll-top-btn:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 rgba(10, 10, 10, 0.3);
-  background: var(--ink-800);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
 }
 
 @keyframes fab-in {

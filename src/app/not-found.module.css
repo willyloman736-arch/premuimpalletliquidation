@@ -3,7 +3,7 @@
   min-height: calc(100vh - 76px);
   display: flex;
   align-items: center;
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   padding: 4rem 0;
 }
 
@@ -65,7 +65,7 @@
 }
 
 .actions :global(.btn-secondary):hover {
-  background: #fff;
-  color: var(--ink);
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  color: var(--fg);
   border-color: #fff;
 }

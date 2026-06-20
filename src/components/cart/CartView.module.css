@@ -16,7 +16,7 @@
 }
 
 .empty-cart h2 {
-  color: var(--ink);
+  color: var(--fg);
   font-size: 2rem;
   margin-bottom: 0.75rem;
 }
@@ -50,7 +50,7 @@
 .btn-primary:hover {
   background: var(--amber-bright);
   transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--ink);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
 /* --- Header --- */
@@ -86,13 +86,13 @@
 }
 
 .cart-header h1 {
-  color: var(--ink);
+  color: var(--fg);
   font-size: clamp(1.8rem, 3.5vw, 2.4rem);
   margin: 0;
 }
 
 .clear-cart-btn {
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: #b91c1c;
   border: 1px solid #b91c1c;
   padding: 0.6rem 1.1rem;
@@ -129,7 +129,7 @@
 }
 
 .cart-item {
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
   padding: 1.5rem;
   border-radius: var(--radius-lg);
@@ -141,7 +141,7 @@
 }
 
 .cart-item:hover {
-  border-color: var(--ink);
+  border-color: var(--fg);
 }
 
 .item-image {
@@ -151,7 +151,7 @@
 .image-placeholder {
   width: 80px;
   height: 80px;
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -175,7 +175,7 @@
 }
 
 .item-details h3 {
-  color: var(--ink);
+  color: var(--fg);
   font-size: 1.1rem;
   margin-bottom: 0.3rem;
   letter-spacing: 0;
@@ -224,7 +224,7 @@
 }
 
 .qty-btn {
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
   border-radius: 3px;
   width: 32px;
@@ -269,7 +269,7 @@
   font-family: var(--font-mono);
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--fg);
 }
 
 .remove-btn {
@@ -293,14 +293,14 @@
 }
 
 .summary-card {
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--line);
   padding: 1.75rem;
   border-radius: var(--radius-lg);
 }
 
 .summary-card h3 {
-  color: var(--ink);
+  color: var(--fg);
   font-size: 1.3rem;
   margin-bottom: 1.5rem;
   text-align: center;
@@ -333,7 +333,7 @@
 }
 
 .promo-btn {
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   color: var(--amber);
   border: none;
   padding: 0.7rem 0.85rem;
@@ -343,7 +343,7 @@
 }
 
 .promo-btn:hover {
-  background: var(--ink-800);
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
 }
 
 .promo-message {
@@ -409,7 +409,7 @@
   font-family: var(--font-mono);
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--fg);
   padding-top: 1rem;
   border-top: 2px solid var(--ink);
 }
@@ -438,7 +438,7 @@
 .checkout-btn:hover {
   background: var(--amber-bright);
   transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--ink);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
 .guarantees {
@@ -472,11 +472,11 @@
 }
 
 .modal {
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   padding: 1.75rem;
   border: 1px solid var(--ink);
   border-radius: 6px;
-  box-shadow: 10px 10px 0 var(--ink);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
   max-width: 400px;
   width: 100%;
 }
@@ -489,7 +489,7 @@
 }
 
 .modal-header h3 {
-  color: var(--ink);
+  color: var(--fg);
   margin: 0;
   font-size: 1.2rem;
 }
@@ -529,8 +529,8 @@
 }
 
 .btn-secondary {
-  background: #fff;
-  color: var(--ink);
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  color: var(--fg);
 }
 
 .btn-secondary:hover {

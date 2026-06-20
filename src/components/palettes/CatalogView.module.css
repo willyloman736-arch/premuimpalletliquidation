@@ -6,7 +6,7 @@
 .page-header {
   position: relative;
   padding: 4.5rem 0 3.5rem;
-  background: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   text-align: center;
 }
 
@@ -115,7 +115,7 @@
   border: 1px solid var(--line);
   border-radius: 4px;
   font-size: 1rem;
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -135,7 +135,7 @@
   padding: 0.7rem 1rem;
   border: 1px solid var(--line);
   border-radius: 4px;
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   font-size: 0.95rem;
   font-family: var(--font-sans);
   cursor: pointer;
@@ -152,13 +152,13 @@
   border-radius: 4px;
   overflow: hidden;
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
 }
 
 .view-btn {
   padding: 0.7rem;
   border: none;
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex;
@@ -223,7 +223,7 @@
 .no-results h3 {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
-  color: var(--ink);
+  color: var(--fg);
 }
 
 /* --- Pagination --- */
@@ -247,10 +247,10 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.7rem 1.4rem;
-  background: #fff;
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--ink);
   border-radius: 4px;
-  color: var(--ink);
+  color: var(--fg);
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -263,7 +263,7 @@
 .pagination-btn:hover:not(.disabled) {
   background: var(--amber);
   transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
 .pagination-btn.disabled {
@@ -283,8 +283,8 @@
   height: 44px;
   border: 1px solid var(--line);
   border-radius: 4px;
-  background: #fff;
-  color: var(--ink);
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  color: var(--fg);
   font-family: var(--font-mono);
   font-weight: 700;
   cursor: pointer;
@@ -295,12 +295,12 @@
 }
 
 .pagination-number:hover {
-  border-color: var(--ink);
+  border-color: var(--fg);
 }
 
 .pagination-number.active {
-  background: var(--ink);
-  border-color: var(--ink);
+  background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  border-color: var(--fg);
   color: var(--amber);
 }
 

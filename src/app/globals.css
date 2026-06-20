@@ -1,18 +1,15 @@
 @import 'tailwindcss';
 
 /* ==========================================================================
-   Premium Pallet Liquidations — Industrial design system
-   Aesthetic: amber + black, condensed display type, utilitarian / warehouse.
+   Premium Pallet Liquidations — Aurora dark glassmorphism
+   Dark teal/cyan aurora backdrop, frosted glass surfaces, bright teal accents.
    ========================================================================== */
 @theme {
-  --color-amber: #0d9488;
-  --color-amber-bright: #14b8a6;
-  --color-amber-deep: #0f766e;
-  --color-ink: #0a0a0a;
-  --color-ink-800: #102a26;
-  --color-ink-700: #1a3b35;
-  --color-concrete: #dfeae8;
-  --color-paper: #f7fbfa;
+  --color-amber: #2dd4bf;
+  --color-amber-bright: #5eead4;
+  --color-amber-deep: #14b8a6;
+  --color-ink: #052e29;
+  --color-paper: #06201d;
 
   --font-display: var(--font-oswald), 'Arial Narrow', sans-serif;
   --font-sans: var(--font-inter), system-ui, sans-serif;
@@ -20,59 +17,65 @@
 }
 
 :root {
-  /* Brand */
-  --amber: #0d9488;
-  --amber-bright: #14b8a6;
-  --amber-deep: #0f766e;
-  --amber-soft: #ccfbf1;
+  /* Brand accents (bright teal / cyan) */
+  --amber: #2dd4bf;
+  --amber-bright: #5eead4;
+  --amber-deep: #14b8a6;
+  --amber-soft: rgba(45, 212, 191, 0.14);
+  --cyan: #22d3ee;
 
-  --ink: #0a0a0a;
-  --ink-900: #0a1614;
-  --ink-800: #102a26;
-  --ink-700: #1a3b35;
-  --ink-600: #294f48;
-  --ink-500: #3a655d;
+  /* Dark / ink — kept dark for text on bright accents */
+  --ink: #052e29;
+  --ink-900: rgba(3, 16, 14, 0.55);
+  --ink-800: rgba(255, 255, 255, 0.06);
+  --ink-700: rgba(255, 255, 255, 0.12);
+  --ink-600: rgba(255, 255, 255, 0.16);
+  --ink-500: rgba(255, 255, 255, 0.22);
 
-  --paper: #f7fbfa;
-  --concrete: #dfeae8;
-  --concrete-200: #edf4f2;
-  --white: #ffffff;
+  /* Glass surfaces */
+  --glass: rgba(255, 255, 255, 0.07);
+  --glass-2: rgba(255, 255, 255, 0.11);
+  --glass-dark: rgba(4, 22, 19, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-blur: blur(16px) saturate(1.25);
+  --glass-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
 
-  /* Text */
-  --fg: #0a0a0a;
-  --fg-muted: #52525b;
-  --fg-soft: #71717a;
-  --fg-invert: #f7fbfa;
-  --fg-invert-muted: #a1a1aa;
+  /* Light surfaces now transparent / faint glass (aurora shows through) */
+  --paper: transparent;
+  --concrete: rgba(255, 255, 255, 0.08);
+  --concrete-200: rgba(255, 255, 255, 0.04);
+  --white: rgba(255, 255, 255, 0.07);
 
-  /* Lines & surfaces */
-  --line: #d6d3d1;
-  --line-dark: #294f48;
+  /* Text (light on dark) */
+  --fg: #eafaf7;
+  --fg-muted: rgba(234, 250, 247, 0.66);
+  --fg-soft: rgba(234, 250, 247, 0.42);
+  --fg-invert: #052e29;
+  --fg-invert-muted: rgba(234, 250, 247, 0.7);
 
-  /* Shadows — flat / hard for an industrial feel */
-  --shadow: 0 1px 0 rgba(10, 10, 10, 0.04), 0 2px 8px rgba(10, 10, 10, 0.06);
-  --shadow-lg: 0 12px 30px rgba(10, 10, 10, 0.12);
-  --shadow-hard: 6px 6px 0 var(--ink);
-  --shadow-hard-amber: 6px 6px 0 var(--amber);
+  /* Lines */
+  --line: rgba(255, 255, 255, 0.12);
+  --line-dark: rgba(255, 255, 255, 0.1);
 
-  /* Signature caution-tape stripe */
-  --hazard: repeating-linear-gradient(
-    -45deg,
-    var(--amber) 0 14px,
-    var(--ink) 14px 28px
-  );
+  /* Soft shadows */
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 18px 50px rgba(0, 0, 0, 0.45);
+  --shadow-hard: var(--glass-shadow);
+  --shadow-hard-amber: 0 10px 30px rgba(45, 212, 191, 0.35);
 
-  --radius: 4px;
-  --radius-lg: 8px;
+  /* Accent divider (replaces hazard stripe) */
+  --hazard: linear-gradient(90deg, transparent, var(--amber-deep), var(--cyan), var(--amber-deep), transparent);
 
-  /* Back-compat aliases (older modules still reference the red tokens;
-     they now resolve to the amber/ink industrial palette). */
+  --radius: 10px;
+  --radius-lg: 16px;
+
+  /* Back-compat aliases */
   --primary-red: var(--amber);
   --dark-red: var(--amber-deep);
   --light-red: var(--amber-soft);
-  --gray-dark: #0a0a0a;
-  --gray-medium: #52525b;
-  --gray-light: #dfeae8;
+  --gray-dark: var(--fg);
+  --gray-medium: var(--fg-muted);
+  --gray-light: var(--glass-border);
 }
 
 /* --- Base ----------------------------------------------------------------- */
@@ -87,12 +90,19 @@ html {
 }
 
 body {
-  background-color: var(--paper);
+  min-height: 100vh;
   color: var(--fg);
   font-family: var(--font-sans);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  background-color: #06201d;
+  background-image:
+    radial-gradient(60% 55% at 12% 8%, rgba(20, 184, 166, 0.28), transparent 60%),
+    radial-gradient(55% 50% at 88% 14%, rgba(34, 211, 238, 0.2), transparent 60%),
+    radial-gradient(65% 60% at 75% 95%, rgba(13, 148, 136, 0.24), transparent 62%),
+    linear-gradient(160deg, #06201d 0%, #05272300 30%, #062f33 100%);
+  background-attachment: fixed;
 }
 
 ::selection {
@@ -115,29 +125,12 @@ h6 {
   text-transform: uppercase;
 }
 
-h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-}
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+h2 { font-size: clamp(2rem, 3.5vw, 3rem); }
+h3 { font-size: 1.5rem; letter-spacing: 0; }
+h4, h5, h6 { letter-spacing: 0; text-transform: none; }
 
-h2 {
-  font-size: clamp(2rem, 3.5vw, 3rem);
-}
-
-h3 {
-  font-size: 1.5rem;
-  letter-spacing: 0;
-}
-
-h4,
-h5,
-h6 {
-  letter-spacing: 0;
-  text-transform: none;
-}
-
-a {
-  color: inherit;
-}
+a { color: inherit; }
 
 img,
 video {
@@ -162,7 +155,7 @@ video {
 
 .main-content {
   flex: 1;
-  margin-top: 76px; /* fixed header height */
+  margin-top: 76px;
   position: relative;
   animation: shell-fade-in 0.5s ease-out;
 }
@@ -178,9 +171,10 @@ video {
 
 /* --- Signature elements --------------------------------------------------- */
 .hazard-bar {
-  height: 10px;
+  height: 2px;
   width: 100%;
   background: var(--hazard);
+  opacity: 0.8;
 }
 
 .eyebrow {
@@ -192,7 +186,7 @@ video {
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--amber-deep);
+  color: var(--amber);
 }
 
 .eyebrow::before {
@@ -202,15 +196,23 @@ video {
   background: var(--amber);
 }
 
-.eyebrow-invert {
-  color: var(--amber);
+.eyebrow-invert { color: var(--amber); }
+
+/* --- Glass surfaces ------------------------------------------------------- */
+.surface {
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
 }
 
 /* --- Buttons -------------------------------------------------------------- */
 .btn {
   align-items: center;
   justify-content: center;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   border-radius: var(--radius);
   cursor: pointer;
   display: inline-flex;
@@ -222,36 +224,35 @@ video {
   text-transform: uppercase;
   padding: 14px 28px;
   text-decoration: none;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 
 .btn-primary {
   background-color: var(--amber);
-  border-color: var(--ink);
   color: var(--ink);
-  box-shadow: var(--shadow-hard);
+  box-shadow: 0 8px 26px rgba(45, 212, 191, 0.32);
 }
 
 .btn-primary:hover {
   background-color: var(--amber-bright);
-  transform: translate(-2px, -2px);
-  box-shadow: 8px 8px 0 var(--ink);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(45, 212, 191, 0.45);
 }
 
-.btn-primary:active {
-  transform: translate(0, 0);
-  box-shadow: 2px 2px 0 var(--ink);
-}
+.btn-primary:active { transform: translateY(0); }
 
 .btn-secondary {
-  background-color: transparent;
-  border-color: var(--ink);
-  color: var(--ink);
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-color: var(--glass-border);
+  color: var(--fg);
 }
 
 .btn-secondary:hover {
-  background-color: var(--ink);
+  border-color: var(--amber);
   color: var(--amber);
+  background: var(--glass-2);
 }
 
 .btn-invert {
@@ -260,29 +261,17 @@ video {
   color: var(--ink);
 }
 
-.btn-invert:hover {
-  background-color: var(--amber-bright);
-  border-color: var(--amber-bright);
-}
+.btn-invert:hover { background-color: var(--amber-bright); border-color: var(--amber-bright); }
 
 .btn-ghost {
   background-color: transparent;
-  border-color: var(--line);
+  border-color: var(--glass-border);
   color: var(--fg);
 }
 
-.btn-ghost:hover {
-  border-color: var(--amber);
-  color: var(--amber-deep);
-}
+.btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
 
-/* --- Surfaces & chips ----------------------------------------------------- */
-.surface {
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-}
-
+/* --- Chips ---------------------------------------------------------------- */
 .chip {
   display: inline-flex;
   align-items: center;
@@ -294,31 +283,22 @@ video {
   text-transform: uppercase;
   padding: 5px 10px;
   border-radius: var(--radius);
-  border: 1px solid var(--ink);
-  background: var(--white);
-  color: var(--ink);
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  color: var(--fg);
 }
 
-.chip-amber {
-  background: var(--amber);
-  border-color: var(--ink);
-  color: var(--ink);
-}
+.chip-amber { background: var(--amber); border-color: var(--amber); color: var(--ink); }
+.chip-ink { background: var(--glass-dark); border-color: var(--glass-border); color: var(--amber); }
 
-.chip-ink {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--amber);
-}
+.mono { font-family: var(--font-mono); }
 
-.mono {
-  font-family: var(--font-mono);
-}
-
-/* --- Utility classes carried over (now amber-themed) ---------------------- */
+/* --- Utility -------------------------------------------------------------- */
 .text-center { text-align: center; }
-.text-amber { color: var(--amber-deep); }
-.bg-ink { background-color: var(--ink); }
+.text-amber { color: var(--amber); }
+.bg-ink { background-color: var(--glass-dark); }
 .mb-4 { margin-bottom: 1.5rem; }
 .mt-4 { margin-top: 1.5rem; }
 .py-8 { padding: 3rem 0; }
@@ -353,11 +333,10 @@ video {
   font-family: var(--font-display);
   font-weight: 700;
   text-transform: uppercase;
+  border-radius: 0 0 var(--radius) 0;
 }
 
-.skip-link:focus {
-  left: 0;
-}
+.skip-link:focus { left: 0; }
 
 @media (max-width: 768px) {
   .container { padding: 0 18px; }
