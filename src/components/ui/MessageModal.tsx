@@ -48,7 +48,7 @@ export default function MessageModal({
       ? { accent: '#dc2626', bg: '#fef2f2' }
       : variant === 'success'
         ? { accent: '#059669', bg: '#ecfdf5' }
-        : { accent: '#b45309', bg: '#fef3c7' };
+        : { accent: '#b45309', bg: '#ccfbf1' };
 
   return createPortal(
     <div className={s['mm-overlay']} onClick={onClose} role="presentation">

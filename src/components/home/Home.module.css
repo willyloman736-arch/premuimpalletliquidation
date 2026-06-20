@@ -166,13 +166,13 @@
 .btn-hero.primary {
   background: var(--amber);
   color: var(--ink);
-  box-shadow: 5px 5px 0 rgba(245, 158, 11, 0.25);
+  box-shadow: 5px 5px 0 rgba(13, 148, 136, 0.25);
 }
 
 .btn-hero.primary:hover {
   background: var(--amber-bright);
   transform: translate(-2px, -2px);
-  box-shadow: 7px 7px 0 rgba(245, 158, 11, 0.3);
+  box-shadow: 7px 7px 0 rgba(13, 148, 136, 0.3);
 }
 
 .btn-hero.secondary {
@@ -531,7 +531,7 @@
 
 .testimonial-profit {
   font-family: var(--font-mono);
-  background: rgba(245, 158, 11, 0.12);
+  background: rgba(13, 148, 136, 0.12);
   color: var(--amber);
   border: 1px solid var(--amber-deep);
   padding: 0.4rem 0.7rem;

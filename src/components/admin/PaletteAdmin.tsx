@@ -435,7 +435,7 @@ export default function PaletteAdmin() {
           <h1
             style={{
               margin: 0,
-              color: '#f59e0b',
+              color: '#0d9488',
               fontSize: isMobile ? '20px' : '28px',
               fontWeight: 700,
             }}
@@ -450,7 +450,7 @@ export default function PaletteAdmin() {
                 type="button"
                 style={{
                   ...buttonStyle,
-                  backgroundColor: '#f59e0b',
+                  backgroundColor: '#0d9488',
                   color: 'white',
                 }}
                 onClick={() => setShowForm(true)}
@@ -463,12 +463,12 @@ export default function PaletteAdmin() {
                 style={{
                   padding: '8px 16px',
                   borderRadius: '6px',
-                  border: '2px solid #f59e0b',
+                  border: '2px solid #0d9488',
                   cursor: 'pointer',
                   fontSize: '14px',
                   fontWeight: 500,
                   backgroundColor: 'transparent',
-                  color: '#f59e0b',
+                  color: '#0d9488',
                 }}
                 onClick={logout}
               >
@@ -486,7 +486,7 @@ export default function PaletteAdmin() {
               aria-expanded={showMobileMenu}
               style={{
                 ...buttonStyle,
-                backgroundColor: '#f59e0b',
+                backgroundColor: '#0d9488',
                 color: 'white',
                 padding: '8px',
               }}
@@ -518,7 +518,7 @@ export default function PaletteAdmin() {
                 type="button"
                 style={{
                   ...buttonStyle,
-                  backgroundColor: '#f59e0b',
+                  backgroundColor: '#0d9488',
                   color: 'white',
                   width: '100%',
                   marginBottom: '10px',
@@ -536,9 +536,9 @@ export default function PaletteAdmin() {
                 type="button"
                 style={{
                   ...buttonStyle,
-                  border: '2px solid #f59e0b',
+                  border: '2px solid #0d9488',
                   backgroundColor: 'transparent',
-                  color: '#f59e0b',
+                  color: '#0d9488',
                   width: '100%',
                   justifyContent: 'center',
                 }}
@@ -569,7 +569,7 @@ export default function PaletteAdmin() {
             justifyContent: 'space-between',
             alignItems: 'center',
             gap: '15px',
-            color: '#f59e0b',
+            color: '#0d9488',
             fontSize: '14px',
           }}
         >
@@ -583,7 +583,7 @@ export default function PaletteAdmin() {
             style={{
               background: 'transparent',
               border: 'none',
-              color: '#f59e0b',
+              color: '#0d9488',
               cursor: 'pointer',
               padding: '2px',
               display: 'flex',
@@ -665,7 +665,7 @@ export default function PaletteAdmin() {
                       <h3
                         style={{
                           margin: '0 0 8px 0',
-                          color: '#f59e0b',
+                          color: '#0d9488',
                           fontSize: '18px',
                           fontWeight: 600,
                         }}
@@ -682,7 +682,7 @@ export default function PaletteAdmin() {
                         <span
                           style={{
                             backgroundColor: '#fef2f2',
-                            color: '#f59e0b',
+                            color: '#0d9488',
                             padding: '4px 8px',
                             borderRadius: '4px',
                             fontSize: '12px',
@@ -694,7 +694,7 @@ export default function PaletteAdmin() {
                         <span
                           style={{
                             backgroundColor: '#fef2f2',
-                            color: '#f59e0b',
+                            color: '#0d9488',
                             padding: '4px 8px',
                             borderRadius: '4px',
                             fontSize: '12px',
@@ -712,7 +712,7 @@ export default function PaletteAdmin() {
                         style={{
                           ...buttonStyle,
                           backgroundColor: '#fef2f2',
-                          color: '#f59e0b',
+                          color: '#0d9488',
                           padding: '6px',
                         }}
                         onClick={() => editPalette(palette)}
@@ -725,7 +725,7 @@ export default function PaletteAdmin() {
                         style={{
                           ...buttonStyle,
                           backgroundColor: '#fef2f2',
-                          color: '#f59e0b',
+                          color: '#0d9488',
                           padding: '6px',
                         }}
                         onClick={() => deletePalette(palette.id)}
@@ -780,7 +780,7 @@ export default function PaletteAdmin() {
                             style={{
                               display: 'inline-block',
                               backgroundColor: '#fef2f2',
-                              color: '#f59e0b',
+                              color: '#0d9488',
                               padding: '2px 6px',
                               borderRadius: '3px',
                               fontSize: '11px',
@@ -826,7 +826,7 @@ export default function PaletteAdmin() {
               <h2
                 style={{
                   margin: 0,
-                  color: '#f59e0b',
+                  color: '#0d9488',
                   fontSize: '24px',
                   fontWeight: 600,
                 }}
@@ -930,7 +930,7 @@ export default function PaletteAdmin() {
                       borderRadius: '6px',
                       padding: '10px',
                       fontSize: '14px',
-                      color: '#f59e0b',
+                      color: '#0d9488',
                     }}
                   >
                     <strong>
@@ -1114,7 +1114,7 @@ export default function PaletteAdmin() {
                   type="button"
                   style={{
                     ...buttonStyle,
-                    backgroundColor: '#f59e0b',
+                    backgroundColor: '#0d9488',
                     color: 'white',
                   }}
                   onClick={addContentItem}
@@ -1151,7 +1151,7 @@ export default function PaletteAdmin() {
                         style={{
                           backgroundColor: 'transparent',
                           border: 'none',
-                          color: '#f59e0b',
+                          color: '#0d9488',
                           cursor: 'pointer',
                           padding: '2px',
                         }}
@@ -1199,7 +1199,7 @@ export default function PaletteAdmin() {
                   htmlFor="image-upload"
                   style={{
                     ...buttonStyle,
-                    backgroundColor: '#f59e0b',
+                    backgroundColor: '#0d9488',
                     color: 'white',
                     margin: '0 auto',
                     cursor: 'pointer',
@@ -1259,7 +1259,7 @@ export default function PaletteAdmin() {
                           position: 'absolute',
                           top: '4px',
                           right: '4px',
-                          backgroundColor: '#f59e0b',
+                          backgroundColor: '#0d9488',
                           color: 'white',
                           border: 'none',
                           borderRadius: '50%',
@@ -1305,7 +1305,7 @@ export default function PaletteAdmin() {
                 disabled={saving}
                 style={{
                   ...buttonStyle,
-                  backgroundColor: '#f59e0b',
+                  backgroundColor: '#0d9488',
                   color: 'white',
                   cursor: saving ? 'not-allowed' : 'pointer',
                   opacity: saving ? 0.7 : 1,

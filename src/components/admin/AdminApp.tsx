@@ -18,7 +18,7 @@ function AdminGate() {
           backgroundColor: '#0a0a0a',
         }}
       >
-        <div style={{ color: '#f59e0b', fontSize: '18px', fontFamily: 'var(--font-mono)' }}>
+        <div style={{ color: '#0d9488', fontSize: '18px', fontFamily: 'var(--font-mono)' }}>
           Loading…
         </div>
       </div>

@@ -5,14 +5,14 @@
    Aesthetic: amber + black, condensed display type, utilitarian / warehouse.
    ========================================================================== */
 @theme {
-  --color-amber: #f59e0b;
-  --color-amber-bright: #fbbf24;
-  --color-amber-deep: #d97706;
+  --color-amber: #0d9488;
+  --color-amber-bright: #14b8a6;
+  --color-amber-deep: #0f766e;
   --color-ink: #0a0a0a;
-  --color-ink-800: #14181f;
-  --color-ink-700: #1c222c;
-  --color-concrete: #e7e5e4;
-  --color-paper: #fafaf9;
+  --color-ink-800: #102a26;
+  --color-ink-700: #1a3b35;
+  --color-concrete: #dfeae8;
+  --color-paper: #f7fbfa;
 
   --font-display: var(--font-oswald), 'Arial Narrow', sans-serif;
   --font-sans: var(--font-inter), system-ui, sans-serif;
@@ -21,33 +21,33 @@
 
 :root {
   /* Brand */
-  --amber: #f59e0b;
-  --amber-bright: #fbbf24;
-  --amber-deep: #d97706;
-  --amber-soft: #fef3c7;
+  --amber: #0d9488;
+  --amber-bright: #14b8a6;
+  --amber-deep: #0f766e;
+  --amber-soft: #ccfbf1;
 
   --ink: #0a0a0a;
-  --ink-900: #0e1116;
-  --ink-800: #14181f;
-  --ink-700: #1c222c;
-  --ink-600: #2a323f;
-  --ink-500: #3b4452;
+  --ink-900: #0a1614;
+  --ink-800: #102a26;
+  --ink-700: #1a3b35;
+  --ink-600: #294f48;
+  --ink-500: #3a655d;
 
-  --paper: #fafaf9;
-  --concrete: #e7e5e4;
-  --concrete-200: #f1f0ef;
+  --paper: #f7fbfa;
+  --concrete: #dfeae8;
+  --concrete-200: #edf4f2;
   --white: #ffffff;
 
   /* Text */
   --fg: #0a0a0a;
   --fg-muted: #52525b;
   --fg-soft: #71717a;
-  --fg-invert: #fafaf9;
+  --fg-invert: #f7fbfa;
   --fg-invert-muted: #a1a1aa;
 
   /* Lines & surfaces */
   --line: #d6d3d1;
-  --line-dark: #2a323f;
+  --line-dark: #294f48;
 
   /* Shadows — flat / hard for an industrial feel */
   --shadow: 0 1px 0 rgba(10, 10, 10, 0.04), 0 2px 8px rgba(10, 10, 10, 0.06);
@@ -72,7 +72,7 @@
   --light-red: var(--amber-soft);
   --gray-dark: #0a0a0a;
   --gray-medium: #52525b;
-  --gray-light: #e7e5e4;
+  --gray-light: #dfeae8;
 }
 
 /* --- Base ----------------------------------------------------------------- */

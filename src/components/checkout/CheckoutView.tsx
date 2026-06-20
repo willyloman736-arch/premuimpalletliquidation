@@ -668,7 +668,7 @@ export default function CheckoutView() {
                                     appearance: {
                                       theme: 'stripe',
                                       variables: {
-                                        colorPrimary: '#f59e0b',
+                                        colorPrimary: '#0d9488',
                                         borderRadius: '4px',
                                       },
                                     },
