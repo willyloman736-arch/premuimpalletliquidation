@@ -9,9 +9,9 @@ export const site = {
   description:
     'Premium Pallet Liquidations sources truckloads of brand-name overstock and customer returns from top US retailers — resale-ready pallets with real margins, shipped fast across the USA.',
   // Primary inbox for all orders + customer enquiries.
-  email: 'info@premiumpalletliquidations.com',
-  supportEmail: 'info@premiumpalletliquidations.com',
-  legalEmail: 'info@premiumpalletliquidations.com',
+  email: 'custumer.care@premiumpalletliquidations.com',
+  supportEmail: 'custumer.care@premiumpalletliquidations.com',
+  legalEmail: 'custumer.care@premiumpalletliquidations.com',
   // Contact line (also used for WhatsApp). Update here to change everywhere.
   phone: '(775) 445-9668',
   phoneHref: 'tel:+17754459668',
