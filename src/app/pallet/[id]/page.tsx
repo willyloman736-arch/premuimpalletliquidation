@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, Package } from 'lucide-react';
 import { getPalettes, getPaletteById, getAvailablePalettes, seedPalettes } from '@/data/palettes';
+import { site } from '@/lib/site';
 import PaletteDetailView from '@/components/palettes/PaletteDetailView';
 import s from '@/components/palettes/PaletteDetailView.module.css';
 
@@ -56,5 +57,34 @@ export default async function PaletteDetailPage({ params }: PaletteDetailPagePro
     .filter((p) => p.id !== palette.id && p.category === palette.category)
     .slice(0, 3);
 
-  return <PaletteDetailView palette={palette} related={related} />;
+  const productLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: palette.title,
+    description: palette.description,
+    image: palette.images.map((img) => `${site.url}${img}`),
+    sku: `PPL-${palette.id}`,
+    brand: { '@type': 'Brand', name: site.fullName },
+    itemCondition: 'https://schema.org/UsedCondition',
+    offers: {
+      '@type': 'Offer',
+      url: `${site.url}/pallet/${palette.id}`,
+      priceCurrency: 'USD',
+      price: palette.price,
+      availability: palette.available
+        ? 'https://schema.org/InStock'
+        : 'https://schema.org/OutOfStock',
+      itemCondition: 'https://schema.org/UsedCondition',
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }}
+      />
+      <PaletteDetailView palette={palette} related={related} />
+    </>
+  );
 }
