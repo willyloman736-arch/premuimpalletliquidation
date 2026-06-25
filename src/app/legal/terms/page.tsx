@@ -87,7 +87,7 @@ export default function TermsPage() {
 
         <h2>11. Governing Law</h2>
         <p>
-          These Terms are governed by the laws of the State of Georgia, USA, without regard to its
+          These Terms are governed by the laws of the State of Nevada, USA, without regard to its
           conflict-of-laws principles.
         </p>
 

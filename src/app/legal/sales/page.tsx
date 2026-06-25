@@ -88,7 +88,9 @@ export default function SalesPage() {
         <p>
           Because of the nature of liquidation pallets (assorted, as-is lots), returns are limited.
           If there is a significant issue with your order, contact us within <strong>7 days</strong>{' '}
-          of delivery and we will review your claim and work toward a fair resolution.
+          of delivery and we will review your claim and work toward a fair resolution. See our full{' '}
+          <Link href="/legal/returns">Returns &amp; Refunds Policy</Link> for eligibility, how to
+          start a return, and refund timing.
         </p>
 
         <h2>8. Limited Warranty</h2>
@@ -118,9 +120,9 @@ export default function SalesPage() {
 
         <h2>12. Governing Law &amp; Disputes</h2>
         <p>
-          These Terms of Sale are governed by the laws of the State of Georgia, USA. Any dispute will
+          These Terms of Sale are governed by the laws of the State of Nevada, USA. Any dispute will
           be subject to the exclusive jurisdiction of the state and federal courts located in
-          Georgia.
+          Nevada.
         </p>
 
         <h2>13. Contact</h2>

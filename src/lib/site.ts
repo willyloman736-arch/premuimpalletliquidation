@@ -51,6 +51,7 @@ export const navItems = [
 export const legalLinks = [
   { path: '/legal/terms', label: 'Terms of Service' },
   { path: '/legal/sales', label: 'Terms of Sale' },
+  { path: '/legal/returns', label: 'Returns & Refunds' },
   { path: '/legal/privacy', label: 'Privacy Policy' },
   { path: '/legal/cookies', label: 'Cookie Policy' },
 ] as const;
