@@ -13,7 +13,6 @@ const sortOptions = [
   { value: 'featured', label: 'Featured' },
   { value: 'price-low', label: 'Price: Low to High' },
   { value: 'price-high', label: 'Price: High to Low' },
-  { value: 'profit', label: 'Estimated profit' },
   { value: 'quantity', label: 'Quantity' },
 ] as const;
 
@@ -57,8 +56,6 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
         return a.price - b.price;
       case 'price-high':
         return b.price - a.price;
-      case 'profit':
-        return parseInt(b.estimatedProfit) - parseInt(a.estimatedProfit);
       case 'quantity':
         return b.quantity - a.quantity;
       default:
@@ -106,8 +103,8 @@ export default function CatalogView({ palettes }: { palettes: Palette[] }) {
                 <span className={s['stat-label']}>Fast shipping</span>
               </div>
               <div className={s['header-stat']}>
-                <span className={s['stat-number']}>300%</span>
-                <span className={s['stat-label']}>Avg. profit</span>
+                <span className={s['stat-number']}>USA</span>
+                <span className={s['stat-label']}>Nationwide</span>
               </div>
             </div>
           </div>

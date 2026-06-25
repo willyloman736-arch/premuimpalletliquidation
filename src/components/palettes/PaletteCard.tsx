@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Package, TrendingUp, Star, Eye, ShoppingCart, ArrowRight } from 'lucide-react';
+import { Package, Layers, Eye, ShoppingCart, ArrowRight } from 'lucide-react';
 import type { Palette } from '@/types/palette';
 import { addPaletteToCart } from '@/lib/cart';
 import QuickViewModal from './QuickViewModal';
@@ -24,7 +24,6 @@ interface PaletteCardProps {
 
 export default function PaletteCard({
   palette,
-  showRating = false,
   layout = 'grid',
   index = 0,
   priority = false,
@@ -72,15 +71,9 @@ export default function PaletteCard({
             <span>{palette.quantity} items</span>
           </div>
           <div className={s['info-item']}>
-            <TrendingUp size={15} aria-hidden="true" />
-            <span>{palette.estimatedProfit}</span>
+            <Layers size={15} aria-hidden="true" />
+            <span>{palette.condition}</span>
           </div>
-          {showRating && (
-            <div className={s['info-item']}>
-              <Star size={15} aria-hidden="true" />
-              <span>{palette.rating}/5</span>
-            </div>
-          )}
         </div>
 
         <div className={s['palette-price']}>

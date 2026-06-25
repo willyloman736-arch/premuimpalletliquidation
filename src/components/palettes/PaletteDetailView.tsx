@@ -4,8 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  TrendingUp,
-  Star,
   Heart,
   Share2,
   ShoppingCart,
@@ -56,9 +54,6 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
   const [zip, setZip] = useState('');
   const [shipQuote, setShipQuote] = useState<string | null>(null);
 
-  // Deterministic, believable "stock left" cue (no real inventory feed).
-  const stockLeft = ((palette.id * 7) % 7) + 2;
-
   const estimateShipping = () => {
     if (!/^\d{5}$/.test(zip.trim())) {
       setShipQuote('Enter a valid 5-digit ZIP code.');
@@ -78,7 +73,6 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
       `Units: ${palette.quantity}`,
       `Price (USD): $${palette.price.toLocaleString('en-US')}`,
       `Est. retail value: $${palette.original_price.toLocaleString('en-US')}`,
-      `Est. resale margin: ${palette.estimatedProfit}`,
       palette.origin ? `Source: ${palette.origin}` : '',
       '',
       'CONTENTS',
@@ -237,20 +231,6 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
                 </div>
               </div>
 
-              <div className={s['product-rating']}>
-                <div className={s.stars} aria-label={`Rating ${palette.rating} out of 5`}>
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={16}
-                      fill={i < Math.floor(palette.rating) ? 'currentColor' : 'none'}
-                      aria-hidden="true"
-                    />
-                  ))}
-                </div>
-                <span className={s['rating-value']}>({palette.rating}/5)</span>
-              </div>
-
               <p className={s['product-description']}>{palette.description}</p>
 
               <div className={s['product-highlights']}>
@@ -259,12 +239,12 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
                   <span>{palette.quantity} items included</span>
                 </div>
                 <div className={s['highlight-item']}>
-                  <TrendingUp size={20} aria-hidden="true" />
-                  <span>Est. profit: {palette.estimatedProfit}</span>
-                </div>
-                <div className={s['highlight-item']}>
                   <Award size={20} aria-hidden="true" />
                   <span>Condition: {palette.condition}</span>
+                </div>
+                <div className={s['highlight-item']}>
+                  <Package size={20} aria-hidden="true" />
+                  <span>Category: {palette.category}</span>
                 </div>
                 <div className={s['highlight-item']}>
                   <Truck size={20} aria-hidden="true" />
@@ -283,13 +263,6 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
                     You save {usd(palette.original_price - palette.price)}
                   </span>
                 </div>
-              </div>
-
-              <div className={s.scarcity}>
-                <Clock size={15} aria-hidden="true" />
-                <span>
-                  Only <strong>{stockLeft}</strong> left in stock — order soon
-                </span>
               </div>
 
               <div className={s['product-purchase']}>
@@ -405,17 +378,16 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
               <div className={s['tab-content']}>
                 <h3>About this pallet</h3>
                 <p>
-                  This {palette.title.toLowerCase()} is an outstanding opportunity for resellers and
-                  entrepreneurs. With an estimated profit potential of {palette.estimatedProfit}, it
-                  contains {palette.quantity} carefully selected items.
+                  This {palette.title.toLowerCase()} is a manifested liquidation lot of{' '}
+                  {palette.quantity} assorted items, sold <strong>as-is</strong> — ideal for
+                  resellers and entrepreneurs.
                 </p>
                 <h4>Key features:</h4>
                 <ul>
-                  <li>Condition: {palette.condition} — products in excellent shape</li>
+                  <li>Condition grade: {palette.condition}</li>
                   <li>Quantity: {palette.quantity} assorted items</li>
-                  <li>Estimated profit: {palette.estimatedProfit}</li>
                   <li>Category: {palette.category}</li>
-                  <li>Customer rating: {palette.rating}/5 stars</li>
+                  <li>Sold as-is — exact contents may vary</li>
                 </ul>
               </div>
             )}
@@ -432,17 +404,17 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
                     </div>
                   </div>
                   <div className={s['content-item']}>
-                    <Star size={24} aria-hidden="true" />
+                    <Award size={24} aria-hidden="true" />
                     <div>
                       <h4>Condition</h4>
-                      <p>{palette.condition} — quality checked</p>
+                      <p>Grade {palette.condition}</p>
                     </div>
                   </div>
                   <div className={s['content-item']}>
-                    <TrendingUp size={24} aria-hidden="true" />
+                    <FileText size={24} aria-hidden="true" />
                     <div>
-                      <h4>Resale potential</h4>
-                      <p>Estimated profit of {palette.estimatedProfit}</p>
+                      <h4>Manifest</h4>
+                      <p>Sold as-is; contents may vary</p>
                     </div>
                   </div>
                   <div className={s['content-item']}>
@@ -532,7 +504,7 @@ export default function PaletteDetailView({ palette, related }: PaletteDetailVie
                     </div>
                     <div className={s['related-info']}>
                       <span className={s.quantity}>{relatedPalette.quantity} items</span>
-                      <span className={s.profit}>{relatedPalette.estimatedProfit}</span>
+                      <span className={s.profit}>{relatedPalette.condition}</span>
                     </div>
                   </div>
                 </div>

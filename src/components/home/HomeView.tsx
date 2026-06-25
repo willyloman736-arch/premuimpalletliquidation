@@ -5,14 +5,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   Play,
-  Star,
   ArrowRight,
   Package,
-  DollarSign,
-  Users,
-  Award,
   ChevronDown,
-  Zap,
   ShieldCheck,
   Truck,
   ClipboardCheck,
@@ -34,7 +29,6 @@ import type { Palette } from '@/types/palette';
 import { useInView } from '@/lib/useInView';
 import PaletteCard from '@/components/palettes/PaletteCard';
 import Carousel from '@/components/ui/Carousel';
-import CountUp from '@/components/ui/CountUp';
 import s from './Home.module.css';
 
 const trustItems = [
@@ -113,37 +107,6 @@ const videos = [
   },
 ];
 
-const stats = [
-  { icon: Package, number: '500+', label: 'Pallets Sold' },
-  { icon: Users, number: '100+', label: 'Active Resellers' },
-  { icon: DollarSign, number: '$750K+', label: 'Profits Generated' },
-  { icon: Award, number: '99%', label: 'Satisfaction Rate' },
-];
-
-const testimonials = [
-  {
-    name: 'Marcus T.',
-    business: 'Amazon FBA Seller',
-    text: "PPL tripled my store's revenue in six months. The margins are real.",
-    rating: 5,
-    profit: '+300%',
-  },
-  {
-    name: 'Ashley R.',
-    business: 'eBay Reseller',
-    text: 'Quality pallets, flawless service. I reorder every single month.',
-    rating: 5,
-    profit: '+250%',
-  },
-  {
-    name: 'Jordan P.',
-    business: 'Retail Store Owner',
-    text: 'PPL let me diversify my shelves with trending product, fast.',
-    rating: 5,
-    profit: '+180%',
-  },
-];
-
 export default function HomeView({
   featured,
   palettes,
@@ -158,9 +121,7 @@ export default function HomeView({
   const [newsletterDone, setNewsletterDone] = useState(false);
 
   const [videosRef, videosIn] = useInView<HTMLElement>();
-  const [statsRef, statsIn] = useInView<HTMLElement>();
   const [featuredRef, featuredIn] = useInView<HTMLElement>();
-  const [testimonialsRef, testimonialsIn] = useInView<HTMLElement>();
   const [howRef, howIn] = useInView<HTMLElement>();
   const [catRef, catIn] = useInView<HTMLElement>();
 
@@ -220,16 +181,16 @@ export default function HomeView({
             </p>
             <div className={s['hero-stats']}>
               <div className={s['hero-stat']}>
-                <span className={s.num}>500+</span>
-                <span className={s.label}>Pallets Sold</span>
-              </div>
-              <div className={s['hero-stat']}>
-                <span className={s.num}>99%</span>
-                <span className={s.label}>Satisfaction</span>
-              </div>
-              <div className={s['hero-stat']}>
                 <span className={s.num}>48H</span>
-                <span className={s.label}>Ships</span>
+                <span className={s.label}>Ships Fast</span>
+              </div>
+              <div className={s['hero-stat']}>
+                <span className={s.num}>USA</span>
+                <span className={s.label}>Nationwide</span>
+              </div>
+              <div className={s['hero-stat']}>
+                <span className={s.num}>$1K+</span>
+                <span className={s.label}>Free Shipping</span>
               </div>
             </div>
             <div className={s['hero-actions']}>
@@ -445,98 +406,13 @@ export default function HomeView({
         </div>
       </section>
 
-      {/* Stats ---------------------------------------------------------- */}
-      <section
-        ref={statsRef}
-        className={`${s['stats-section']} ${s.reveal} ${statsIn ? s.visible : ''}`}
-      >
-        <div className={s['stats-inner']}>
-          <div className="container">
-            <div className={s['stats-grid']}>
-              {stats.map((stat) => {
-                const Icon = stat.icon;
-                return (
-                  <div key={stat.label} className={s['stat-card']}>
-                    <div className={s['stat-icon']}>
-                      <Icon size={26} aria-hidden="true" />
-                    </div>
-                    <span className={s['stat-num']}>
-                      <CountUp value={stat.number} />
-                    </span>
-                    <span className={s['stat-label']}>{stat.label}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials --------------------------------------------------- */}
-      <section
-        ref={testimonialsRef}
-        className={`${s['testimonials-section']} ${s.reveal} ${testimonialsIn ? s.visible : ''}`}
-      >
-        <div className="container">
-          <div className={s['section-header']}>
-            <span className={`eyebrow ${s['section-eyebrow']}`}>Reseller Results</span>
-            <h2>Built With PPL</h2>
-            <p>Real US resellers scaling their business with our pallets.</p>
-          </div>
-
-          <div className={s['rating-summary']}>
-            <span className={s['rating-score']}>4.8</span>
-            <div className={s['rating-meta']}>
-              <div className={s['rating-stars']} aria-hidden="true">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={18} fill="currentColor" />
-                ))}
-              </div>
-              <p>
-                Rated <strong>4.8 / 5</strong> by <strong>500+</strong> verified resellers
-              </p>
-            </div>
-            <span className={s['rating-badge']}>
-              <BadgeCheck size={16} aria-hidden="true" /> Verified reviews
-            </span>
-          </div>
-
-          <div className={s['testimonials-grid']}>
-            {testimonials.map((testimonial) => (
-              <figure key={testimonial.name} className={s['testimonial-card']}>
-                <div className={s['testimonial-header']}>
-                  <div className={s['testimonial-avatar']}>{testimonial.name.charAt(0)}</div>
-                  <figcaption className={s['testimonial-info']}>
-                    <h4>{testimonial.name}</h4>
-                    <p>{testimonial.business}</p>
-                    <div className={s['testimonial-rating']} aria-label={`${testimonial.rating} out of 5`}>
-                      {Array.from({ length: testimonial.rating }).map((_, i) => (
-                        <Star key={i} size={14} fill="currentColor" aria-hidden="true" />
-                      ))}
-                    </div>
-                  </figcaption>
-                  <div className={s['testimonial-profit']}>
-                    <Zap size={15} aria-hidden="true" />
-                    <span>{testimonial.profit}</span>
-                  </div>
-                </div>
-                <blockquote className={s['testimonial-text']}>&ldquo;{testimonial.text}&rdquo;</blockquote>
-                <div className={s['testimonial-verified']}>
-                  <BadgeCheck size={13} aria-hidden="true" /> Verified buyer
-                </div>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA ------------------------------------------------------------ */}
       <section className={s['cta-section']}>
         <div className={s['cta-hazard']} aria-hidden="true" />
         <div className="container">
           <div className={s['cta-inner']}>
             <h2>Ready To Scale Your Resale Business?</h2>
-            <p>Join 2,500+ US resellers who source their inventory from Premium Pallet Liquidations.</p>
+            <p>Source your inventory from Premium Pallet Liquidations — resale-ready pallets, shipped fast across the USA.</p>
             <div className={s['cta-actions']}>
               <Link href="/pallets" className={`${s['btn-cta']} ${s.primary}`}>
                 <Package size={20} aria-hidden="true" />

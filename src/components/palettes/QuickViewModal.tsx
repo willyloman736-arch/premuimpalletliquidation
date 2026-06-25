@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import Link from 'next/link';
-import { X, ShoppingCart, Package, TrendingUp, Star, ArrowRight } from 'lucide-react';
+import { X, ShoppingCart, Package, Layers, ArrowRight } from 'lucide-react';
 import type { Palette } from '@/types/palette';
 import { addPaletteToCart } from '@/lib/cart';
 import s from './QuickViewModal.module.css';
@@ -50,19 +50,13 @@ export default function QuickViewModal({ palette, open, onClose }: Props) {
         <div className={s.body}>
           <span className={s.grade}>{palette.condition}</span>
           <h3>{palette.title}</h3>
-          <div className={s.rating} aria-label={`${palette.rating} out of 5`}>
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} size={15} fill={i < Math.floor(palette.rating) ? 'currentColor' : 'none'} aria-hidden="true" />
-            ))}
-            <span>{palette.rating}/5</span>
-          </div>
           <p className={s.desc}>{palette.description}</p>
           <div className={s.meta}>
             <span>
               <Package size={15} aria-hidden="true" /> {palette.quantity} items
             </span>
             <span>
-              <TrendingUp size={15} aria-hidden="true" /> {palette.estimatedProfit}
+              <Layers size={15} aria-hidden="true" /> {palette.condition}
             </span>
           </div>
           <div className={s.price}>
