@@ -36,4 +36,4 @@ export const stripeConfig = {
 };
 
 /** Payment methods offered at checkout. Add 'carte' to re-enable Stripe cards. */
-export const ENABLED_PAYMENT_METHODS = ['virement', 'applepay'];
+export const ENABLED_PAYMENT_METHODS = ['invoice', 'virement', 'applepay'];

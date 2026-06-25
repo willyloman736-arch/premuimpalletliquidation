@@ -15,6 +15,8 @@ import {
   AlertCircle,
   CreditCard,
   MessageCircle,
+  FileText,
+  Download,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import MessageModal, { type MessageVariant } from '@/components/ui/MessageModal';
@@ -97,13 +99,22 @@ function StripePaymentBridge({
 
 const allPaymentMethods: PaymentMethod[] = [
   {
+    id: 'invoice',
+    name: 'Invoice (Net 7)',
+    icon: FileText,
+    description: 'Get a PDF invoice, pay by bank transfer',
+    delay: 'Due in 7 days',
+    fee: 0,
+    popular: true,
+  },
+  {
     id: 'carte',
     name: 'Credit Card',
     icon: CreditCard,
     description: 'Secure card payment',
     delay: 'Immediate',
     fee: 0,
-    popular: true,
+    popular: false,
   },
   {
     id: 'virement',
@@ -140,6 +151,138 @@ const usStates = [
   'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming',
 ];
 
+interface ConfirmedOrder {
+  orderNumber: string;
+  invoiceNumber: string;
+  items: CartItem[];
+  subtotal: number;
+  shipping: number;
+  total: number;
+  customer: CustomerInfo;
+  paymentMethod: string;
+  isInvoice: boolean;
+  paid: boolean;
+  orderDate: string;
+  dueDate: string;
+}
+
+const escHtml = (value: string) =>
+  String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+
+/** Builds a standalone, print-ready HTML invoice document (saved as PDF via the browser). */
+function buildInvoiceHtml(o: ConfirmedOrder): string {
+  const fullName = escHtml(`${o.customer.firstName} ${o.customer.lastName}`.trim());
+  const rows = o.items
+    .map(
+      (i) => `<tr>
+        <td>${escHtml(i.name)}</td>
+        <td class="num">${i.quantity}</td>
+        <td class="num">${money(i.price)}</td>
+        <td class="num">${money(i.price * i.quantity)}</td>
+      </tr>`,
+    )
+    .join('');
+  const statusLabel = o.paid ? 'PAID' : 'PAYMENT DUE';
+  const statusClass = o.paid ? 'paid' : 'due';
+  const totalLabel = o.paid ? 'Total Paid' : 'Total Due';
+  const paymentBlock = o.paid
+    ? `<p>Paid in full by card on ${escHtml(o.orderDate)}. Thank you!</p>`
+    : `<p><strong>Payment due by ${escHtml(o.dueDate)} (Net 7).</strong></p>
+       <p>Pay by ACH / bank transfer. Bank &amp; wire details are emailed with this invoice —
+       please reference <strong>${escHtml(o.invoiceNumber)}</strong> on your payment.
+       Orders ship within 48 hours of cleared payment.</p>`;
+
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>Invoice ${escHtml(o.invoiceNumber)}</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #0f2c2a; margin: 0; padding: 32px; }
+  .sheet { max-width: 760px; margin: 0 auto; }
+  .top { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid #0d9488; padding-bottom: 18px; }
+  .brand { font-size: 20px; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; color: #0d9488; }
+  .muted { color: #5b6b68; font-size: 12px; line-height: 1.5; }
+  .doc { text-align: right; }
+  .doc h1 { margin: 0 0 6px; font-size: 30px; letter-spacing: .08em; color: #0f2c2a; }
+  .status { display: inline-block; padding: 4px 12px; border-radius: 6px; font-weight: 800; font-size: 12px; letter-spacing: .06em; }
+  .status.paid { background: #d1fae5; color: #047857; }
+  .status.due { background: #fef3c7; color: #b45309; }
+  .meta { margin-top: 10px; font-size: 12px; color: #5b6b68; }
+  .meta div { margin: 2px 0; }
+  .parties { margin: 24px 0; }
+  .parties h3 { margin: 0 0 6px; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #0d9488; }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+  th { text-align: left; background: #f0fdfa; color: #0f2c2a; padding: 9px 10px; border-bottom: 2px solid #0d9488; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+  td { padding: 9px 10px; border-bottom: 1px solid #e3ece9; }
+  .num { text-align: right; white-space: nowrap; }
+  .totals { margin-top: 14px; margin-left: auto; width: 280px; font-size: 13px; }
+  .totals .row { display: flex; justify-content: space-between; padding: 5px 0; }
+  .totals .grand { border-top: 2px solid #0d9488; margin-top: 6px; padding-top: 9px; font-size: 16px; font-weight: 800; }
+  .pay { margin-top: 26px; background: #f0fdfa; border: 1px solid #cce9e4; border-radius: 8px; padding: 16px; font-size: 12.5px; line-height: 1.55; }
+  .pay h3 { margin: 0 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: #0d9488; }
+  .foot { margin-top: 22px; font-size: 11px; color: #8a9794; line-height: 1.6; }
+  @media print { body { padding: 0; } .noprint { display: none; } }
+</style></head>
+<body><div class="sheet">
+  <div class="top">
+    <div>
+      <div class="brand">${escHtml(site.fullName)}</div>
+      <div class="muted">${escHtml(site.address)}<br>${escHtml(site.email)}<br>${escHtml(site.phone)}</div>
+    </div>
+    <div class="doc">
+      <h1>INVOICE</h1>
+      <span class="status ${statusClass}">${statusLabel}</span>
+      <div class="meta">
+        <div>Invoice: <strong>${escHtml(o.invoiceNumber)}</strong></div>
+        <div>Order: ${escHtml(o.orderNumber)}</div>
+        <div>Date: ${escHtml(o.orderDate)}</div>
+        ${o.paid ? '' : `<div>Due: ${escHtml(o.dueDate)}</div>`}
+      </div>
+    </div>
+  </div>
+
+  <div class="parties">
+    <h3>Bill To</h3>
+    <div class="muted">
+      ${fullName || '&nbsp;'}<br>
+      ${escHtml(o.customer.address)}<br>
+      ${escHtml(`${o.customer.city}, ${o.customer.state} ${o.customer.zipCode}`)}<br>
+      ${escHtml(o.customer.country)}<br>
+      ${escHtml(o.customer.email)}<br>
+      ${escHtml(o.customer.phone)}
+    </div>
+  </div>
+
+  <table>
+    <thead><tr><th>Description</th><th class="num">Qty</th><th class="num">Unit</th><th class="num">Amount</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>
+
+  <div class="totals">
+    <div class="row"><span>Subtotal</span><span>${money(o.subtotal)}</span></div>
+    <div class="row"><span>Shipping</span><span>${o.shipping === 0 ? 'Free' : money(o.shipping)}</span></div>
+    <div class="row grand"><span>${totalLabel}</span><span>${money(o.total)}</span></div>
+  </div>
+
+  <div class="pay">
+    <h3>Payment</h3>
+    ${paymentBlock}
+  </div>
+
+  <div class="foot">
+    Liquidation pallets are sold as-is; exact contents may vary. See our Terms of Sale and Returns &amp; Refunds policy at ${escHtml(site.url)}/legal/sales and ${escHtml(site.url)}/legal/returns.<br>
+    Thank you for your business — questions? ${escHtml(site.email)}
+  </div>
+
+  <button class="noprint" onclick="window.print()" style="margin-top:20px;padding:10px 18px;background:#0d9488;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;">Print / Save as PDF</button>
+</div>
+<script>window.onload=function(){setTimeout(function(){window.print();},300);};</script>
+</body></html>`;
+}
+
 export default function CheckoutView() {
   const router = useRouter();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -159,9 +302,7 @@ export default function CheckoutView() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [stripeClientSecret, setStripeClientSecret] = useState<string | null>(null);
   const [stripePrepareError, setStripePrepareError] = useState('');
-  const [orderConfirmation, setOrderConfirmation] = useState<{ orderNumber: string; total: number }>(
-    { orderNumber: '', total: 0 },
-  );
+  const [confirmedOrder, setConfirmedOrder] = useState<ConfirmedOrder | null>(null);
   const cardPaymentConfirmRef = useRef<StripeConfirmFn | null>(null);
   const [messageModal, setMessageModal] = useState<{
     open: boolean;
@@ -401,6 +542,43 @@ export default function CheckoutView() {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
+  const finalizeOrder = (orderNumber: string) => {
+    const now = new Date();
+    const due = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+    const fmt = (d: Date) =>
+      d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    setConfirmedOrder({
+      orderNumber,
+      invoiceNumber: `INV-${orderNumber}`,
+      items: cartItems,
+      subtotal,
+      shipping,
+      total,
+      customer: customerInfo,
+      paymentMethod: selectedPayment,
+      isInvoice: selectedPayment === 'invoice',
+      paid: selectedPayment === 'carte',
+      orderDate: fmt(now),
+      dueDate: fmt(due),
+    });
+    setOrderSubmitted(true);
+    setCartItems([]);
+    writeCart([]);
+  };
+
+  const openInvoice = (order: ConfirmedOrder) => {
+    const w = window.open('', '_blank');
+    if (!w) {
+      showMessageModal('Please allow pop-ups to open your invoice.', {
+        title: 'Invoice',
+        variant: 'info',
+      });
+      return;
+    }
+    w.document.write(buildInvoiceHtml(order));
+    w.document.close();
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -418,7 +596,6 @@ export default function CheckoutView() {
     }
 
     const orderNumber = `PPL-${Date.now()}`;
-    const capturedTotal = total;
 
     setIsProcessing(true);
 
@@ -466,20 +643,14 @@ export default function CheckoutView() {
           await sendOrderEmails(orderNumber);
         }
 
-        setOrderConfirmation({ orderNumber, total: capturedTotal });
-        setOrderSubmitted(true);
-        setCartItems([]);
-        writeCart([]);
+        finalizeOrder(orderNumber);
         return;
       }
 
-      // Other methods (bank transfer, Apple Pay) — send confirmation email if configured.
+      // Invoice / bank transfer / Apple Pay — record the order and email confirmation if configured.
       await sendOrderEmails(orderNumber);
 
-      setOrderConfirmation({ orderNumber, total: capturedTotal });
-      setOrderSubmitted(true);
-      setCartItems([]);
-      writeCart([]);
+      finalizeOrder(orderNumber);
     } catch {
       showMessageModal('Something went wrong. Please try again or contact us.', {
         title: 'Error',
@@ -494,13 +665,11 @@ export default function CheckoutView() {
   const goToPallets = () => router.push('/pallets');
   const goHome = () => router.push('/');
 
-  if (orderSubmitted) {
+  if (orderSubmitted && confirmedOrder) {
     return (
       <OrderConfirmation
-        paymentMethod={selectedPayment}
-        orderNumber={orderConfirmation.orderNumber}
-        orderTotal={orderConfirmation.total}
-        customerInfo={customerInfo}
+        order={confirmedOrder}
+        onDownloadInvoice={() => openInvoice(confirmedOrder)}
         goHome={goHome}
         goToPallets={goToPallets}
       />
@@ -835,21 +1004,18 @@ export default function CheckoutView() {
 }
 
 function OrderConfirmation({
-  paymentMethod,
-  orderNumber,
-  orderTotal,
-  customerInfo,
+  order,
+  onDownloadInvoice,
   goHome,
   goToPallets,
 }: {
-  paymentMethod: string;
-  orderNumber: string;
-  orderTotal: number;
-  customerInfo: CustomerInfo;
+  order: ConfirmedOrder;
+  onDownloadInvoice: () => void;
   goHome: () => void;
   goToPallets: () => void;
 }) {
-  const isCard = paymentMethod === 'carte';
+  const { customer } = order;
+  const totalLabel = order.paid ? 'Total paid' : 'Amount due';
 
   return (
     <div className={s['order-confirmation']}>
@@ -858,31 +1024,42 @@ function OrderConfirmation({
           <div className={s['success-icon']}>
             <CheckCircle size={64} aria-hidden="true" />
           </div>
-          <h1>Order Confirmed!</h1>
+          <h1>{order.paid ? 'Order Confirmed!' : 'Order Received!'}</h1>
           <p className={s['order-number']}>
-            Order number: <strong>{orderNumber}</strong>
+            Order: <strong>{order.orderNumber}</strong> &middot; Invoice:{' '}
+            <strong>{order.invoiceNumber}</strong>
           </p>
+
+          <div className={s['invoice-download']}>
+            <button type="button" className={s['btn-invoice']} onClick={onDownloadInvoice}>
+              <Download size={18} aria-hidden="true" />
+              Download / Print Invoice (PDF)
+            </button>
+            <span className={`${s['inv-status']} ${order.paid ? s['inv-paid'] : s['inv-due']}`}>
+              {order.paid ? 'PAID' : `Due ${order.dueDate}`}
+            </span>
+          </div>
 
           <div className={s['confirmation-details']}>
             <div className={s['customer-details']}>
-              <h3>Shipping Information</h3>
+              <h3>Bill To</h3>
               <div className={s['delivery-card']}>
                 <div className={s['customer-name']}>
-                  {customerInfo.firstName} {customerInfo.lastName}
+                  {customer.firstName} {customer.lastName}
                 </div>
                 <div className={s['customer-address']}>
-                  <p>{customerInfo.address}</p>
+                  <p>{customer.address}</p>
                   <p>
-                    {customerInfo.city}, {customerInfo.state} {customerInfo.zipCode}
+                    {customer.city}, {customer.state} {customer.zipCode}
                   </p>
-                  <p>{customerInfo.country}</p>
+                  <p>{customer.country}</p>
                 </div>
                 <div className={s['customer-contact']}>
                   <p>
-                    <strong>Email:</strong> {customerInfo.email}
+                    <strong>Email:</strong> {customer.email}
                   </p>
                   <p>
-                    <strong>Phone:</strong> {customerInfo.phone}
+                    <strong>Phone:</strong> {customer.phone}
                   </p>
                 </div>
               </div>
@@ -890,50 +1067,62 @@ function OrderConfirmation({
 
             <div className={s['next-steps']}>
               <h3>Next Steps</h3>
-              {isCard ? (
+              {order.paid ? (
                 <div className={s['steps-list']}>
                   <div className={s['step-item']}>
                     <span className={s['step-number']}>1</span>
-                    <span>
-                      Secure card payment processed; your statement may show your payment provider or
-                      bank.
-                    </span>
+                    <span>Your card payment was processed — keep your invoice for records.</span>
                   </div>
                   <div className={s['step-item']}>
                     <span className={s['step-number']}>2</span>
-                    <span>We prepare your order for shipping.</span>
+                    <span>We prepare your order and ship within 48 hours.</span>
                   </div>
                   <div className={s['step-item']}>
                     <span className={s['step-number']}>3</span>
-                    <span>Keep your order number for any questions.</span>
+                    <span>Tracking is emailed to {customer.email || 'your email'}.</span>
                   </div>
                 </div>
               ) : (
                 <div className={s['steps-list']}>
                   <div className={s['step-item']}>
                     <span className={s['step-number']}>1</span>
-                    <span>You&apos;ll receive a confirmation email</span>
+                    <span>Download your invoice above (PDF).</span>
                   </div>
                   <div className={s['step-item']}>
                     <span className={s['step-number']}>2</span>
-                    <span>An agent will reach out to finalize payment</span>
+                    <span>
+                      Pay by bank transfer within 7 days — reference{' '}
+                      <strong>{order.invoiceNumber}</strong>. We email ACH/wire details with your
+                      invoice.
+                    </span>
                   </div>
                   <div className={s['step-item']}>
                     <span className={s['step-number']}>3</span>
-                    <span>Order tracking by email</span>
-                  </div>
-                  <div className={s['step-item']}>
-                    <span className={s['step-number']}>4</span>
-                    <span>Ships within 48h after payment is confirmed</span>
+                    <span>We confirm payment, then ship within 48 hours with tracking.</span>
                   </div>
                 </div>
               )}
             </div>
           </div>
 
-          <p className={s['confirmation-total-line']}>
-            Total paid: <strong>{money(Number(orderTotal))}</strong>
-          </p>
+          <div className={s['inv-items']}>
+            {order.items.map((item) => (
+              <div key={item.id} className={s['inv-row']}>
+                <span>
+                  {item.name} &times; {item.quantity}
+                </span>
+                <span>{money(item.price * item.quantity)}</span>
+              </div>
+            ))}
+            <div className={s['inv-row']}>
+              <span>Shipping</span>
+              <span>{order.shipping === 0 ? 'Free' : money(order.shipping)}</span>
+            </div>
+            <div className={`${s['inv-row']} ${s['inv-total']}`}>
+              <span>{totalLabel}</span>
+              <span>{money(order.total)}</span>
+            </div>
+          </div>
 
           <div className={s['confirmation-actions']}>
             <button onClick={goToPallets} className={s['btn-primary']}>
